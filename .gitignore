@@ -1,0 +1,38 @@
+# Environment
+.env
+.env.*
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Scraped biographies (large, regeneratable)
+officials/
+
+# Output files (generated)
+output/*.xlsx
+output/*.json
+
+# Log/intermediate JSON results (regeneratable)
+logs/*/
+logs/*.json
+logs/*.log
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Large data files
+data/*.json
+data/*.xlsx

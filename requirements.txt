@@ -1,0 +1,20 @@
+# Core dependencies
+requests>=2.31.0
+curl_cffi>=0.5.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+python-dotenv>=1.0.0
+
+# LLM API clients
+openai>=1.0.0
+
+# Data processing & Excel
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# Browser automation (optional but recommended)
+playwright>=1.40.0
+playwright-stealth>=1.0.0
+
+# Optional: Anthropic SDK (no longer required for judge)
+# anthropic>=0.20.0
