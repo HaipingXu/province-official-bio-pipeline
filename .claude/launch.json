@@ -1,0 +1,47 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Full Pipeline — 单省份",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["main_province.py", "--province", "浙江"],
+      "port": null,
+      "description": "Run the full pipeline for one province (scrape → extract → verify → battle → export)"
+    },
+    {
+      "name": "Full Pipeline — 单官员 (debug)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["main_province.py", "--province", "浙江", "--official", "习近平", "--workers", "1"],
+      "port": null,
+      "description": "Debug run for a single official, serial mode (--workers 1)"
+    },
+    {
+      "name": "Full Pipeline — skip scrape",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["main_province.py", "--province", "浙江", "--skip-scrape"],
+      "port": null,
+      "description": "Re-run extraction + verify + battle on existing scraped text"
+    },
+    {
+      "name": "Full Pipeline — skip extract",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["main_province.py", "--province", "浙江", "--skip-extract"],
+      "port": null,
+      "description": "Re-run verify + battle + export only (reuse DS extraction cache)"
+    },
+    {
+      "name": "Full Pipeline — skip battle",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["main_province.py", "--province", "浙江", "--skip-battle"],
+      "port": null,
+      "description": "Run pipeline without judge/battle stage"
+    },
+    {
+      "name": "Batch — 全部省份",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["main_province.py", "--batch", "--workers", "100"],
+      "port": null,
+      "description": "Run all 31 provinces in batch mode with 100 concurrent workers"
+    }
+  ]
+}
