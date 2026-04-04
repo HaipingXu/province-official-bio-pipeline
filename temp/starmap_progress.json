@@ -1,0 +1,256 @@
+{
+  "北京": {
+    "governor": {
+      "starmap_name": "北京市历任市长",
+      "encodeId": "a243ebc279f9d72066d6c70d",
+      "count": 18,
+      "sample_lemmaId": 18433971
+    }
+  },
+  "天津": {
+    "governor": {
+      "starmap_name": "历任天津市市长",
+      "encodeId": "82a3cad5fca51014648fe7c2",
+      "count": 19,
+      "sample_lemmaId": 4574374
+    }
+  },
+  "河北": {
+    "governor": {
+      "starmap_name": "历任河北省省长",
+      "encodeId": "3b843d6a0e97c70e5b245ff0",
+      "count": 19,
+      "sample_lemmaId": 7342964
+    }
+  },
+  "山西": {
+    "governor": {
+      "starmap_name": "历任山西省省长",
+      "encodeId": "222bebc5295c4924b0bd5ef0",
+      "count": 23,
+      "sample_lemmaId": 4646090
+    }
+  },
+  "内蒙古": {
+    "governor": {
+      "starmap_name": "历任内蒙古自治区主席",
+      "encodeId": "f490c020e3b52410c8bcc5c0",
+      "count": 13,
+      "sample_lemmaId": 12506744
+    }
+  },
+  "辽宁": {
+    "governor": {
+      "starmap_name": "历任辽宁省省长",
+      "encodeId": "f484cb0ea676a2bd57ab5df0",
+      "count": 20,
+      "sample_lemmaId": 13350646
+    }
+  },
+  "吉林": {
+    "governor": {
+      "starmap_name": "历任吉林省省长",
+      "encodeId": "d44f45244eef45abe2205cf0",
+      "count": 23,
+      "sample_lemmaId": 73740
+    }
+  },
+  "黑龙江": {
+    "governor": {
+      "starmap_name": "历任黑龙江省省长",
+      "encodeId": "5a65aebda8f9f020687643f0",
+      "count": 21,
+      "sample_lemmaId": 10890335
+    }
+  },
+  "上海": {
+    "governor": {
+      "starmap_name": "历任上海市市长",
+      "encodeId": "f9ba484ea1cb9df19f8afdd5",
+      "count": 16,
+      "sample_lemmaId": 10103811
+    }
+  },
+  "江苏": {
+    "governor": {
+      "starmap_name": "历任江苏省省长",
+      "encodeId": "4cc6a4b8484a14ce09f960fc",
+      "count": 15,
+      "sample_lemmaId": 36514
+    }
+  },
+  "浙江": {
+    "governor": {
+      "starmap_name": "历任浙江省省长",
+      "encodeId": "bbf9b41ce5981bf9d58567fc",
+      "count": 20,
+      "sample_lemmaId": 5494968
+    }
+  },
+  "安徽": {
+    "governor": {
+      "starmap_name": "历任安徽省省长",
+      "encodeId": "ab5d18ceedafc785fb1366fc",
+      "count": 20,
+      "sample_lemmaId": 1393121
+    }
+  },
+  "福建": {
+    "governor": {
+      "starmap_name": "历任福建省省长",
+      "encodeId": "ab7fe126052028ec100293ff",
+      "count": 20,
+      "sample_lemmaId": 4302261
+    }
+  },
+  "江西": {
+    "governor": {
+      "starmap_name": "历任江西省省长",
+      "encodeId": "ec9f5e1ce318c5a4d5d74a1d",
+      "count": 13,
+      "sample_lemmaId": 4099221
+    }
+  },
+  "山东": {
+    "governor": {
+      "starmap_name": "山东省历任省长",
+      "encodeId": "b7a9e6fb3c3ecebb99f1fed5",
+      "count": 19,
+      "sample_lemmaId": 6001359
+    }
+  },
+  "河南": {
+    "governor": {
+      "starmap_name": "历任河南省省长",
+      "encodeId": "ab3b24eca15814e96b4d91ff",
+      "count": 18,
+      "sample_lemmaId": 388294
+    }
+  },
+  "湖北": {
+    "governor": {
+      "starmap_name": "历任湖北省省长",
+      "encodeId": "3bad0e02b4b3794dcbee90ff",
+      "count": 17,
+      "sample_lemmaId": 2192286
+    }
+  },
+  "湖南": {
+    "governor": {
+      "starmap_name": "历任湖南省省长",
+      "encodeId": "114318e9d817d9eee79397ff",
+      "count": 17,
+      "sample_lemmaId": 11002327
+    }
+  },
+  "广东": {
+    "governor": {
+      "starmap_name": "历任广东省省长",
+      "encodeId": "e557d738bb53068063140afa",
+      "count": 17,
+      "sample_lemmaId": 79902
+    }
+  },
+  "广西": {
+    "governor": {
+      "starmap_name": "历任广西壮族自治区主席",
+      "encodeId": "df6178d6b073dabcb21dc4c0",
+      "count": 13,
+      "sample_lemmaId": 19277224
+    }
+  },
+  "海南": {
+    "governor": {
+      "starmap_name": "历任海南省省长",
+      "encodeId": "c879ed0e5ddd71147f3409fa",
+      "count": 11,
+      "sample_lemmaId": 7930448
+    }
+  },
+  "重庆": {
+    "governor": {
+      "starmap_name": "历任重庆市市长",
+      "encodeId": "d59481c06671768f9b31e6c2",
+      "count": 20,
+      "sample_lemmaId": 1246972
+    },
+    "secretary": {
+      "starmap_name": "历任重庆市委书记",
+      "encodeId": "aeb9b7bbd4ae527b3b27204c",
+      "count": 9,
+      "sample_lemmaId": 944417
+    }
+  },
+  "四川": {
+    "governor": {
+      "starmap_name": "历任四川省省长",
+      "encodeId": "f24f0a8029496d347f0c08fa",
+      "count": 16,
+      "sample_lemmaId": 8007072
+    }
+  },
+  "贵州": {
+    "governor": {
+      "starmap_name": "历任贵州省省长",
+      "encodeId": "15c17d1434696d0ca9410ffa",
+      "count": 19,
+      "sample_lemmaId": 8162627
+    }
+  },
+  "云南": {
+    "governor": {
+      "starmap_name": "历任云南省省长",
+      "encodeId": "625561343351bb4116010efa",
+      "count": 17,
+      "sample_lemmaId": 1310735
+    }
+  },
+  "西藏": {
+    "governor": {
+      "starmap_name": "历任西藏自治区主席",
+      "encodeId": "679728104fdfa01d5963cbc0",
+      "count": 14,
+      "sample_lemmaId": 20806556
+    }
+  },
+  "陕西": {
+    "governor": {
+      "starmap_name": "历任陕西省省长",
+      "encodeId": "570fd4bbc7ae8d8aeae3fcc4",
+      "count": 20,
+      "sample_lemmaId": 2866083
+    }
+  },
+  "甘肃": {
+    "governor": {
+      "starmap_name": "历任甘肃省省长",
+      "encodeId": "cbfa87f1c0d5f8e383e2e3c4",
+      "count": 16,
+      "sample_lemmaId": 2247901
+    }
+  },
+  "青海": {
+    "governor": {
+      "starmap_name": "历任青海省省长",
+      "encodeId": "98b0818a8abc91e2d4d5e2c4",
+      "count": 23,
+      "sample_lemmaId": 9967409
+    }
+  },
+  "宁夏": {
+    "governor": {
+      "starmap_name": "历任宁夏回族自治区主席",
+      "encodeId": "3751d6bc3a7e4b63b8d1cac0",
+      "count": 14,
+      "sample_lemmaId": 6165835
+    }
+  },
+  "新疆": {
+    "governor": {
+      "starmap_name": "历任新疆维吾尔自治区主席",
+      "encodeId": "c9fdac1dd000aad1280ac9c0",
+      "count": 11,
+      "sample_lemmaId": 9171883
+    }
+  }
+}

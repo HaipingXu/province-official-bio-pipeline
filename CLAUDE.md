@@ -174,7 +174,7 @@ battle.xlsx（DS灰/VF蓝/裁判紫/Final绿，冲突单元格标红，信心<90
 |--------|------|------|
 | Step1 提取 | `prompts/step1_extraction.md` | 编号行 → episodes（含 source_line） |
 | Step2 打标 | `prompts/step2_labeling.md` | raw_bio + 标签 + 落马信息 |
-| Step3 级别 | `prompts/step3_rank.md` | 批量行政级别判断（10级+推导逻辑）【v5.3新增】|
+| Step3 级别 | `prompts/step3_rank.md` | 批量行政级别判断（10级+推导逻辑）|
 | 高校参考 | `prompts/ref_university_rank.md` | 高校/党校级别+央地属性判定参考（按需注入 Step1/Step3）|
 | 国企参考 | `prompts/ref_soe_rank.md` | 国企级别+央地属性判定参考（按需注入 Step1/Step3）|
 
