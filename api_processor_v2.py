@@ -142,7 +142,7 @@ def step2_label(
 
     try:
         raw = llm_chat(client, DEEPSEEK_MODEL, system_prompt, user_prompt,
-                       max_tokens=2000, max_retries=max_retries)
+                       max_retries=max_retries)
         result = extract_json(raw)
         # Validate required fields
         if "raw_bio" not in result:

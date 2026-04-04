@@ -41,11 +41,12 @@ _PAT_SINGLE_DATE = re.compile(
     r'^(\d{4})年(\d{1,2})月[\d日，,]*\s*(.+)'
 )
 
-# Corruption keywords
+# Corruption keywords — only unambiguous legal proceedings, NOT institution names.
+# Rationale: 中纪委/国家监委 can be a career posting (e.g., 中央纪委驻X单位纪检组长).
+# The LLM handles 落马 detection in Step 2 via the 是否落马 field.
 _CORRUPTION_KW = re.compile(
     r'审查调查|严重违纪|违纪违法|开除党籍|开除公职|双开|'
-    r'受贿罪|贪污罪|滥用职权|判处|立案|逮捕|移送检察|'
-    r'纪委.*通报|中央纪委|中纪委|国家监委'
+    r'受贿罪|贪污罪|滥用职权|判处有期|立案调查|被逮捕|移送检察'
 )
 
 # Party/honor summary line (not a career entry)

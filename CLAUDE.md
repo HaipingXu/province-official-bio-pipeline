@@ -1,4 +1,4 @@
-# 城市主官履历数据库 — 项目配置（v6）
+# 省级主官履历数据库 — 项目配置（v7）
 
 ## 项目简介
 
@@ -7,11 +7,14 @@
 - **数据来源**：百度百科
 - **主要 LLM**：DeepSeek-V3（三步提取：事实+标签+行政级别）
 - **验证 LLM**：Doubao-seed-2-0-pro（独立三步提取 + diff 核查，via Volcengine）
-- **裁判 LLM**：Kimi K2.5（争议字段裁判+信心评分0-100，信心<90标红+记录理由，后备 DeepSeek R1）
-- **并发处理**：ThreadPoolExecutor + 多 API key 轮询池（RoundRobinClientPool），默认 100 workers + SmoothRateLimiter
+- **裁判 LLM**：Kimi K2.5（争议字段裁判+信心评分0-100，信心<90标红+记录理由，后备 DeepSeek R1 思考模型）
+- **裁判上下文**：裁判接收完整 step1/step2/step3 提取规则作为参考（含行政级别规则），行政级别争议亦进入裁判流程
+- **并发处理**：ThreadPoolExecutor + 多 API key 轮询池（RoundRobinClientPool），默认 100 workers + SmoothRateLimiter（Kimi RPM=500, TPM=3M）
 - **并行架构**：DS 提取 + Doubao 提取同时进行，完成后统一 diff（source_line 分组），再进入裁判阶段
-- **文本预处理**：百度百科原文 → 结构化编号行（text_preprocessor.py），压缩 Step1 上下文
-- **输出格式**：Excel（38列 A→AL，每行为一段履历）【v5.3: +行政级别/裁判信心分/过程性JSON】
+- **文本预处理**：百度百科原文 → 结构化编号行（text_preprocessor.py），压缩 Step1 上下文；落马判断交由 LLM（Step2），不在预处理阶段误判中纪委工作人员
+- **输出格式**：Excel（36列 A→AK，每行为一段履历）
+- **爬虫模块**：`code_scrape/`（bio_scraper_v2.py + wiki/starmap 辅助爬虫）
+- **GitHub**：https://github.com/HaipingXu/Workflow-.git（公开仓库）
 
 ## 快速开始
 
@@ -24,22 +27,25 @@ cp .env.example .env
 pip install -r requirements.txt
 playwright install chromium        # 首次安装必须
 
-# 3. 运行深圳示例（v2）
-python main_v2.py --city 深圳 --province 广东 --start 2010
+# 3. 运行省级示例
+python main_province.py --province 浙江
+python main_province.py --province 浙江 --start 2000
 
 # 4. 单官员测试
-python main_v2.py --official 许勤
+python main_province.py --province 浙江 --official 习近平
 
-# 5. 常用跳过选项
-python main_v2.py --skip-scrape          # 重用现有文本
-python main_v2.py --skip-extract         # 重用现有LLM结果
-python main_v2.py --skip-battle          # 跳过Battle表生成
-python main_v2.py --force                # 强制全量重跑
+# 5. 批量所有省份
+python main_province.py --batch
 
-# 6. 并发控制
-python main_v2.py --workers 5            # 默认5个并发worker
-python main_v2.py --workers 1            # 串行模式（调试用）
-python main_v2.py --workers 8            # 更多并发（爬取仍限2）
+# 6. 常用跳过选项
+python main_province.py --province 浙江 --skip-scrape   # 重用现有文本
+python main_province.py --province 浙江 --skip-extract  # 重用现有LLM结果
+python main_province.py --province 浙江 --skip-battle   # 跳过Battle表生成
+python main_province.py --province 浙江 --force         # 强制全量重跑
+
+# 7. 并发控制
+python main_province.py --province 浙江 --workers 10    # 并发worker数（默认100）
+python main_province.py --province 浙江 --workers 1     # 串行模式（调试用）
 ```
 
 ## 项目结构
@@ -48,36 +54,45 @@ python main_v2.py --workers 8            # 更多并发（爬取仍限2）
 .
 ├── CLAUDE.md                           # 本文件（项目配置）
 ├── prompts/
-│   ├── step1_extraction.md             # ★ Step1提取prompt（编号行→episodes）
+│   ├── step1_extraction.md             # ★ Step1提取prompt（编号行→episodes，含命名标准化规则）
 │   ├── step2_labeling.md              # ★ Step2打标prompt（raw_bio+标签+落马）
-│   └── step3_rank.md                  # ★ Step3级别prompt（批量行政级别判断）
+│   ├── step3_rank.md                  # ★ Step3级别prompt（批量行政级别判断）
+│   ├── ref_university_rank.md         # 高校/党校级别参考（按需注入）
+│   └── ref_soe_rank.md               # 国企级别参考（按需注入）
 ├── .claude/
 │   ├── skills/
 │   │   └── city-official-db.md         # 管道使用说明
 │   └── agents/
 │       └── official-bio-agent.md       # 全流程编排agent
 │
-├── text_preprocessor.py                # Phase 0.5：百科文本→结构化编号行
-├── utils.py                            # 共享工具函数（extract_json, llm_chat, load_prompt）
-├── config.py                           # API密钥、路径、列名、并发常量
-├── input_parser.py                     # Phase 0：解析人工名单txt
-├── bio_scraper_v2.py                   # Phase 1：两层爬取策略
-├── api_processor_v2.py                 # Phase 2：DeepSeek两步提取（编号行模式）
+├── text_preprocessor.py                # Phase 0.5：百科文本→结构化编号行（落马由LLM判断）
+├── utils.py                            # 共享工具函数（extract_json, llm_chat, load_prompt, SmoothRateLimiter）
+├── config.py                           # API密钥、路径、列名、并发常量（Kimi RPM/TPM限速）
+├── input_parser_province.py            # Phase 0：解析省级官员名单txt
+├── input_parser.py                     # Phase 0（城市版，备用）
+├── api_processor_v2.py                 # Phase 2：DeepSeek三步提取（编号行模式）
 ├── verifier_v2.py                      # Phase 3a：Doubao独立提取+source_line分组diff
-├── battle_generator.py                 # Phase 3b：Battle表+Kimi K2.5裁判
+├── battle_generator.py                 # Phase 3b：Battle表+Kimi K2.5裁判（含完整提取规则上下文）
 ├── postprocess_v2.py                   # Phase 4：后处理+扁平化
 ├── export_v2.py                        # Phase 5：三表Excel导出
-├── main_v2.py                          # v2编排器
+├── main_province.py                    # ★ 主编排器（省级）
 │
-├── archive/                            # v1-v3旧文件
+├── code_scrape/                        # 爬虫模块包
+│   ├── __init__.py
+│   ├── bio_scraper_v2.py               # Phase 1：百度百科两层爬取策略
+│   ├── starmap_scraper.py              # 星图数据爬取
+│   ├── wiki_secretary_v3.py            # 维基百科省委书记列表爬取
+│   └── wiki_secretary_scraper.py       # 维基百科辅助爬虫
+│
+├── archive/                            # 归档旧版本（main_v2.py, v1-v3文件等）
 ├── requirements.txt
 ├── .env.example
 │
 ├── data/
-│   └── 深圳_officials.txt              # ★ 人工维护的官员名单（单一信息源）
-├── officials/                          # 爬取的百科文本
-├── output/                             # Excel输出（officials/mayors/secretaries/battle）
-├── logs/                               # JSON中间结果、核查报告
+│   └── {省份}_officials.txt            # ★ 人工维护的省级官员名单（单一信息源）
+├── officials/                          # 爬取的百科文本（.gitignored）
+├── output/                             # Excel输出（.gitignored）
+├── logs/                               # JSON中间结果、核查报告（.gitignored）
 └── docs/
     ├── 技术文档_v3.md                 
     ├── 技术文档_v2.md                 

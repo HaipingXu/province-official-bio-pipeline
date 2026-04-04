@@ -28,7 +28,32 @@ from config import (
     DEFAULT_WORKERS,
     KIMI_RPM_LIMIT, KIMI_TPM_LIMIT,
 )
-from utils import extract_json, RoundRobinClientPool, SmoothRateLimiter
+from utils import extract_json, load_prompt, RoundRobinClientPool, SmoothRateLimiter
+
+
+# ── Judge reference prompts (loaded once at import) ──────────────────────────
+
+def _load_judge_references() -> str:
+    """Load step1/step2/step3 extraction prompts as reference context for the judge.
+
+    Injected into JUDGE_SYSTEM so the judge understands the extraction rules it
+    is adjudicating (org tags, position tags, rank levels, label definitions, etc.).
+    """
+    parts: list[str] = []
+    for prompt_name, title in [
+        ("step1_extraction", "Step 1 字段提取规则（供职单位/职务/组织标签/标志位/任职地）"),
+        ("step2_labeling",   "Step 2 标签规则（升迁_省长/升迁_省委书记/本省提拔/本省学习/落马）"),
+        ("step3_rank",       "Step 3 行政级别判断规则（正国级→副科级，10级体系）"),
+    ]:
+        try:
+            content = load_prompt(prompt_name)
+            parts.append(f"\n\n---\n\n## 裁判参考：{title}\n\n{content}")
+        except Exception as e:
+            logger.warning(f"[judge] 无法加载参考 prompt {prompt_name}: {e}")
+    return "".join(parts)
+
+
+_JUDGE_REFERENCE = _load_judge_references()
 
 
 def _to_float_date(s: str) -> float:
@@ -108,7 +133,7 @@ JUDGE_SYSTEM = (
     "如果一次裁判多个字段，输出JSON对象，key为字段名，value为上述格式：\n"
     "{\"字段A\": {\"verdict\": ..., \"confidence\": 85, \"reason\": ...}, \"字段B\": {...}}\n\n"
     "只输出JSON，无任何其他文字。"
-)
+) + _JUDGE_REFERENCE
 
 # Legacy single-field system prompt (for label judging)
 JUDGE_SYSTEM_LABEL = (
@@ -121,7 +146,7 @@ JUDGE_SYSTEM_LABEL = (
     "\"reason\": \"<50字理由>\"}\n"
     "confidence 表示你对该裁决的信心程度（0=完全不确定，100=完全确定）。\n"
     "不要输出任何其他文字、解释或代码块标记。"
-)
+) + _JUDGE_REFERENCE
 
 
 def _call_judge(system: str, prompt: str) -> dict:
@@ -150,7 +175,7 @@ def _call_judge(system: str, prompt: str) -> dict:
                         {"role": "user", "content": prompt},
                     ],
                     temperature=judge_temp,
-                    max_tokens=16384,
+                    max_tokens=32768,
                     **extra_kwargs,
                 )
                 content = resp.choices[0].message.content or ""
