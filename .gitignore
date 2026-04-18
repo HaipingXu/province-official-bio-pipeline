@@ -36,3 +36,7 @@ logs/*.log
 # Large data files
 data/*.json
 data/*.xlsx
+
+# Slides (local only, not for version control)
+Slides/
+slides/
