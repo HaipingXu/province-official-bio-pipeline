@@ -9,8 +9,8 @@ __pycache__/
 *.pyd
 .Python
 
-# Scraped biographies (large, regeneratable)
-officials/
+# Scraped biographies (tracked for reproducibility)
+# officials/
 
 # Output files (generated)
 output/*.xlsx
