@@ -7,6 +7,7 @@ import logging
 import os
 import sys
 from pathlib import Path
+from typing import Optional
 
 # Load .env if present
 try:
@@ -16,36 +17,52 @@ except ImportError:
     pass
 
 # --- API Configuration ---
+
+def _load_keys(env_var: str) -> tuple[list[str], str]:
+    """Load comma-separated API keys from an environment variable.
+    Returns (list_of_keys, first_key_or_empty_string)."""
+    raw = os.environ.get(env_var, "")
+    keys = [k.strip() for k in raw.split(",") if k.strip()]
+    return keys, (keys[0] if keys else "")
+
 # Single key (backward-compatible) — first key from comma-separated list
-_DEEPSEEK_KEYS_RAW = os.environ.get("DEEPSEEK_API_KEY", "")
-DEEPSEEK_API_KEYS = [k.strip() for k in _DEEPSEEK_KEYS_RAW.split(",") if k.strip()]
-DEEPSEEK_API_KEY = DEEPSEEK_API_KEYS[0] if DEEPSEEK_API_KEYS else ""
+DEEPSEEK_API_KEYS, DEEPSEEK_API_KEY = _load_keys("DEEPSEEK_API_KEY")
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
-DEEPSEEK_MODEL = "deepseek-chat"  # DeepSeek-V3.2
+DEEPSEEK_MODEL = "deepseek-chat"  # DeepSeek-V3.2 (kept for reference)
 
-_QWEN_KEYS_RAW = os.environ.get("QWEN_API_KEY", "")
-QWEN_API_KEYS = [k.strip() for k in _QWEN_KEYS_RAW.split(",") if k.strip()]
-QWEN_API_KEY = QWEN_API_KEYS[0] if QWEN_API_KEYS else ""
+QWEN_API_KEYS, QWEN_API_KEY = _load_keys("QWEN_API_KEY")
 QWEN_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-QWEN_MODEL = "qwen3.5-plus"  # Qwen3.5-plus (better instruction-following than qwen-max)
+QWEN_MODEL = "qwen3.5-plus"  # Qwen3.5-plus (verifier fallback)
 
-_KIMI_KEYS_RAW = os.environ.get("KIMI_API_KEY", "")
-KIMI_API_KEYS = [k.strip() for k in _KIMI_KEYS_RAW.split(",") if k.strip()]
-KIMI_API_KEY = KIMI_API_KEYS[0] if KIMI_API_KEYS else ""
+# --- LLM1: Extractor (Qwen3.6-plus via DashScope) ---
+LLM1_API_KEY = QWEN_API_KEY
+LLM1_API_KEYS = QWEN_API_KEYS
+LLM1_BASE_URL = QWEN_BASE_URL
+LLM1_MODEL = "qwen3.6-plus"
+
+KIMI_API_KEYS, KIMI_API_KEY = _load_keys("KIMI_API_KEY")
 KIMI_BASE_URL = "https://api.moonshot.cn/v1"
 KIMI_MODEL = "kimi-k2.5"  # Kimi K2.5 judge
 
 # --- Doubao (verification LLM — preferred over GLM/Qwen) ---
-_DOUBAO_KEYS_RAW = os.environ.get("DOUBAO_API_KEY", "")
-DOUBAO_API_KEYS = [k.strip() for k in _DOUBAO_KEYS_RAW.split(",") if k.strip()]
-DOUBAO_API_KEY = DOUBAO_API_KEYS[0] if DOUBAO_API_KEYS else ""
+DOUBAO_API_KEYS, DOUBAO_API_KEY = _load_keys("DOUBAO_API_KEY")
 DOUBAO_BASE_URL = "https://ark.cn-beijing.volces.com/api/v3"
 DOUBAO_MODEL = "doubao-seed-2-0-pro-260215"
 
+# --- LLM2: Verifier (Doubao-seed-2.0-pro — primary; GLM/Qwen as fallback) ---
+LLM2_API_KEY = DOUBAO_API_KEY
+LLM2_API_KEYS = DOUBAO_API_KEYS
+LLM2_BASE_URL = DOUBAO_BASE_URL
+LLM2_MODEL = DOUBAO_MODEL
+
+# --- Judge: DeepSeek-Reasoner (replaces Kimi K2.5) ---
+JUDGE_API_KEY = DEEPSEEK_API_KEY
+JUDGE_API_KEYS = DEEPSEEK_API_KEYS
+JUDGE_BASE_URL = DEEPSEEK_BASE_URL
+JUDGE_MODEL = "deepseek-reasoner"
+
 # --- GLM-5 (verification LLM — fallback after Doubao) ---
-_GLM_KEYS_RAW = os.environ.get("GLM_API_KEY", "")
-GLM_API_KEYS = [k.strip() for k in _GLM_KEYS_RAW.split(",") if k.strip()]
-GLM_API_KEY = GLM_API_KEYS[0] if GLM_API_KEYS else ""
+GLM_API_KEYS, GLM_API_KEY = _load_keys("GLM_API_KEY")
 GLM_BASE_URL = "https://api.siliconflow.cn/v1"
 GLM_MODEL = "Pro/zai-org/GLM-5"
 
@@ -61,47 +78,40 @@ LOGS_DIR = PROJECT_ROOT / "logs"
 DATA_DIR = PROJECT_ROOT / "data"
 SKILLS_DIR = PROJECT_ROOT / ".claude" / "skills"
 
-# --- Output Column Names — v6 schema (36 columns, province-level) ---
+# --- Output Column Names — v8 schema (30 columns, province-level) ---
 COLUMNS = [
-    # --- Person-level (A-Q, 17 columns) ---
+    # --- Person-level (A-N, 14 columns) ---
     "年份",           # A  first year of focal province tenure
     "省份",           # B
-    "城市",           # C  (province short name for province-level pipeline)
-    "姓名",           # D
-    "出生年份",       # E
-    "籍贯",           # F  province-level (e.g. 江苏省)
-    "籍贯（市）",     # G  city-level (e.g. 连云港市)
-    "少数民族",       # H  1=minority
-    "女性",           # I  1=female
-    "全日制本科",     # J  1=full-time bachelor's
-    "升迁_省长",      # K  promoted after governor tenure (1/0/-1/"")
-    "升迁_省委书记",  # L  promoted after prov secretary tenure (1/0/-1/"")
-    "本省提拔",       # M  promoted from within province
-    "本省学习",       # N  studied full-time in province before
-    "是否当过省长",   # O  ever served as governor/acting governor
-    "是否当过省委书记", # P  ever served as provincial party secretary
-    "最终行政级别",   # Q  person-level highest rank (e.g. 副部级)
-    # --- Per-row (R-AJ, 19 columns) ---
-    "经历序号",       # R
-    "起始时间",       # S  YYYY.MM or YYYY.00
-    "终止时间",       # T
-    "组织标签",       # U  one of 33 standard categories
-    "标志位",         # V  one of 23 position-type tags
-    "该条行政级别",   # W  per-row rank from Step3 (e.g. 正厅级)
-    "供职单位",       # X
-    "职务",           # Y
-    "原文引用",       # Z  Lxx: source text from Baidu Baike
-    "争议未解决",     # AA unresolved disputes from judge + confidence<90 flags
-    "裁判理由",       # AB judge reasoning for disputed fields
-    "任职地（省）",   # AC full province name (e.g. 广东省)
-    "任职地（市）",   # AD full city name (e.g. 深圳市) or empty
-    "中央/地方",      # AE
-    "",               # AF empty spacer column
-    "是否落马",       # AG 是/否
-    "落马原因",       # AH judgment text if 落马
-    "备注栏",         # AI [需人工核查] flags
-    "该条是省长",     # AJ 1 if this row = focal province governor tenure
-    "该条是省委书记", # AK 1 if this row = focal province party secretary tenure
+    "姓名",           # C
+    "出生年份",       # D
+    "籍贯",           # E  province-level (e.g. 江苏省)
+    "籍贯（市）",     # F  city-level (e.g. 连云港市)
+    "少数民族",       # G  1=minority
+    "女性",           # H  1=female
+    "全日制本科",     # I  1=full-time bachelor's
+    "升迁_省长",      # J  promoted after governor tenure (1/0/-1/"")
+    "升迁_省委书记",  # K  promoted after prov secretary tenure (1/0/-1/"")
+    "本省提拔",       # L  promoted from within province
+    "本省学习",       # M  studied full-time in province before
+    "最终行政级别",   # N  person-level highest rank (e.g. 副部级)
+    # --- Per-row (O-AC, 15 columns) ---
+    "经历序号",       # O
+    "起始时间",       # P  YYYY.MM or YYYY.00
+    "终止时间",       # Q
+    "组织标签",       # R  one of 33 standard categories
+    "标志位",         # S  one of 23 position-type tags
+    "该条行政级别",   # T  per-row rank from Step3 (e.g. 正厅级)
+    "供职单位",       # U
+    "职务",           # V
+    "原文引用",       # W  Lxx: source text from Baidu Baike
+    "争议未解决",     # X  unresolved disputes from judge + confidence<90 flags
+    "任职地（省）",   # Y  full province name (e.g. 广东省)
+    "任职地（市）",   # Z  full city name (e.g. 深圳市) or empty
+    "中央/地方",      # AA
+    "是否落马",       # AB 是/否
+    "落马原因",       # AC judgment text if 落马
+    "备注栏",         # AD [需人工核查] flags
 ]
 
 # --- 31+1 Organizational Tags ---
@@ -181,8 +191,11 @@ RANK_LEVELS = [
 
 
 def get_highest_rank(ranks: list[str]) -> str:
-    """Return the highest rank from a list of rank strings."""
-    best_idx = len(RANK_LEVELS)  # worse than any valid rank
+    """Return the highest rank from a list of rank strings.
+
+    DEPRECATED: Use utils.get_highest_rank instead. Kept for backward compatibility.
+    """
+    best_idx = len(RANK_LEVELS)
     for r in ranks:
         r = r.strip()
         if r in RANK_LEVELS:
@@ -236,6 +249,27 @@ CITY_NORMALIZE: dict[str, str] = {
     "郑州": "郑州市", "济南": "济南市", "沈阳": "沈阳市", "哈尔滨": "哈尔滨市",
 }
 
+# --- Direct-administered Municipalities ---
+DIRECT_MUNICIPALITIES = {"北京", "上海", "天津", "重庆"}
+
+# --- 31 Province Short Names ---
+PROVINCE_NAMES = {
+    "北京", "天津", "河北", "山西", "内蒙古",
+    "辽宁", "吉林", "黑龙江",
+    "上海", "江苏", "浙江", "安徽", "福建", "江西", "山东",
+    "河南", "湖北", "湖南", "广东", "广西", "海南",
+    "重庆", "四川", "贵州", "云南", "西藏",
+    "陕西", "甘肃", "青海", "宁夏", "新疆",
+}
+
+# --- Episode Fields (shared across verifier, battle, postprocess) ---
+EPISODE_FIELDS = [
+    "起始时间", "终止时间", "组织标签", "标志位", "供职单位", "职务",
+    "任职地（省）", "任职地（市）", "中央/地方",
+]
+
+EP_CHECK_FIELDS = EPISODE_FIELDS + ["行政级别"]
+
 # --- Scraping ---
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -252,18 +286,17 @@ DATE_DISCREPANCY_YEARS = 1   # flag if dates differ by more than this
 EPISODE_COUNT_DIFF = 2       # flag if episode count differs by more than this
 
 # --- Concurrency ---
-DEFAULT_WORKERS = 100      # API call parallelism (Kimi allows 100 concurrent)
-DS_MAX_WORKERS = 50        # DeepSeek max workers (no hard rate limit per official docs)
-SCRAPE_WORKERS = 2         # Scraping parallelism (lower to avoid anti-bot)
-
-# --- Kimi Rate Limits ---
-KIMI_MAX_CONCURRENT = 100  # max concurrent requests to Kimi
-KIMI_TPM_LIMIT = 3_000_000  # tokens per minute
-KIMI_RPM_LIMIT = 500       # requests per minute
+# These control max parallel API calls per pipeline phase.
+# Higher values improve throughput but risk rate-limiting (429 errors).
+DEFAULT_WORKERS = 100      # Default API call parallelism
+LLM1_MAX_WORKERS = 100     # Extractor (LLM1/Qwen) — high: DashScope is generous
+LLM2_MAX_WORKERS = 100     # Verifier (LLM2/Doubao) — matches LLM1 for parallel extraction
+JUDGE_MAX_WORKERS = 200    # Judge (DeepSeek Reasoner) — highest: judge calls are per-diff, many small requests
+SCRAPE_WORKERS = 2         # Scraping parallelism (low to avoid anti-bot detection)
 
 
 # --- Logging ---
-def setup_logging(log_dir: Path | None = None) -> None:
+def setup_logging(log_dir: Optional[Path] = None) -> None:
     """Configure logging: console + file output."""
     if log_dir is None:
         log_dir = LOGS_DIR
@@ -284,23 +317,26 @@ def setup_logging(log_dir: Path | None = None) -> None:
 def validate_api_keys(require_judge: bool = True) -> None:
     """Check that essential API keys are set. Exit if missing."""
     missing = []
-    if not DEEPSEEK_API_KEY:
-        missing.append("DEEPSEEK_API_KEY")
-    # Verification LLM: Doubao > GLM-5 > Qwen
-    if not DOUBAO_API_KEY and not GLM_API_KEY and not QWEN_API_KEY:
-        missing.append("DOUBAO_API_KEY or GLM_API_KEY or QWEN_API_KEY")
-    if require_judge and not KIMI_API_KEY:
-        missing.append("KIMI_API_KEY")
+    if not LLM1_API_KEY:
+        missing.append("QWEN_API_KEY (LLM1 extractor)")
+    # Verification LLM2: Doubao > GLM-5 > Qwen
+    if not LLM2_API_KEY and not GLM_API_KEY and not QWEN_API_KEY:
+        missing.append("DOUBAO_API_KEY or GLM_API_KEY or QWEN_API_KEY (LLM2 verifier)")
+    if require_judge and not JUDGE_API_KEY:
+        missing.append("DEEPSEEK_API_KEY (judge)")
 
+    _log = logging.getLogger(__name__)
     if missing:
-        print(f"✗ 缺少 API 密钥: {', '.join(missing)}")
-        print("  请在 .env 文件中配置（参考 .env.example）")
-        sys.exit(1)
+        _log.error(f"✗ 缺少 API 密钥: {', '.join(missing)}")
+        _log.error("  请在 .env 文件中配置（参考 .env.example）")
+        raise RuntimeError(f"缺少 API 密钥: {', '.join(missing)}")
 
+    _log.info(f"  提取模型 LLM1: {LLM1_MODEL} via DashScope, {len(LLM1_API_KEYS)} keys")
     # Report which verification model is active
-    if DOUBAO_API_KEY:
-        print(f"  验证模型: Doubao ({DOUBAO_MODEL}) via Volcengine, {len(DOUBAO_API_KEYS)} keys")
+    if LLM2_API_KEY:
+        _log.info(f"  验证模型 LLM2: {LLM2_MODEL} via Volcengine, {len(LLM2_API_KEYS)} keys")
     elif GLM_API_KEY:
-        print(f"  验证模型: GLM-5 ({GLM_MODEL}) via SiliconFlow, {len(GLM_API_KEYS)} keys")
+        _log.info(f"  验证模型 LLM2: GLM-5 ({GLM_MODEL}) via SiliconFlow, {len(GLM_API_KEYS)} keys")
     else:
-        print(f"  验证模型: Qwen ({QWEN_MODEL}) via DashScope, {len(QWEN_API_KEYS)} keys")
+        _log.info(f"  验证模型 LLM2: Qwen ({QWEN_MODEL}) via DashScope, {len(QWEN_API_KEYS)} keys")
+    _log.info(f"  裁判模型: {JUDGE_MODEL} via DeepSeek, {len(JUDGE_API_KEYS)} keys")

@@ -5,9 +5,8 @@ Parses Baidu Baike biography files into:
   - bio_summary: name, birth, ethnicity, origin (from 人物简介 + 基本信息)
   - career_lines: numbered career timeline entries (from 履历段落)
   - extra_text: honors, party positions, post-career news
-  - corruption_text: corruption-related paragraphs (审查调查, 落马, 判决)
 
-This structured output replaces sending raw full text to LLMs.
+落马 detection is handled entirely by Step 2 LLM (是否落马 field).
 """
 
 import logging
@@ -21,32 +20,49 @@ logger = logging.getLogger(__name__)
 
 # ── Career line patterns ─────────────────────────────────────────────────────
 
-# Pattern 1: "1978.10-1982.07 description"
+# Shared dash pattern (covers half-width, en-dash, em-dash, fullwidth, double em-dash, wave tilde)
+_DASH = r'(?:——|[-–—－～])'
+
+# Pattern 1: "1978.10-1982.07 description" (dot-date range; month may be 1 or 2 digits)
 _PAT_DOT = re.compile(
-    r'^(\d{4})[.\.](\d{2})\s*[-–—]\s*(\d{4})[.\.](\d{2})\s+(.+)'
+    r'^(\d{4})[.](\d{1,2})(?:[.]\d{1,2})?\s*' + _DASH + r'\s*(\d{4})[.](\d{1,2})(?:[.]\d{1,2})?\s*(.+)'
 )
 
-# Pattern 2: "1978.10- description" (ongoing, no end date)
+# Pattern 2: "1978.10- description" (dot-date, open/ongoing; month may be 1 or 2 digits)
 _PAT_DOT_OPEN = re.compile(
-    r'^(\d{4})[.\.](\d{2})\s*[-–—]\s*(.+)'
+    r'^(\d{4})[.](\d{1,2})(?:[.]\d{1,2})?\s*' + _DASH + r'\s*(.+)'
 )
 
-# Pattern 3: "1975—1978年 description" (Chinese dash, optional 年 on both sides)
+# Pattern 3: "1975—1978年 description" (year range, optional 年, any dash or 至 separator)
 _PAT_DASH_NIAN = re.compile(
-    r'^(\d{4})年?\s*[—\-–]\s*(\d{4})年?\s*(.+)'
+    r'^(\d{4})年?\s*(?:——|[-–—－～]|至)\s*(\d{4})年?\s*(.+)'
 )
 
-# Pattern 4: "2025年9月 description" (single date event)
+# Pattern 7: "2013- 现任职位" (year + dash, open/ongoing, no month)
+# \s* allows no space (e.g. "2022-中央政治局委员"); _PAT_DASH_NIAN is checked first
+# so year-ranges like "2013-2017年" are already consumed before reaching here.
+_PAT_YEAR_OPEN = re.compile(
+    r'^(\d{4})\s*' + _DASH + r'\s*(.+)'
+)
+
+# Pattern 8: "1982月09月，description" (scraper artifact: 年 replaced by 月)
+_PAT_NIAN_AS_YUE = re.compile(
+    r'^(\d{4})月(\d{1,2})月[，,\s]\s*(.+)'
+)
+
+# Pattern 4: "2025年9月 description" (single date, end inferred from next line)
 _PAT_SINGLE_DATE = re.compile(
-    r'^(\d{4})年(\d{1,2})月[\d日，,]*\s*(.+)'
+    r'^(\d{4})年(\d{1,2})月[\d日，,起]*\s*(.+)'
 )
 
-# Corruption keywords — only unambiguous legal proceedings, NOT institution names.
-# Rationale: 中纪委/国家监委 can be a career posting (e.g., 中央纪委驻X单位纪检组长).
-# The LLM handles 落马 detection in Step 2 via the 是否落马 field.
-_CORRUPTION_KW = re.compile(
-    r'审查调查|严重违纪|违纪违法|开除党籍|开除公职|双开|'
-    r'受贿罪|贪污罪|滥用职权|判处有期|立案调查|被逮捕|移送检察'
+# Pattern 5: "从1978年..." or "1950年底..." (year-only, no .MM or 年MM月 format)
+_PAT_NIAN_ONLY = re.compile(
+    r'^从?(\d{4})年(?!\d{1,2}月).+'
+)
+
+# Pattern 6: "1973.02，description" or "2023.03 description" (dot-date + comma/space separator)
+_PAT_DOT_COMMA = re.compile(
+    r'^(\d{4})[.](\d{1,2})(?:[.]\d{1,2})?[，,\s]\s*(.+)'
 )
 
 # Party/honor summary line (not a career entry)
@@ -61,23 +77,94 @@ def _is_career_line(line: str) -> bool:
     line = line.strip()
     if not line:
         return False
+    if _is_honor_line(line):
+        return False
     if _PAT_DOT.match(line):
         return True
     if _PAT_DOT_OPEN.match(line):
         return True
     if _PAT_DASH_NIAN.match(line):
         return True
+    if _PAT_SINGLE_DATE.match(line):
+        return True
+    if _PAT_NIAN_ONLY.match(line):
+        return True
+    if _PAT_DOT_COMMA.match(line):
+        return True
+    if _PAT_YEAR_OPEN.match(line):
+        return True
+    if _PAT_NIAN_AS_YUE.match(line):
+        return True
     return False
-
-
-def _is_corruption_paragraph(text: str) -> bool:
-    """Check if text is primarily about corruption/legal proceedings."""
-    return bool(_CORRUPTION_KW.search(text))
 
 
 def _is_honor_line(line: str) -> bool:
     """Check if line is a party/honor summary (not career)."""
     return bool(_HONOR_KW.match(line.strip()))
+
+
+def _extract_start_ym(raw_text: str) -> tuple[int, int] | None:
+    """Extract (year, month) from the start of a career line. Returns None if unparseable."""
+    m = _PAT_DOT.match(raw_text)
+    if m:
+        return _validate_month(int(m.group(1)), int(m.group(2)))
+    m = _PAT_DOT_OPEN.match(raw_text)
+    if m:
+        return _validate_month(int(m.group(1)), int(m.group(2)))
+    m = _PAT_DASH_NIAN.match(raw_text)
+    if m:
+        return int(m.group(1)), 0
+    m = _PAT_SINGLE_DATE.match(raw_text)
+    if m:
+        return _validate_month(int(m.group(1)), int(m.group(2)))
+    m = _PAT_NIAN_ONLY.match(raw_text)
+    if m:
+        return int(m.group(1)), 0
+    m = _PAT_DOT_COMMA.match(raw_text)
+    if m:
+        return _validate_month(int(m.group(1)), int(m.group(2)))
+    m = _PAT_YEAR_OPEN.match(raw_text)
+    if m:
+        return int(m.group(1)), 0
+    m = _PAT_NIAN_AS_YUE.match(raw_text)
+    if m:
+        return _validate_month(int(m.group(1)), int(m.group(2)))
+    return None
+
+
+def _validate_month(year: int, month: int) -> tuple[int, int]:
+    """Validate month is in 1-12 range; warn and return (year, 0) if invalid."""
+    if 1 <= month <= 12:
+        return year, month
+    logger.warning(f"无效月份 {month}（年份 {year}），置为 0")
+    return year, 0
+
+
+def _has_explicit_end(raw_text: str) -> bool:
+    """Return True if the line already contains an explicit end date."""
+    return bool(_PAT_DOT.match(raw_text) or _PAT_DASH_NIAN.match(raw_text))
+
+
+def _infer_end_dates(career_lines: list[dict]) -> list[dict]:
+    """
+    For single-date lines (no explicit end), set inferred_end = next line's start.
+    Lines with explicit end dates are unchanged.
+    """
+    for i, entry in enumerate(career_lines):
+        raw = entry["raw_text"]
+        if _has_explicit_end(raw):
+            continue
+
+        inferred = None
+        for j in range(i + 1, len(career_lines)):
+            ym = _extract_start_ym(career_lines[j]["raw_text"])
+            if ym:
+                y, mo = ym
+                inferred = f"{y}年{mo:02d}月" if mo else f"{y}年"
+                break
+        entry["inferred_end"] = inferred
+
+    return career_lines
 
 
 def preprocess_biography(bio_text: str, name: str = "") -> dict:
@@ -89,11 +176,11 @@ def preprocess_biography(bio_text: str, name: str = "") -> dict:
             "name": str,
             "bio_summary": str,       # 人物简介 + 基本信息 text
             "career_lines": [          # numbered career entries
-                {"line_num": 1, "raw_text": "1978.10-1982.07 北京工业学院..."},
+                {"line_num": 1, "raw_text": "...", "inferred_end": "1986年08月" | None},
                 ...
             ],
             "extra_text": str,         # honors, party positions
-            "corruption_text": str,    # corruption-related paragraphs
+            "corruption_text": str,    # kept for backward compat, always ""
             "total_lines": int,
         }
     """
@@ -109,7 +196,6 @@ def preprocess_biography(bio_text: str, name: str = "") -> dict:
     # Parse career lines
     career_lines = []
     extra_lines = []
-    corruption_parts = []
 
     raw_career = sections.get("履历段落", "")
     if raw_career:
@@ -117,54 +203,38 @@ def preprocess_biography(bio_text: str, name: str = "") -> dict:
             line = line.strip()
             if not line:
                 continue
-
-            if _is_corruption_paragraph(line):
-                corruption_parts.append(line)
-            elif _is_career_line(line):
+            if _is_career_line(line):
                 career_lines.append({
                     "line_num": len(career_lines) + 1,
                     "raw_text": line,
+                    "inferred_end": None,
+                    "undated": False,
                 })
             elif _is_honor_line(line):
                 extra_lines.append(line)
-            elif _PAT_SINGLE_DATE.match(line):
-                extra_lines.append(line)
             else:
-                extra_lines.append(line)
+                # Undated narrative — append to previous entry as elaboration
+                if career_lines:
+                    career_lines[-1]["raw_text"] += "　" + line
+                else:
+                    extra_lines.append(line)
 
-    # Also scan remaining sections for corruption
-    for section_name, section_text in sections.items():
-        if section_name in ("人物简介", "基本信息", "履历段落", "词条标题"):
-            continue
-        for para in section_text.split("\n"):
-            para = para.strip()
-            if para and _is_corruption_paragraph(para):
-                corruption_parts.append(para)
+    # Infer end dates for single-date lines (skip undated blocks)
+    career_lines = _infer_end_dates(career_lines)
 
-    # Check if bio_summary contains corruption info (like 陈如桂)
-    if bio_summary and _is_corruption_paragraph(bio_summary):
-        # Extract corruption sentences from summary
-        sentences = re.split(r'[。；]', bio_summary)
-        clean_summary = []
-        for sent in sentences:
-            if _is_corruption_paragraph(sent):
-                corruption_parts.append(sent.strip())
-            else:
-                clean_summary.append(sent)
-        # Don't modify bio_summary — keep original, corruption_text is supplementary
+    if not career_lines:
+        logger.warning(f"  {name}: 未提取到任何履历行")
 
     result = {
         "name": name,
         "bio_summary": bio_summary.strip(),
         "career_lines": career_lines,
         "extra_text": "\n".join(extra_lines).strip(),
-        "corruption_text": "\n".join(corruption_parts).strip(),
+        "corruption_text": "",   # kept for backward compat; LLM handles 落马 in Step 2
         "total_lines": len(career_lines),
     }
 
-    logger.info(f"  预处理 {name}: {len(career_lines)} 条履历行, "
-                f"简介 {len(bio_summary)}字, "
-                f"{'有' if corruption_parts else '无'}落马信息")
+    logger.info(f"  预处理 {name}: {len(career_lines)} 条履历行, 简介 {len(bio_summary)}字")
 
     return result
 
@@ -178,7 +248,6 @@ def _split_sections(text: str) -> dict[str, str]:
     for line in text.split("\n"):
         m = re.match(r'^===\s*(.+?)\s*===$', line.strip())
         if m:
-            # Save previous section
             if current_lines:
                 sections[current_section] = "\n".join(current_lines)
             current_section = m.group(1)
@@ -186,7 +255,6 @@ def _split_sections(text: str) -> dict[str, str]:
         else:
             current_lines.append(line)
 
-    # Save last section
     if current_lines:
         sections[current_section] = "\n".join(current_lines)
 
@@ -196,16 +264,23 @@ def _split_sections(text: str) -> dict[str, str]:
 def format_career_lines_for_llm(career_lines: list[dict]) -> str:
     """
     Format career lines as numbered entries for LLM input.
+    Single-date lines with an inferred end show: "YYYY年MM月-[推断:YYYY年MM月] ..."
 
     Output:
         L01: 1978.10-1982.07 北京工业学院光学工程系...
-        L02: 1982.07-1984.09 兵器工业部第五五九厂...
+        L07: 1983年05月-[推断:1986年08月] 任宁波市委书记。
         ...
     """
     lines = []
     for entry in career_lines:
         num = entry["line_num"]
-        lines.append(f"L{num:02d}: {entry['raw_text']}")
+        raw = entry["raw_text"]
+        inferred = entry.get("inferred_end")
+
+        if inferred and not _has_explicit_end(raw):
+            lines.append(f"L{num:02d}: {raw}  [至{inferred}止]")
+        else:
+            lines.append(f"L{num:02d}: {raw}")
     return "\n".join(lines)
 
 
@@ -246,7 +321,6 @@ def preprocess_all(names: list[str], officials_dir: Path | None = None,
         if result:
             results[name] = result
 
-    # Save preprocessed results as process log
     if results:
         _logs.mkdir(parents=True, exist_ok=True)
         log_path = _logs / "preprocessed_texts.json"
