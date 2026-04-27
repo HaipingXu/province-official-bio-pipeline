@@ -95,7 +95,13 @@
       "Bash(ls /Users/xuhaiping/Desktop/Workflow省级官员/data/*.txt)",
       "Bash(brew list:*)",
       "Read(//opt/homebrew/Cellar/gh/2.88.1/bin/**)",
-      "Bash(/opt/homebrew/bin/gh repo:*)"
+      "Bash(/opt/homebrew/bin/gh repo:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(python -c \"import config; import utils; import text_preprocessor; import input_parser_province; import api_processor_v2; import verifier_v2; import postprocess_v2; import battle_generator; import export_v2; print\\(''All imports OK''\\)\")",
+      "Bash(uv run:*)",
+      "Bash(export PATH=\"$HOME/.local/bin:$HOME/.cargo/bin:$PATH\")",
+      "Bash(kill 69620)",
+      "Bash(tee /tmp/run_zhejiang.log)"
     ]
   }
 }

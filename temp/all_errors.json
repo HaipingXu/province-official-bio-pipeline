@@ -1,0 +1,5978 @@
+[
+  {
+    "name": "李泽民",
+    "row": 1,
+    "column": "籍贯（市）",
+    "current": "",
+    "correct": "广元市",
+    "reason": "biography says 四川苍溪人; 苍溪县 belongs to 广元市 (prefecture-level city)"
+  },
+  {
+    "name": "李泽民",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level highest rank should be 正部级 (浙江省委书记); incorrectly varies across rows"
+  },
+  {
+    "name": "李泽民",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level highest rank should be 正部级 (浙江省委书记); incorrectly varies across rows"
+  },
+  {
+    "name": "李泽民",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level highest rank should be 正部级 (浙江省委书记); incorrectly varies across rows"
+  },
+  {
+    "name": "李泽民",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "副处级",
+    "correct": "正部级",
+    "reason": "person-level highest rank should be 正部级 (浙江省委书记); incorrectly varies across rows"
+  },
+  {
+    "name": "李泽民",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "副处级",
+    "correct": "正部级",
+    "reason": "person-level highest rank should be 正部级 (浙江省委书记); incorrectly varies across rows"
+  },
+  {
+    "name": "李泽民",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "副处级",
+    "correct": "正部级",
+    "reason": "person-level highest rank should be 正部级 (浙江省委书记); incorrectly varies across rows"
+  },
+  {
+    "name": "李泽民",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level highest rank should be 正部级 (浙江省委书记); incorrectly varies across rows"
+  },
+  {
+    "name": "李泽民",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level highest rank should be 正部级 (浙江省委书记); incorrectly varies across rows"
+  },
+  {
+    "name": "李泽民",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level highest rank should be 正部级 (浙江省委书记); incorrectly varies across rows"
+  },
+  {
+    "name": "李泽民",
+    "row": 1,
+    "column": "终止时间",
+    "current": "1951.00",
+    "correct": "1952.00",
+    "reason": "biography states 1952年参加抗美援朝战争; service ended 1952, not 1951"
+  },
+  {
+    "name": "李泽民",
+    "row": 2,
+    "column": "起始时间",
+    "current": "1951.00",
+    "correct": "1952.00",
+    "reason": "biography states 1952年参加抗美援朝; PVA service began 1952, not 1951"
+  },
+  {
+    "name": "李泽民",
+    "row": 8,
+    "column": "职务",
+    "current": "宣传部长、常委",
+    "correct": "副书记",
+    "reason": "career order shows 市委副书记 between 宣传部部长 and 辽宁省委副书记; row 8 has wrong title"
+  },
+  {
+    "name": "李泽民",
+    "row": 8,
+    "column": "标志位",
+    "current": "市委书记",
+    "correct": "市委副书记",
+    "reason": "biography lists 市委副书记, not 市委书记 at this point"
+  },
+  {
+    "name": "李泽民",
+    "row": 8,
+    "column": "该条行政级别",
+    "current": "副部级",
+    "correct": "正厅级",
+    "reason": "沈阳市委副书记 in the 1980s (pre-副省级城市) was 正厅级, not 副部级"
+  },
+  {
+    "name": "李泽民",
+    "row": 4,
+    "column": "职务",
+    "current": "教师",
+    "correct": "助教",
+    "reason": "biography explicitly states 人民大学助教, not generic 教师"
+  },
+  {
+    "name": "葛洪升",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "副厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "副厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "副厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "副厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 18,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 19,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 20,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 21,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 22,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 23,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 24,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 25,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 28,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应恒为正部级，当前值随经历递增"
+  },
+  {
+    "name": "葛洪升",
+    "row": 22,
+    "column": "该条行政级别",
+    "current": "副部级",
+    "correct": "正厅级",
+    "reason": "1983年宁波市尚为普通地级市（1987年才成为计划单列市），市委书记为正厅级而非副部级"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "副科级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "副科级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "副处级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "副处级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "副处级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "副处级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "副厅级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "副厅级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "副厅级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 18,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 19,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 20,
+    "column": "最终行政级别",
+    "current": "正部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 21,
+    "column": "最终行政级别",
+    "current": "正部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 22,
+    "column": "最终行政级别",
+    "current": "正部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 23,
+    "column": "最终行政级别",
+    "current": "正部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 24,
+    "column": "最终行政级别",
+    "current": "正部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 25,
+    "column": "最终行政级别",
+    "current": "正部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 26,
+    "column": "最终行政级别",
+    "current": "正部级",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（中央书记处书记）"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 1,
+    "column": "中央/地方",
+    "current": "地方",
+    "correct": "中央",
+    "reason": "解放军总后勤部属中央军委直属总部机关，应为中央"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 2,
+    "column": "中央/地方",
+    "current": "地方",
+    "correct": "中央",
+    "reason": "解放军总后勤部属中央军委直属总部机关，应为中央"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 3,
+    "column": "中央/地方",
+    "current": "地方",
+    "correct": "中央",
+    "reason": "解放军总后勤部属中央军委直属总部机关，应为中央"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 5,
+    "column": "任职地（市）",
+    "current": "",
+    "correct": "呼伦贝尔盟",
+    "reason": "该区域隶属呼伦贝尔盟，任职地（市）不应为空"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 6,
+    "column": "任职地（市）",
+    "current": "",
+    "correct": "兴安盟",
+    "reason": "该区域隶属兴安盟，任职地（市）不应为空"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 7,
+    "column": "任职地（市）",
+    "current": "",
+    "correct": "兴安盟",
+    "reason": "该区域隶属兴安盟，任职地（市）不应为空"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 8,
+    "column": "任职地（市）",
+    "current": "",
+    "correct": "兴安盟",
+    "reason": "该区域隶属兴安盟，任职地（市）不应为空"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 9,
+    "column": "任职地（市）",
+    "current": "",
+    "correct": "兴安盟",
+    "reason": "该区域隶属兴安盟，任职地（市）不应为空"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 10,
+    "column": "任职地（市）",
+    "current": "",
+    "correct": "兴安盟",
+    "reason": "该区域隶属兴安盟，任职地（市）不应为空"
+  },
+  {
+    "name": "赵洪祝",
+    "row": 20,
+    "column": "该条行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "此时个人级别已明确为正部长级（中组部主持常务工作的副部长正部长级）"
+  },
+  {
+    "name": "吕祖善",
+    "row": 1,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 2,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 3,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 4,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 5,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 6,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 7,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 8,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 9,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 10,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 11,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 12,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 13,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 14,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 15,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 16,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 17,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 18,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 19,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 20,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 21,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 22,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 23,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "吕祖善任浙江省省长后升任全国人大常委会委员，升迁_省长应为1"
+  },
+  {
+    "name": "吕祖善",
+    "row": 1,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 2,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 3,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 4,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 5,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 6,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 7,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 8,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 9,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 10,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 11,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 12,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 13,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 14,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 15,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 16,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 17,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 18,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 19,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 20,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 21,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 22,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 23,
+    "column": "升迁_省委书记",
+    "current": "",
+    "correct": "0",
+    "reason": "未担任省委书记应填0而非空字符串"
+  },
+  {
+    "name": "吕祖善",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "副厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级"
+  },
+  {
+    "name": "吕祖善",
+    "row": 2,
+    "column": "中央/地方",
+    "current": "地方",
+    "correct": "中央",
+    "reason": "解放军部队农场属中央军事系统"
+  },
+  {
+    "name": "吕祖善",
+    "row": 16,
+    "column": "标志位",
+    "current": "省委副书记（非省长）",
+    "correct": "省委副书记（省长）",
+    "reason": "同时兼任省长，应标为省委副书记（省长）"
+  },
+  {
+    "name": "吕祖善",
+    "row": 19,
+    "column": "标志位",
+    "current": "省委副书记（非省长）",
+    "correct": "省委副书记（省长）",
+    "reason": "同时兼任省长，应标为省委副书记（省长）"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 1,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 2,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 3,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 4,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 5,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 6,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 7,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 8,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 9,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 10,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 11,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 12,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 13,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 14,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 15,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 16,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 17,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "沈祖伦任浙江省省长，升迁_省长应为1"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "沈祖伦",
+    "row": 11,
+    "column": "标志位",
+    "current": "副省长（常委）",
+    "correct": "副省长",
+    "reason": "副省长兼秘书长阶段尚未任常委，常委身份属于后续任命"
+  },
+  {
+    "name": "车俊",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "副厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "副厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 18,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 19,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 20,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 21,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 22,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 23,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 24,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 25,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 26,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 27,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 28,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 29,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应为正部级，当前值随经历递增"
+  },
+  {
+    "name": "车俊",
+    "row": 24,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省常委（其他）",
+    "reason": "省委常委但非书记/副书记/省长/副省长/组织部长"
+  },
+  {
+    "name": "车俊",
+    "row": 25,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省常委（其他）",
+    "reason": "省委常委身份，应标为省常委（其他）"
+  },
+  {
+    "name": "车俊",
+    "row": 26,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省组织部长",
+    "reason": "省委组织部部长"
+  },
+  {
+    "name": "车俊",
+    "row": 33,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委副书记（非省长）",
+    "reason": "省/自治区党委副书记且不兼省长"
+  },
+  {
+    "name": "车俊",
+    "row": 40,
+    "column": "标志位",
+    "current": "省委副书记（省长）",
+    "correct": "省长",
+    "reason": "拆分后省长episode标志位='省长'，不应使用未拆分标签"
+  },
+  {
+    "name": "车俊",
+    "row": 41,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委副书记（非省长）",
+    "reason": "拆分后省委副书记episode标志位='省委副书记（非省长）'"
+  },
+  {
+    "name": "车俊",
+    "row": 42,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省长",
+    "reason": "省长职务应标记'省长'"
+  },
+  {
+    "name": "车俊",
+    "row": 43,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省委书记职务应标记'省委书记'"
+  },
+  {
+    "name": "车俊",
+    "row": 44,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省委书记职务应标记'省委书记'"
+  },
+  {
+    "name": "王浩",
+    "row": 3,
+    "column": "供职单位",
+    "current": "中共共青团单县委",
+    "correct": "共青团单县委",
+    "reason": "共青团非党委，不应加'中共'前缀"
+  },
+  {
+    "name": "王浩",
+    "row": 10,
+    "column": "标志位",
+    "current": "市委副书记（市长）",
+    "correct": "市委副书记（非市长）",
+    "reason": "已拆分为两条，拆分后副书记行标志位应为'非市长'"
+  },
+  {
+    "name": "王浩",
+    "row": 24,
+    "column": "任职地（市）",
+    "current": "济南市",
+    "correct": "",
+    "reason": "省级机关（省信访局）任职地（市）应为空"
+  },
+  {
+    "name": "王浩",
+    "row": 33,
+    "column": "供职单位",
+    "current": "中共西安市委",
+    "correct": "中共陕西省委",
+    "reason": "省委常委条目供职单位应为省委"
+  },
+  {
+    "name": "王浩",
+    "row": 46,
+    "column": "经历序号",
+    "current": "46",
+    "correct": "应删除",
+    "reason": "与row 44完全重复，应删除"
+  },
+  {
+    "name": "万学远",
+    "row": 1,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 2,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 3,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 4,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 5,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 6,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 7,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 8,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 9,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 10,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 11,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 12,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 13,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 14,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 15,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 16,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 17,
+    "column": "本省提拔",
+    "current": "1",
+    "correct": "0",
+    "reason": "担任浙江省主官前最近经历为上海市政府秘书长，非本省体系内提拔"
+  },
+  {
+    "name": "万学远",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "万学远",
+    "row": 7,
+    "column": "供职单位",
+    "current": "中共共青团上海市委",
+    "correct": "共青团上海市委",
+    "reason": "共青团非党委，不应加'中共'前缀"
+  },
+  {
+    "name": "万学远",
+    "row": 15,
+    "column": "该条行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "原文标注'正部长级'，按规则以括号内级别为准"
+  },
+  {
+    "name": "万学远",
+    "row": 16,
+    "column": "该条行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "正部长级待遇适用于整体任命"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 1,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 2,
+    "column": "升迁_省委书记",
+    "current": "1",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 3,
+    "column": "升迁_省委书记",
+    "current": "2",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 4,
+    "column": "升迁_省委书记",
+    "current": "3",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 5,
+    "column": "升迁_省委书记",
+    "current": "4",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 6,
+    "column": "升迁_省委书记",
+    "current": "5",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 7,
+    "column": "升迁_省委书记",
+    "current": "6",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 8,
+    "column": "升迁_省委书记",
+    "current": "7",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 9,
+    "column": "升迁_省委书记",
+    "current": "8",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 10,
+    "column": "升迁_省委书记",
+    "current": "9",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 11,
+    "column": "升迁_省委书记",
+    "current": "10",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 12,
+    "column": "升迁_省委书记",
+    "current": "11",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 13,
+    "column": "升迁_省委书记",
+    "current": "12",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 14,
+    "column": "升迁_省委书记",
+    "current": "13",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 15,
+    "column": "升迁_省委书记",
+    "current": "14",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 16,
+    "column": "升迁_省委书记",
+    "current": "15",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 17,
+    "column": "升迁_省委书记",
+    "current": "16",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 18,
+    "column": "升迁_省委书记",
+    "current": "17",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 19,
+    "column": "升迁_省委书记",
+    "current": "18",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 20,
+    "column": "升迁_省委书记",
+    "current": "19",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 21,
+    "column": "升迁_省委书记",
+    "current": "20",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 22,
+    "column": "升迁_省委书记",
+    "current": "21",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 23,
+    "column": "升迁_省委书记",
+    "current": "22",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 24,
+    "column": "升迁_省委书记",
+    "current": "23",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 25,
+    "column": "升迁_省委书记",
+    "current": "24",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 26,
+    "column": "升迁_省委书记",
+    "current": "25",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 27,
+    "column": "升迁_省委书记",
+    "current": "26",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 28,
+    "column": "升迁_省委书记",
+    "current": "27",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 29,
+    "column": "升迁_省委书记",
+    "current": "28",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 30,
+    "column": "升迁_省委书记",
+    "current": "29",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 31,
+    "column": "升迁_省委书记",
+    "current": "30",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 32,
+    "column": "升迁_省委书记",
+    "current": "31",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 33,
+    "column": "升迁_省委书记",
+    "current": "32",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 34,
+    "column": "升迁_省委书记",
+    "current": "33",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 35,
+    "column": "升迁_省委书记",
+    "current": "34",
+    "correct": "1",
+    "reason": "离任浙江省委书记后升任全国政协副主席（副国级），应为1；当前为递增计数器"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 3,
+    "column": "供职单位",
+    "current": "中共共青团天津市河西区委",
+    "correct": "共青团天津市河西区委",
+    "reason": "共青团非党委，不应加'中共'前缀"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 4,
+    "column": "供职单位",
+    "current": "中共共青团天津市河西区委",
+    "correct": "共青团天津市河西区委",
+    "reason": "共青团非党委，不应加'中共'前缀"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 5,
+    "column": "供职单位",
+    "current": "中共共青团天津市河西区委",
+    "correct": "共青团天津市河西区委",
+    "reason": "共青团非党委，不应加'中共'前缀"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 7,
+    "column": "供职单位",
+    "current": "中共天津市河西区体院北街委",
+    "correct": "中共天津市河西区体院北街党委",
+    "reason": "原文为'党委书记'，单位名应含'党委'"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 15,
+    "column": "标志位",
+    "current": "副市长（非常委）",
+    "correct": "副省长（非常委）",
+    "reason": "天津为直辖市，直辖市副市长=副省长"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 18,
+    "column": "标志位",
+    "current": "副市长（非常委）",
+    "correct": "副省长（非常委）",
+    "reason": "天津为直辖市，直辖市副市长=副省长"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 19,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省常委（其他）",
+    "reason": "天津市委常委=省委常委（直辖市），应标省常委"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 23,
+    "column": "标志位",
+    "current": "副市长（常委）",
+    "correct": "副省长（常委）",
+    "reason": "天津为直辖市，常务副市长=副省长（常委）"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 25,
+    "column": "该条行政级别",
+    "current": "副部级部级",
+    "correct": "副部级",
+    "reason": "拼写错误/数据拼接错误"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 29,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委副书记（非省长）",
+    "reason": "拆分后副书记条目标志位应为省委副书记（非省长）"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 30,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省长",
+    "reason": "代省长应标记为省长"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 34,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省委书记职务应标记省委书记"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 34,
+    "column": "终止时间",
+    "current": "至今",
+    "correct": "2017.04",
+    "reason": "已于2017年卸任浙江省委书记"
+  },
+  {
+    "name": "夏宝龙",
+    "row": 35,
+    "column": "终止时间",
+    "current": "至今",
+    "correct": "2017.04",
+    "reason": "省人大常委会主任随省委书记同时结束"
+  },
+  {
+    "name": "李强",
+    "row": 4,
+    "column": "供职单位",
+    "current": "中共共青团浙江省瑞安县莘塍区委",
+    "correct": "共青团浙江省瑞安县莘塍区委",
+    "reason": "共青团非党委，不应加'中共'前缀"
+  },
+  {
+    "name": "李强",
+    "row": 5,
+    "column": "供职单位",
+    "current": "中共共青团浙江省瑞安县委",
+    "correct": "共青团浙江省瑞安县委",
+    "reason": "共青团非党委，不应加'中共'前缀"
+  },
+  {
+    "name": "李强",
+    "row": 6,
+    "column": "供职单位",
+    "current": "中共共青团浙江省瑞安县委",
+    "correct": "共青团浙江省瑞安县委",
+    "reason": "共青团非党委，不应加'中共'前缀"
+  },
+  {
+    "name": "李强",
+    "row": 26,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委副书记（非省长）",
+    "reason": "省委副书记（拆分后），标志位应为省委副书记（非省长）"
+  },
+  {
+    "name": "李强",
+    "row": 27,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委副书记（非省长）",
+    "reason": "省委副书记（拆分后），标志位应为省委副书记（非省长）"
+  },
+  {
+    "name": "李强",
+    "row": 28,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委副书记（非省长）",
+    "reason": "省委副书记（拆分后），标志位应为省委副书记（非省长）"
+  },
+  {
+    "name": "李强",
+    "row": 30,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委副书记（非省长）",
+    "reason": "省委副书记（拆分后），标志位应为省委副书记（非省长）"
+  },
+  {
+    "name": "李强",
+    "row": 29,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省长",
+    "reason": "代省长按规则应标记为省长"
+  },
+  {
+    "name": "李强",
+    "row": 31,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省长",
+    "reason": "浙江省省长应标记为省长"
+  },
+  {
+    "name": "李强",
+    "row": 32,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省/直辖市党委书记应标记为省委书记"
+  },
+  {
+    "name": "李强",
+    "row": 33,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省/直辖市党委书记应标记为省委书记"
+  },
+  {
+    "name": "李强",
+    "row": 36,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省/直辖市党委书记应标记为省委书记"
+  },
+  {
+    "name": "李强",
+    "row": 39,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省/直辖市党委书记应标记为省委书记"
+  },
+  {
+    "name": "李强",
+    "row": 41,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省/直辖市党委书记应标记为省委书记"
+  },
+  {
+    "name": "李强",
+    "row": 35,
+    "column": "标志位",
+    "current": "无",
+    "correct": "政治局委员",
+    "reason": "中央政治局委员应标记为政治局委员"
+  },
+  {
+    "name": "李强",
+    "row": 38,
+    "column": "标志位",
+    "current": "无",
+    "correct": "政治局委员",
+    "reason": "中央政治局委员应标记为政治局委员"
+  },
+  {
+    "name": "李强",
+    "row": 40,
+    "column": "标志位",
+    "current": "无",
+    "correct": "政治局常委",
+    "reason": "中央政治局常委应标记为政治局常委"
+  },
+  {
+    "name": "李强",
+    "row": 42,
+    "column": "标志位",
+    "current": "无",
+    "correct": "政治局常委",
+    "reason": "中央政治局常委应标记为政治局常委"
+  },
+  {
+    "name": "李强",
+    "row": 43,
+    "column": "标志位",
+    "current": "无",
+    "correct": "政治局常委",
+    "reason": "中央政治局常委应标记为政治局常委"
+  },
+  {
+    "name": "李强",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 18,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 19,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 20,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 21,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 22,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 23,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 24,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 25,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 26,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 27,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 28,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 29,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 30,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 31,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 32,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 33,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 34,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 35,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 36,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 37,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 38,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "李强",
+    "row": 39,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（国务院总理），rows 1-39值各异"
+  },
+  {
+    "name": "刘捷",
+    "row": 15,
+    "column": "该条行政级别",
+    "current": "副厅级",
+    "correct": "正厅级",
+    "reason": "地级市市委副书记为正厅级"
+  },
+  {
+    "name": "刘捷",
+    "row": 17,
+    "column": "该条行政级别",
+    "current": "副厅级",
+    "correct": "正厅级",
+    "reason": "地级市市委副书记为正厅级"
+  },
+  {
+    "name": "刘捷",
+    "row": 38,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委副书记（非省长）",
+    "reason": "兼任代省长，拆分后标省委副书记（非省长）"
+  },
+  {
+    "name": "刘捷",
+    "row": 39,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省长",
+    "reason": "代理省长应标省长"
+  },
+  {
+    "name": "刘捷",
+    "row": 40,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委副书记（非省长）",
+    "reason": "兼任省长，拆分后标省委副书记（非省长）"
+  },
+  {
+    "name": "刘捷",
+    "row": 41,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省长",
+    "reason": "正式省长应标省长"
+  },
+  {
+    "name": "刘捷",
+    "row": 42,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省长",
+    "reason": "代省长应标省长"
+  },
+  {
+    "name": "刘捷",
+    "row": 42,
+    "column": "终止时间",
+    "current": "至今",
+    "correct": "2025.01",
+    "reason": "代省长任期于2025.01正式当选时结束"
+  },
+  {
+    "name": "刘捷",
+    "row": 43,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省长",
+    "reason": "正式省长应标省长"
+  },
+  {
+    "name": "柴松岳",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "无",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "正科级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "副处级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "正处级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "正厅级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "副部级",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（电监会主席），当前值逐条递增"
+  },
+  {
+    "name": "柴松岳",
+    "row": 6,
+    "column": "标志位",
+    "current": "无",
+    "correct": "学习进修",
+    "reason": "中央党校进修学员属脱产学习，应标为学习进修"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 18,
+    "column": "该条行政级别",
+    "current": "正厅级",
+    "correct": "副部级",
+    "reason": "原文明确写'副部长级'"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 15,
+    "column": "该条行政级别",
+    "current": "副厅级",
+    "correct": "正厅级",
+    "reason": "原文注明'明确正厅级'"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 2,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 3,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 4,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 5,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 6,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 7,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 8,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 9,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 10,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 11,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 12,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 13,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 14,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 15,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 16,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 17,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 18,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 19,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 20,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 21,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 22,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 23,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 24,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 25,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 26,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 27,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 28,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 29,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 30,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 31,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 32,
+    "column": "升迁_省长",
+    "current": "0",
+    "correct": "1",
+    "reason": "person-level字段应全部为1（离任省长后升任省委书记=升迁）"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 18,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 19,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 20,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 21,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 22,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 23,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 24,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 25,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 1,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 2,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 3,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 4,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 5,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 6,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 7,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 8,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 9,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 10,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 11,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 12,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 13,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 14,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 15,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 16,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 17,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 18,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 19,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 20,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 21,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 22,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 23,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 24,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 25,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 26,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 27,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 28,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 29,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 30,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 31,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 32,
+    "column": "是否落马",
+    "current": "否",
+    "correct": "是",
+    "reason": "2024年9月被中央纪委国家监委审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 1,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 2,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 3,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 4,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 5,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 6,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 7,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 8,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 9,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 10,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 11,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 12,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 13,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 14,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 15,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 16,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 17,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 18,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 19,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 20,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 21,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 22,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 23,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 24,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 25,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 26,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 27,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 28,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 29,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 30,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 31,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 32,
+    "column": "落马原因",
+    "current": "",
+    "correct": "涉嫌严重违纪违法，2024年9月接受审查调查",
+    "reason": "落马原因字段应填写"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 31,
+    "column": "终止时间",
+    "current": "至今",
+    "correct": "2024.09",
+    "reason": "已被免职并接受审查调查"
+  },
+  {
+    "name": "郑栅洁",
+    "row": 32,
+    "column": "终止时间",
+    "current": "至今",
+    "correct": "2024.09",
+    "reason": "随主职终止"
+  },
+  {
+    "name": "袁家军",
+    "row": 9,
+    "column": "供职单位",
+    "current": "中共宁夏回族自治区委",
+    "correct": "中共宁东能源化工基地党工委",
+    "reason": "Seq 9 重复 seq 8, 应为宁东党工委书记"
+  },
+  {
+    "name": "袁家军",
+    "row": 9,
+    "column": "职务",
+    "current": "常委",
+    "correct": "书记",
+    "reason": "应为宁东能源化工基地党工委书记"
+  },
+  {
+    "name": "袁家军",
+    "row": 9,
+    "column": "标志位",
+    "current": "省常委（其他）",
+    "correct": "无",
+    "reason": "宁东党工委书记非省委常委职务"
+  },
+  {
+    "name": "袁家军",
+    "row": 2,
+    "column": "该条行政级别",
+    "current": "副科级",
+    "correct": "副处级",
+    "reason": "501部结构室副主任不应低于seq 1（正科级）"
+  },
+  {
+    "name": "袁家军",
+    "row": 19,
+    "column": "标志位",
+    "current": "副省长（常委）",
+    "correct": "无",
+    "reason": "此行为浙江行政学院院长兼职，标志位属于常务副省长行"
+  },
+  {
+    "name": "袁家军",
+    "row": 29,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委副书记（非省长）",
+    "reason": "拆分后省委副书记应标省委副书记（非省长）"
+  },
+  {
+    "name": "袁家军",
+    "row": 30,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省长",
+    "reason": "省长位置应标省长"
+  },
+  {
+    "name": "袁家军",
+    "row": 31,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省/直辖市党委书记应标省委书记"
+  },
+  {
+    "name": "袁家军",
+    "row": 32,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省/直辖市党委书记应标省委书记"
+  },
+  {
+    "name": "袁家军",
+    "row": 35,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省/直辖市党委书记应标省委书记"
+  },
+  {
+    "name": "袁家军",
+    "row": 38,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "省/直辖市党委书记应标省委书记"
+  },
+  {
+    "name": "袁家军",
+    "row": 34,
+    "column": "标志位",
+    "current": "无",
+    "correct": "政治局委员",
+    "reason": "中央政治局委员应标政治局委员"
+  },
+  {
+    "name": "袁家军",
+    "row": 37,
+    "column": "标志位",
+    "current": "无",
+    "correct": "政治局委员",
+    "reason": "中央政治局委员应标政治局委员"
+  },
+  {
+    "name": "袁家军",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 18,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 19,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 20,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 21,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 22,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 23,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 24,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 25,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 26,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 27,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 28,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 29,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 30,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 31,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 32,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "袁家军",
+    "row": 33,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "副国级",
+    "reason": "person-level字段应统一为副国级（政治局委员）"
+  },
+  {
+    "name": "习近平",
+    "row": 1,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 2,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 3,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 4,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 5,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 6,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 7,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 8,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 9,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 10,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 11,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 12,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 13,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 14,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 15,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 16,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 17,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 18,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 19,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 20,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 21,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 22,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 23,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 24,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 25,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 26,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 27,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 28,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 29,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 30,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 31,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 32,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 33,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 34,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 35,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 36,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 37,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 38,
+    "column": "升迁_省委书记",
+    "current": "0",
+    "correct": "1",
+    "reason": "任浙江省委书记后升任更高职务，应为1"
+  },
+  {
+    "name": "习近平",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 18,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 19,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 20,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 21,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 22,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 23,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 24,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 25,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 26,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 27,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 28,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 29,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 30,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 31,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 32,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 33,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 34,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 35,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 36,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 37,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级"
+  },
+  {
+    "name": "习近平",
+    "row": 7,
+    "column": "任职地（市）",
+    "current": "",
+    "correct": "石家庄市",
+    "reason": "正定县隶属石家庄市"
+  },
+  {
+    "name": "习近平",
+    "row": 7,
+    "column": "供职单位",
+    "current": "正定县人民武装部",
+    "correct": "正定县武装部",
+    "reason": "原文为'正定县武装部'，应忠实原文"
+  },
+  {
+    "name": "习近平",
+    "row": 25,
+    "column": "标志位",
+    "current": "省委副书记（非省长）",
+    "correct": "省委副书记（省长）",
+    "reason": "同时担任代省长，不应标'非省长'"
+  },
+  {
+    "name": "习近平",
+    "row": 26,
+    "column": "标志位",
+    "current": "省委副书记（非省长）",
+    "correct": "省委副书记（省长）",
+    "reason": "同时担任省长"
+  },
+  {
+    "name": "习近平",
+    "row": 27,
+    "column": "标志位",
+    "current": "省委副书记（非省长）",
+    "correct": "省委副书记（省长）",
+    "reason": "同时担任代省长"
+  },
+  {
+    "name": "习近平",
+    "row": 28,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "浙江省委书记应标省委书记"
+  },
+  {
+    "name": "习近平",
+    "row": 33,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省委书记",
+    "reason": "浙江省委书记应标省委书记"
+  },
+  {
+    "name": "习近平",
+    "row": 29,
+    "column": "标志位",
+    "current": "无",
+    "correct": "省长",
+    "reason": "浙江省代省长应标省长"
+  },
+  {
+    "name": "习近平",
+    "row": 35,
+    "column": "供职单位",
+    "current": "中共浙江省军区委",
+    "correct": "浙江省军区",
+    "reason": "军区不应加'中共'前缀"
+  },
+  {
+    "name": "习近平",
+    "row": 8,
+    "column": "该条行政级别",
+    "current": "正厅级",
+    "correct": "副厅级",
+    "reason": "1985年厦门尚为地级市（1994年升格），市委常委为副厅级"
+  },
+  {
+    "name": "习近平",
+    "row": 9,
+    "column": "该条行政级别",
+    "current": "正厅级",
+    "correct": "副厅级",
+    "reason": "1985年厦门尚为地级市，副市长为副厅级"
+  },
+  {
+    "name": "张德江",
+    "row": 1,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 2,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 3,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 4,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 5,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 6,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 7,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 8,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 9,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 10,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 11,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 12,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 13,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 14,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 15,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 16,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 17,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 18,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 19,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 20,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 21,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 22,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 23,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 24,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 25,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 26,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 27,
+    "column": "籍贯（市）",
+    "current": "台安县",
+    "correct": "鞍山市",
+    "reason": "台安县隶属鞍山市，应填地级市名"
+  },
+  {
+    "name": "张德江",
+    "row": 1,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 2,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 3,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 4,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 5,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 6,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 7,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 8,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 9,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 10,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 11,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 12,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 13,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 14,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 15,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 16,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 17,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 18,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 19,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 20,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 21,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 22,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 23,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 24,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 25,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 26,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 27,
+    "column": "全日制本科",
+    "current": "1",
+    "correct": "0",
+    "reason": "延边大学(工农兵学员)非竞争性高考录取，金日成综合大学仅2年"
+  },
+  {
+    "name": "张德江",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 18,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 19,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 20,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 21,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 22,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正国级",
+    "reason": "person-level字段应统一为正国级（全国人大常委会委员长）"
+  },
+  {
+    "name": "张德江",
+    "row": 3,
+    "column": "标志位",
+    "current": "无",
+    "correct": "高校/党校任职",
+    "reason": "在延边大学担任行政职务"
+  },
+  {
+    "name": "张德江",
+    "row": 4,
+    "column": "标志位",
+    "current": "无",
+    "correct": "学习进修",
+    "reason": "在朝鲜金日成综合大学脱产留学"
+  },
+  {
+    "name": "张德江",
+    "row": 6,
+    "column": "标志位",
+    "current": "市委副书记（非市长）",
+    "correct": "无",
+    "reason": "延吉市为县级市，标志位仅适用于地级市"
+  },
+  {
+    "name": "易炼红",
+    "row": 4,
+    "column": "组织标签",
+    "current": "科研院所（地方）",
+    "correct": "省属国企",
+    "reason": "株洲化工厂是国有企业，不是科研院所"
+  },
+  {
+    "name": "易炼红",
+    "row": 6,
+    "column": "任职地（市）",
+    "current": "",
+    "correct": "怀化市",
+    "reason": "沅陵县隶属怀化市"
+  },
+  {
+    "name": "易炼红",
+    "row": 21,
+    "column": "标志位",
+    "current": "省委副书记（非省长）",
+    "correct": "省委副书记（省长）",
+    "reason": "同时任代省长，应标省委副书记（省长）"
+  },
+  {
+    "name": "易炼红",
+    "row": 23,
+    "column": "标志位",
+    "current": "省委副书记（非省长）",
+    "correct": "省委副书记（省长）",
+    "reason": "同时任省长，应标省委副书记（省长）"
+  },
+  {
+    "name": "易炼红",
+    "row": 1,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 2,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 3,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 4,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 5,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 6,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 7,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 8,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 9,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 10,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 11,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 12,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 13,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 14,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 15,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 16,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 17,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 18,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 19,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  },
+  {
+    "name": "易炼红",
+    "row": 20,
+    "column": "最终行政级别",
+    "current": "(逐行递增)",
+    "correct": "正部级",
+    "reason": "person-level字段应统一为正部级（省委书记）"
+  }
+]

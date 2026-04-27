@@ -85,7 +85,7 @@ def load_officials(
     data_subdir: str = "",
 ) -> dict:
     """Load the province officials list from data/[subdir/]{province}_officials.txt."""
-    from input_parser_province import parse_province_officials_txt
+    from code_scrape.input_parser_province import parse_province_officials_txt
 
     if data_subdir:
         txt_path = DATA_DIR / data_subdir / f"{province}_officials.txt"
@@ -172,10 +172,10 @@ def _build_judge_pool() -> tuple[RoundRobinClientPool, str]:
     return pool, JUDGE_MODEL
 
 
-# ── Interleaved extract-diff-judge phases ──────────────────────────────────
+# ── Interleaved extract-diff-judge phases (v9: 4 stages) ──────────────────
 
 def _run_phase_step1(officials, province, province_full, dirs, force):
-    """Phase 1: Step1 extraction → diff → judge → merged_episodes.json"""
+    """Phase 1: Step1 (basic fields) extract → diff → judge → merged_episodes_step1.json"""
     from extraction import run_step1
     from diff import diff_step1
     from judge import judge_step1
@@ -185,7 +185,7 @@ def _run_phase_step1(officials, province, province_full, dirs, force):
     cfg1 = _build_llm1_config()
     cfg2 = _build_llm2_config()
 
-    print(f"\n★ Phase 1: Step1 提取 (LLM1 + LLM2 并行)")
+    print(f"\n★ Phase 1: Step1 提取 (起止时间/供职单位/职务) — LLM1 + LLM2 并行")
     with ThreadPoolExecutor(max_workers=2) as pool:
         f1 = pool.submit(
             run_step1, officials, province, province_full,
@@ -207,31 +207,31 @@ def _run_phase_step1(officials, province, province_full, dirs, force):
 
 
 def _run_phase_step2(officials, province, dirs, force):
-    """Phase 2: Step2 rank → diff → judge"""
+    """Phase 2: Step2 (classification) extract → diff → judge → merged_episodes.json (full)"""
     from extraction import run_step2
     from diff import diff_step2
     from judge import judge_step2
 
     prov_logs = dirs["logs"]
-    merged_path = prov_logs / "merged_episodes.json"
+    merged_step1_path = prov_logs / "merged_episodes_step1.json"
 
-    if not merged_path.exists():
-        print(f"\n⚠ 跳过 Phase 2: merged_episodes.json 不存在")
+    if not merged_step1_path.exists():
+        print(f"\n⚠ 跳过 Phase 2: merged_episodes_step1.json 不存在")
         return
 
     cfg1 = _build_llm1_config()
     cfg2 = _build_llm2_config()
 
-    print(f"\n★ Phase 2: Step2 级别判断 (LLM1 + LLM2 并行)")
+    print(f"\n★ Phase 2: Step2 分类 (组织标签/标志位/任职地/中央地方) — LLM1 + LLM2 并行")
     with ThreadPoolExecutor(max_workers=2) as pool:
         f1 = pool.submit(
-            run_step2, officials, merged_path,
-            prov_logs / "llm1_step2_rank.json", cfg1,
+            run_step2, officials, merged_step1_path,
+            prov_logs / "llm1_step2_classify.json", cfg1,
             force=force,
         )
         f2 = pool.submit(
-            run_step2, officials, merged_path,
-            prov_logs / "llm2_step2_rank.json", cfg2,
+            run_step2, officials, merged_step1_path,
+            prov_logs / "llm2_step2_classify.json", cfg2,
             force=force,
         )
         f1.result()
@@ -243,15 +243,14 @@ def _run_phase_step2(officials, province, dirs, force):
                 pool=judge_pool, model=judge_model)
 
 
-def _run_phase_step3(officials, province, province_full, dirs, force):
-    """Phase 3: Step3 labels → diff → judge"""
+def _run_phase_step3(officials, province, dirs, force):
+    """Phase 3: Step3 (rank) extract → diff → judge"""
     from extraction import run_step3
     from diff import diff_step3
     from judge import judge_step3
 
     prov_logs = dirs["logs"]
     merged_path = prov_logs / "merged_episodes.json"
-    officials_dir = dirs["officials"]
 
     if not merged_path.exists():
         print(f"\n⚠ 跳过 Phase 3: merged_episodes.json 不存在")
@@ -260,19 +259,17 @@ def _run_phase_step3(officials, province, province_full, dirs, force):
     cfg1 = _build_llm1_config()
     cfg2 = _build_llm2_config()
 
-    print(f"\n★ Phase 3: Step3 标签 (LLM1 + LLM2 并行)")
+    print(f"\n★ Phase 3: Step3 行政级别 — LLM1 + LLM2 并行")
     with ThreadPoolExecutor(max_workers=2) as pool:
         f1 = pool.submit(
             run_step3, officials, merged_path,
-            province, province_full,
-            prov_logs / "llm1_step3_labels.json", cfg1,
-            force=force, officials_dir=officials_dir,
+            prov_logs / "llm1_step3_rank.json", cfg1,
+            force=force,
         )
         f2 = pool.submit(
             run_step3, officials, merged_path,
-            province, province_full,
-            prov_logs / "llm2_step3_labels.json", cfg2,
-            force=force, officials_dir=officials_dir,
+            prov_logs / "llm2_step3_rank.json", cfg2,
+            force=force,
         )
         f1.result()
         f2.result()
@@ -280,6 +277,46 @@ def _run_phase_step3(officials, province, province_full, dirs, force):
     diff_step3(prov_logs)
     judge_pool, judge_model = _build_judge_pool()
     judge_step3(prov_logs, force=force, max_workers=JUDGE_MAX_WORKERS,
+                pool=judge_pool, model=judge_model)
+
+
+def _run_phase_step4(officials, province, province_full, dirs, force):
+    """Phase 4: Step4 (bio + labels + corruption) extract → diff → judge"""
+    from extraction import run_step4
+    from diff import diff_step4
+    from judge import judge_step4
+
+    prov_logs = dirs["logs"]
+    merged_path = prov_logs / "merged_episodes.json"
+    officials_dir = dirs["officials"]
+
+    if not merged_path.exists():
+        print(f"\n⚠ 跳过 Phase 4: merged_episodes.json 不存在")
+        return
+
+    cfg1 = _build_llm1_config()
+    cfg2 = _build_llm2_config()
+
+    print(f"\n★ Phase 4: Step4 标签/落马 — LLM1 + LLM2 并行")
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        f1 = pool.submit(
+            run_step4, officials, merged_path,
+            province, province_full,
+            prov_logs / "llm1_step4_labels.json", cfg1,
+            force=force, officials_dir=officials_dir,
+        )
+        f2 = pool.submit(
+            run_step4, officials, merged_path,
+            province, province_full,
+            prov_logs / "llm2_step4_labels.json", cfg2,
+            force=force, officials_dir=officials_dir,
+        )
+        f1.result()
+        f2.result()
+
+    diff_step4(prov_logs)
+    judge_pool, judge_model = _build_judge_pool()
+    judge_step4(prov_logs, force=force, max_workers=JUDGE_MAX_WORKERS,
                 pool=judge_pool, model=judge_model)
 
 
@@ -370,37 +407,55 @@ def run_province_pipeline(
     _phase_end("Phase 0.5 (Bio files)", t_ph, tok_ph)
 
     if not skip_extract:
-        # ── Phase 1: Step1 extraction → diff → judge ──
+        # ── Phase 1: Step1 (basic) extract → diff → judge ──
         t_ph = time.time(); tok_ph = TOKENS.snapshot()
         _run_phase_step1(officials, province, province_full, dirs, force)
-        _phase_end("Phase 1 (Step1 extract+diff+judge)", t_ph, tok_ph)
+        _phase_end("Phase 1 (Step1 basic+diff+judge)", t_ph, tok_ph)
 
         if not skip_battle:
-            # ── Phase 2: Step2 rank → diff → judge ──
+            # ── Phase 2: Step2 (classify) extract → diff → judge ──
             t_ph = time.time(); tok_ph = TOKENS.snapshot()
             _run_phase_step2(officials, province, dirs, force)
-            _phase_end("Phase 2 (Step2 rank+diff+judge)", t_ph, tok_ph)
+            _phase_end("Phase 2 (Step2 classify+diff+judge)", t_ph, tok_ph)
 
-            # ── Phase 3: Step3 labels → diff → judge ──
+            # ── Phase 3: Step3 (rank) extract → diff → judge ──
             t_ph = time.time(); tok_ph = TOKENS.snapshot()
-            _run_phase_step3(officials, province, province_full, dirs, force)
-            _phase_end("Phase 3 (Step3 labels+diff+judge)", t_ph, tok_ph)
-        else:
-            print(f"\n[跳过] Phase 2-3: Battle/Judge")
-    else:
-        print(f"\n[跳过] Phase 1-3: 使用现有结果")
+            _run_phase_step3(officials, province, dirs, force)
+            _phase_end("Phase 3 (Step3 rank+diff+judge)", t_ph, tok_ph)
 
-    # ── Phase 4 ──
+            # ── Phase 4: Step4 (labels) extract → diff → judge ──
+            t_ph = time.time(); tok_ph = TOKENS.snapshot()
+            _run_phase_step4(officials, province, province_full, dirs, force)
+            _phase_end("Phase 4 (Step4 labels+diff+judge)", t_ph, tok_ph)
+        else:
+            print(f"\n[跳过] Phase 2-4: Battle/Judge")
+    else:
+        print(f"\n[跳过] Phase 1-4: 使用现有结果")
+
+    # ── Phase 5: Postprocess ──
     t_ph = time.time(); tok_ph = TOKENS.snapshot()
     rows = run_postprocess(province, province_full, start_year)
     if not rows:
         raise PipelineError("后处理结果为空")
-    _phase_end("Phase 4 (Postprocess)", t_ph, tok_ph)
+    _phase_end("Phase 5 (Postprocess)", t_ph, tok_ph)
 
-    # ── Phase 5 ──
+    # ── Phase 6: Export + Battle tables ──
     t_ph = time.time(); tok_ph = TOKENS.snapshot()
     export_result = run_export(province, province_full, data_subdir=data_subdir)
-    _phase_end("Phase 5 (Export)", t_ph, tok_ph)
+    # Build battle1-4 tables from each judge stage
+    try:
+        from judge import build_battles
+        battles = build_battles(
+            logs_dir=dirs["logs"],
+            output_dir=dirs["output"],
+            province=province,
+        )
+        if export_result is None:
+            export_result = {}
+        export_result.update(battles)
+    except Exception as e:
+        print(f"  ⚠ battle 表生成失败: {e}")
+    _phase_end("Phase 6 (Export + Battle)", t_ph, tok_ph)
 
     # ── Summary ──
     elapsed = time.time() - t0

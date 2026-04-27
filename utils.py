@@ -367,26 +367,35 @@ def load_json_cache(path: Path, force: bool = False) -> dict[str, dict]:
     """Load a JSON cache file into {name: record} dict.
 
     Expects a JSON list where each item has _meta.name.
+    Skips list entries that are None (in-flight placeholders that were saved
+    before the run finished) or otherwise lack _meta.name.
     Returns empty dict if file missing, force=True, or parse failure.
     """
     if force or not path.exists():
         return {}
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
-        return {
-            r.get("_meta", {}).get("name", ""): r
-            for r in data
-            if r.get("_meta", {}).get("name")
-        }
+        result: dict[str, dict] = {}
+        for r in data:
+            if not isinstance(r, dict):
+                continue
+            name = r.get("_meta", {}).get("name", "")
+            if name:
+                result[name] = r
+        return result
     except Exception:
         return {}
 
 
 def save_json_cache(path: Path, cache: dict) -> None:
-    """Save a {name: record} cache dict as JSON list (atomic write)."""
+    """Save a {name: record} cache dict as JSON list (atomic write).
+
+    Filters out None placeholders (used for concurrent dedup) before serializing.
+    """
     import tempfile
     path.parent.mkdir(parents=True, exist_ok=True)
-    content = json.dumps(list(cache.values()), ensure_ascii=False, indent=2)
+    serializable = [v for v in cache.values() if v is not None]
+    content = json.dumps(serializable, ensure_ascii=False, indent=2)
     fd, tmp = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as f:

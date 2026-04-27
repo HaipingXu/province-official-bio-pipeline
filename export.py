@@ -63,9 +63,10 @@ COL_WIDTHS: dict[str, int] = {
     "组织标签": 18, "标志位": 20, "该条行政级别": 14,
     "供职单位": 30, "职务": 22,
     "原文引用": 40,
-    "争议未解决": 35,
     "任职地（省）": 16, "任职地（市）": 14, "中央/地方": 10,
     "是否落马": 10, "落马原因": 30, "备注栏": 28,
+    # v9 per-step judge confidence columns
+    "judge1con": 30, "judge2con": 30, "judge3con": 30, "judge4con": 30,
 }
 
 
@@ -141,18 +142,23 @@ def _apply_styles(
 
         ws.row_dimensions[row_idx].height = 15
 
-    # Highlight dispute cells: deep red for blocked judge, light red for low confidence
-    dispute_col_idx = (headers.index("争议未解决") + 1) if "争议未解决" in headers else None
-    if dispute_col_idx:
-        import re as _re
+    # Highlight judgeNcon cells: deep red for blocked judge,
+    # light red for low confidence (<85, v9 threshold)
+    import re as _re
+    cols_to_highlight = [
+        c for c in ["judge1con", "judge2con", "judge3con", "judge4con"]
+        if c in headers
+    ]
+    for col_name in cols_to_highlight:
+        col_idx = headers.index(col_name) + 1
         for row_idx in range(2, n_rows + 2):
-            cell = ws.cell(row=row_idx, column=dispute_col_idx)
+            cell = ws.cell(row=row_idx, column=col_idx)
             val = str(cell.value or "")
             if "[裁判被拦截]" in val:
                 cell.fill = FILL_RED_BLOCKED
             elif "[信心:" in val:
                 for m in _re.finditer(r'\[信心:(\d+)\]', val):
-                    if int(m.group(1)) < 90:
+                    if int(m.group(1)) < 85:
                         cell.fill = FILL_RED_CONF
                         break
 
@@ -184,7 +190,7 @@ def _load_names_from_txt(txt_path: Path) -> tuple[set[str], set[str]]:
     Uses input_parser_province to keep parsing logic in one place.
     Returns (set of governor names, set of secretary names).
     """
-    from input_parser_province import parse_province_officials_txt
+    from code_scrape.input_parser_province import parse_province_officials_txt
 
     # Derive province short name from filename (e.g. "浙江_officials.txt" → "浙江")
     province_short = txt_path.stem.replace("_officials", "")

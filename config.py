@@ -78,40 +78,53 @@ LOGS_DIR = PROJECT_ROOT / "logs"
 DATA_DIR = PROJECT_ROOT / "data"
 SKILLS_DIR = PROJECT_ROOT / ".claude" / "skills"
 
-# --- Output Column Names — v8 schema (30 columns, province-level) ---
+# --- Output Column Names — v9 schema (4-step pipeline, with per-step judge cols) ---
+# Pipeline:
+#   step1: 起始时间, 终止时间, 供职单位, 职务   (judge1)
+#   step2: 组织标签, 标志位, 任职地（省/市）, 中央/地方   (judge2)
+#   step3: 该条行政级别                          (judge3)
+#   step4: raw_bio + 升迁/本省提拔/本省学习 + 落马  (judge4)
 COLUMNS = [
-    # --- Person-level (A-N, 14 columns) ---
-    "年份",           # A  first year of focal province tenure
-    "省份",           # B
-    "姓名",           # C
-    "出生年份",       # D
-    "籍贯",           # E  province-level (e.g. 江苏省)
-    "籍贯（市）",     # F  city-level (e.g. 连云港市)
-    "少数民族",       # G  1=minority
-    "女性",           # H  1=female
-    "全日制本科",     # I  1=full-time bachelor's
-    "升迁_省长",      # J  promoted after governor tenure (1/0/-1/"")
-    "升迁_省委书记",  # K  promoted after prov secretary tenure (1/0/-1/"")
-    "本省提拔",       # L  promoted from within province
-    "本省学习",       # M  studied full-time in province before
-    "最终行政级别",   # N  person-level highest rank (e.g. 副部级)
-    # --- Per-row (O-AC, 15 columns) ---
-    "经历序号",       # O
-    "起始时间",       # P  YYYY.MM or YYYY.00
-    "终止时间",       # Q
-    "组织标签",       # R  one of 33 standard categories
-    "标志位",         # S  one of 23 position-type tags
-    "该条行政级别",   # T  per-row rank from Step3 (e.g. 正厅级)
-    "供职单位",       # U
-    "职务",           # V
-    "原文引用",       # W  Lxx: source text from Baidu Baike
-    "争议未解决",     # X  unresolved disputes from judge + confidence<90 flags
-    "任职地（省）",   # Y  full province name (e.g. 广东省)
-    "任职地（市）",   # Z  full city name (e.g. 深圳市) or empty
-    "中央/地方",      # AA
-    "是否落马",       # AB 是/否
-    "落马原因",       # AC judgment text if 落马
-    "备注栏",         # AD [需人工核查] flags
+    # --- Person-level ---
+    "年份",
+    "省份",
+    "姓名",
+    "出生年份",
+    "籍贯",
+    "籍贯（市）",
+    "少数民族",
+    "女性",
+    "全日制本科",
+    "升迁_省长",
+    "升迁_省委书记",
+    "本省提拔",
+    "本省学习",
+    "judge4con",      # confidence + reason for step4 label/bio judges
+    "最终行政级别",
+    # --- Per-row ---
+    "经历序号",
+    # --- Step1 fields + judge1con ---
+    "起始时间",
+    "终止时间",
+    "供职单位",
+    "职务",
+    "judge1con",
+    # --- Step2 fields + judge2con ---
+    "组织标签",
+    "标志位",
+    "任职地（省）",
+    "任职地（市）",
+    "中央/地方",
+    "judge2con",
+    # --- Step3 field + judge3con ---
+    "该条行政级别",
+    "judge3con",
+    # --- 引用 ---
+    "原文引用",
+    # --- 落马（来自 step4，落马字段不再单独输出 judge col；归入 judge4con）---
+    "是否落马",
+    "落马原因",
+    "备注栏",
 ]
 
 # --- 31+1 Organizational Tags ---
@@ -189,6 +202,10 @@ RANK_LEVELS = [
     "正科级", "副科级",
 ]
 
+# Sentinel for early-career/secretary/cadre rows where rank cannot be inferred.
+# Treated as "无层级" by get_highest_rank (does not participate in person-level max).
+RANK_HARD_TO_JUDGE = "难以判断"
+
 
 def get_highest_rank(ranks: list[str]) -> str:
     """Return the highest rank from a list of rank strings.
@@ -263,12 +280,23 @@ PROVINCE_NAMES = {
 }
 
 # --- Episode Fields (shared across verifier, battle, postprocess) ---
-EPISODE_FIELDS = [
-    "起始时间", "终止时间", "组织标签", "标志位", "供职单位", "职务",
+# v9: split episode fields by pipeline step.
+STEP1_EPISODE_FIELDS = [
+    "起始时间", "终止时间", "供职单位", "职务",
+]
+STEP2_EPISODE_FIELDS = [
+    "组织标签", "标志位",
     "任职地（省）", "任职地（市）", "中央/地方",
 ]
+EPISODE_FIELDS = STEP1_EPISODE_FIELDS + STEP2_EPISODE_FIELDS
 
 EP_CHECK_FIELDS = EPISODE_FIELDS + ["行政级别"]
+
+# --- Judge confidence threshold ---
+# Decisions with confidence below this value flow into "争议未解决".
+# All confidence scores (regardless of value) are surfaced in the
+# per-step judgeNcon columns.
+JUDGE_CONF_THRESHOLD = 85
 
 # --- Scraping ---
 USER_AGENTS = [
