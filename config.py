@@ -28,7 +28,7 @@ def _load_keys(env_var: str) -> tuple[list[str], str]:
 # Single key (backward-compatible) — first key from comma-separated list
 DEEPSEEK_API_KEYS, DEEPSEEK_API_KEY = _load_keys("DEEPSEEK_API_KEY")
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
-DEEPSEEK_MODEL = "deepseek-chat"  # DeepSeek-V3.2 (kept for reference)
+DEEPSEEK_MODEL = "deepseek-v4-flash"  # DeepSeek V4 Flash (kept for reference)
 
 QWEN_API_KEYS, QWEN_API_KEY = _load_keys("QWEN_API_KEY")
 QWEN_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
@@ -55,11 +55,11 @@ LLM2_API_KEYS = DOUBAO_API_KEYS
 LLM2_BASE_URL = DOUBAO_BASE_URL
 LLM2_MODEL = DOUBAO_MODEL
 
-# --- Judge: DeepSeek-Reasoner (replaces Kimi K2.5) ---
+# --- Judge: DeepSeek-V4-Pro (current default judge model) ---
 JUDGE_API_KEY = DEEPSEEK_API_KEY
 JUDGE_API_KEYS = DEEPSEEK_API_KEYS
 JUDGE_BASE_URL = DEEPSEEK_BASE_URL
-JUDGE_MODEL = "deepseek-reasoner"
+JUDGE_MODEL = "deepseek-v4-pro"
 
 # --- GLM-5 (verification LLM — fallback after Doubao) ---
 GLM_API_KEYS, GLM_API_KEY = _load_keys("GLM_API_KEY")
