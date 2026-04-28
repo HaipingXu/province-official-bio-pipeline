@@ -24,9 +24,10 @@ from openpyxl.utils import get_column_letter
 
 from config import (
     LOGS_DIR, OUTPUT_DIR,
-    DEFAULT_WORKERS,
+    DEFAULT_WORKERS, JUDGE_MAX_RETRIES,
     STEP1_EPISODE_FIELDS, STEP2_EPISODE_FIELDS,
 )
+from failures import FAILURES
 from utils import (
     extract_json, load_prompt, llm_chat,
     RoundRobinClientPool, LLMConfig,
@@ -164,16 +165,25 @@ def _call_judge(system: str, prompt: str, pool: RoundRobinClientPool | None = No
         return {"verdict": "两者均存疑", "reason": "裁判调用失败: 未提供 pool", "judge_model": "error"}
     try:
         raw = llm_chat(
-            pool.next_client(), model,
+            pool, model,
             system=system, user=prompt,
-            temperature=0.0, max_retries=2, seed=None,
+            temperature=0.0, max_retries=JUDGE_MAX_RETRIES, seed=None,
         )
         result = extract_json(raw)
         result["judge_model"] = model
         return result
     except Exception as e:
         if "Content Exists Risk" in str(e):
+            FAILURES.record(
+                scope="judge", source="judge", step="call_judge",
+                name="(content-blocked)", error="内容安全拦截",
+                extra={"prompt_head": prompt[:120]},
+            )
             return {"verdict": "两者均存疑", "reason": "内容安全拦截", "judge_model": "blocked"}
+        FAILURES.record(
+            scope="judge", source="judge", step="call_judge",
+            name="(call-failed)", error=e,
+        )
         return {"verdict": "两者均存疑", "reason": f"裁判调用失败: {e}", "judge_model": "error"}
 
 
@@ -309,6 +319,10 @@ def _run_judge_tasks(
                 cache[ck] = decision
             except Exception as e:
                 logger.error(f"[{step_label} error] {ck}: {e}")
+                FAILURES.record(
+                    scope="judge", source="judge", step=step_label,
+                    name=ck, error=e,
+                )
                 cache[ck] = {"verdict": "两者均存疑", "reason": f"异常: {e}", "judge_model": model}
     else:
         lock = threading.Lock()
@@ -322,6 +336,10 @@ def _run_judge_tasks(
                 except Exception as e:
                     ck = futures[fut]
                     logger.error(f"[{step_label} error] {ck}: {e}")
+                    FAILURES.record(
+                        scope="judge", source="judge", step=step_label,
+                        name=ck, error=e,
+                    )
                     with lock:
                         cache[ck] = {"verdict": "两者均存疑", "reason": f"异常: {e}", "judge_model": model}
 

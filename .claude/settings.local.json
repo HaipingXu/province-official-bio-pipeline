@@ -101,7 +101,9 @@
       "Bash(uv run:*)",
       "Bash(export PATH=\"$HOME/.local/bin:$HOME/.cargo/bin:$PATH\")",
       "Bash(kill 69620)",
-      "Bash(tee /tmp/run_zhejiang.log)"
+      "Bash(tee /tmp/run_zhejiang.log)",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('main_province.py'\\).read\\(\\)\\); ast.parse\\(open\\('extraction.py'\\).read\\(\\)\\); ast.parse\\(open\\('diff.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python -c ' *)"
     ]
   }
 }

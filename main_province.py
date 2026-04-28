@@ -35,10 +35,14 @@ from config import (
     LLM1_API_KEY, LLM1_API_KEYS, LLM1_BASE_URL, LLM1_MODEL,
     LLM2_API_KEY, LLM2_API_KEYS, LLM2_BASE_URL, LLM2_MODEL,
     JUDGE_API_KEY, JUDGE_API_KEYS, JUDGE_BASE_URL, JUDGE_MODEL,
+    LLM1_MAX_RETRIES, LLM2_MAX_RETRIES,
+    LLM1_PROVIDER_CONCURRENCY, LLM2_PROVIDER_CONCURRENCY,
+    JUDGE_PROVIDER_CONCURRENCY,
     LOGS_DIR, OFFICIALS_DIR, OUTPUT_DIR, PROJECT_ROOT,
     PROVINCE_NAMES,
     setup_logging, validate_api_keys,
 )
+from failures import FAILURES
 from utils import TOKENS, RoundRobinClientPool, LLMConfig
 
 # All 31 provinces (ordered list from config.PROVINCE_NAMES set)
@@ -155,21 +159,52 @@ def run_scraping(officials: list[dict], province: str, force: bool = False,
 
 # ── LLM config builders ────────────────────────────────────────────────────
 
+# Module-level shared pools so the per-provider semaphore caps total in-flight
+# requests across ALL phases (Phase A: Step1 ∥ Step4 both hit LLM1; multiple
+# judge phases may also overlap). Pools are lazy-initialised on first use.
+_llm1_pool: RoundRobinClientPool | None = None
+_llm2_pool: RoundRobinClientPool | None = None
+_judge_pool_inst: RoundRobinClientPool | None = None
+
+
 def _build_llm1_config() -> LLMConfig:
-    pool = RoundRobinClientPool(LLM1_API_KEYS or [LLM1_API_KEY], LLM1_BASE_URL)
-    return LLMConfig(pool=pool, model=LLM1_MODEL, max_retries=4, source_tag="llm1")
+    global _llm1_pool
+    if _llm1_pool is None:
+        _llm1_pool = RoundRobinClientPool(
+            LLM1_API_KEYS or [LLM1_API_KEY], LLM1_BASE_URL,
+            max_concurrency=LLM1_PROVIDER_CONCURRENCY,
+        )
+    return LLMConfig(
+        pool=_llm1_pool, model=LLM1_MODEL,
+        max_retries=LLM1_MAX_RETRIES, source_tag="llm1",
+    )
 
 
 def _build_llm2_config() -> LLMConfig:
-    pool = RoundRobinClientPool(LLM2_API_KEYS or [LLM2_API_KEY], LLM2_BASE_URL)
-    return LLMConfig(pool=pool, model=LLM2_MODEL, max_retries=1, source_tag="llm2")
+    global _llm2_pool
+    if _llm2_pool is None:
+        _llm2_pool = RoundRobinClientPool(
+            LLM2_API_KEYS or [LLM2_API_KEY], LLM2_BASE_URL,
+            max_concurrency=LLM2_PROVIDER_CONCURRENCY,
+        )
+    return LLMConfig(
+        pool=_llm2_pool, model=LLM2_MODEL,
+        max_retries=LLM2_MAX_RETRIES, source_tag="llm2",
+    )
 
 
 def _build_judge_pool() -> tuple[RoundRobinClientPool, str]:
-    """Build a RoundRobinClientPool + model string for the judge LLM."""
-    judge_keys = JUDGE_API_KEYS if JUDGE_API_KEYS else ([JUDGE_API_KEY] if JUDGE_API_KEY else [])
-    pool = RoundRobinClientPool(judge_keys, JUDGE_BASE_URL)
-    return pool, JUDGE_MODEL
+    """Return shared judge pool + model string (semaphore is global)."""
+    global _judge_pool_inst
+    if _judge_pool_inst is None:
+        judge_keys = JUDGE_API_KEYS if JUDGE_API_KEYS else (
+            [JUDGE_API_KEY] if JUDGE_API_KEY else []
+        )
+        _judge_pool_inst = RoundRobinClientPool(
+            judge_keys, JUDGE_BASE_URL,
+            max_concurrency=JUDGE_PROVIDER_CONCURRENCY,
+        )
+    return _judge_pool_inst, JUDGE_MODEL
 
 
 # ── Interleaved extract-diff-judge phases (v9: 4 stages) ──────────────────
@@ -244,16 +279,16 @@ def _run_phase_step2(officials, province, dirs, force):
 
 
 def _run_phase_step3(officials, province, dirs, force):
-    """Phase 3: Step3 (rank) extract → diff → judge"""
+    """Phase 3: Step3 (rank) extract → diff → judge — reads merged_episodes_step1.json"""
     from extraction import run_step3
     from diff import diff_step3
     from judge import judge_step3
 
     prov_logs = dirs["logs"]
-    merged_path = prov_logs / "merged_episodes.json"
+    merged_path = prov_logs / "merged_episodes_step1.json"
 
     if not merged_path.exists():
-        print(f"\n⚠ 跳过 Phase 3: merged_episodes.json 不存在")
+        print(f"\n⚠ 跳过 Phase 3: merged_episodes_step1.json 不存在")
         return
 
     cfg1 = _build_llm1_config()
@@ -281,18 +316,16 @@ def _run_phase_step3(officials, province, dirs, force):
 
 
 def _run_phase_step4(officials, province, province_full, dirs, force):
-    """Phase 4: Step4 (bio + labels + corruption) extract → diff → judge"""
+    """Phase 4: Step4 (bio + labels + corruption) extract → diff → judge.
+
+    Reads raw preprocessed career_lines directly — independent of step1/2/3.
+    """
     from extraction import run_step4
     from diff import diff_step4
     from judge import judge_step4
 
     prov_logs = dirs["logs"]
-    merged_path = prov_logs / "merged_episodes.json"
     officials_dir = dirs["officials"]
-
-    if not merged_path.exists():
-        print(f"\n⚠ 跳过 Phase 4: merged_episodes.json 不存在")
-        return
 
     cfg1 = _build_llm1_config()
     cfg2 = _build_llm2_config()
@@ -300,13 +333,13 @@ def _run_phase_step4(officials, province, province_full, dirs, force):
     print(f"\n★ Phase 4: Step4 标签/落马 — LLM1 + LLM2 并行")
     with ThreadPoolExecutor(max_workers=2) as pool:
         f1 = pool.submit(
-            run_step4, officials, merged_path,
+            run_step4, officials,
             province, province_full,
             prov_logs / "llm1_step4_labels.json", cfg1,
             force=force, officials_dir=officials_dir,
         )
         f2 = pool.submit(
-            run_step4, officials, merged_path,
+            run_step4, officials,
             province, province_full,
             prov_logs / "llm2_step4_labels.json", cfg2,
             force=force, officials_dir=officials_dir,
@@ -370,6 +403,14 @@ def run_province_pipeline(
     t0 = time.time()
     phase_log: list[dict] = []
 
+    # Reset per-province so the failure summary at the end reflects only
+    # this province's run (batch mode runs many provinces sequentially).
+    FAILURES.reset()
+
+    # TOKENS is additive across the process, so capture a baseline here and
+    # diff against it at the end to get this province's API usage only.
+    t0_tokens = TOKENS.snapshot()
+
     def _phase_end(label: str, t_start: float, tok_before: dict) -> None:
         elapsed = time.time() - t_start
         tok_after = TOKENS.snapshot()
@@ -407,28 +448,36 @@ def run_province_pipeline(
     _phase_end("Phase 0.5 (Bio files)", t_ph, tok_ph)
 
     if not skip_extract:
-        # ── Phase 1: Step1 (basic) extract → diff → judge ──
-        t_ph = time.time(); tok_ph = TOKENS.snapshot()
-        _run_phase_step1(officials, province, province_full, dirs, force)
-        _phase_end("Phase 1 (Step1 basic+diff+judge)", t_ph, tok_ph)
-
         if not skip_battle:
-            # ── Phase 2: Step2 (classify) extract → diff → judge ──
+            # ── Phase A: Step1 ∥ Step4 (independent inputs) ──
             t_ph = time.time(); tok_ph = TOKENS.snapshot()
-            _run_phase_step2(officials, province, dirs, force)
-            _phase_end("Phase 2 (Step2 classify+diff+judge)", t_ph, tok_ph)
+            print(f"\n☆☆ Phase A: Step1 (基础字段) ∥ Step4 (标签/落马) 并行 ☆☆")
+            with ThreadPoolExecutor(max_workers=2) as pool_a:
+                fa1 = pool_a.submit(
+                    _run_phase_step1, officials, province, province_full, dirs, force,
+                )
+                fa4 = pool_a.submit(
+                    _run_phase_step4, officials, province, province_full, dirs, force,
+                )
+                fa1.result()
+                fa4.result()
+            _phase_end("Phase A (Step1 ∥ Step4)", t_ph, tok_ph)
 
-            # ── Phase 3: Step3 (rank) extract → diff → judge ──
+            # ── Phase B: Step2 ∥ Step3 (both depend on merged_episodes_step1.json) ──
             t_ph = time.time(); tok_ph = TOKENS.snapshot()
-            _run_phase_step3(officials, province, dirs, force)
-            _phase_end("Phase 3 (Step3 rank+diff+judge)", t_ph, tok_ph)
-
-            # ── Phase 4: Step4 (labels) extract → diff → judge ──
-            t_ph = time.time(); tok_ph = TOKENS.snapshot()
-            _run_phase_step4(officials, province, province_full, dirs, force)
-            _phase_end("Phase 4 (Step4 labels+diff+judge)", t_ph, tok_ph)
+            print(f"\n☆☆ Phase B: Step2 (分类) ∥ Step3 (行政级别) 并行 ☆☆")
+            with ThreadPoolExecutor(max_workers=2) as pool_b:
+                fb2 = pool_b.submit(_run_phase_step2, officials, province, dirs, force)
+                fb3 = pool_b.submit(_run_phase_step3, officials, province, dirs, force)
+                fb2.result()
+                fb3.result()
+            _phase_end("Phase B (Step2 ∥ Step3)", t_ph, tok_ph)
         else:
-            print(f"\n[跳过] Phase 2-4: Battle/Judge")
+            # skip-battle: only run Step1 extraction (no diff/judge for 2-4)
+            t_ph = time.time(); tok_ph = TOKENS.snapshot()
+            _run_phase_step1(officials, province, province_full, dirs, force)
+            _phase_end("Phase 1 (Step1 only)", t_ph, tok_ph)
+            print(f"\n[跳过] Step2/3/4: Battle/Judge")
     else:
         print(f"\n[跳过] Phase 1-4: 使用现有结果")
 
@@ -459,7 +508,13 @@ def run_province_pipeline(
 
     # ── Summary ──
     elapsed = time.time() - t0
-    total_snap = TOKENS.snapshot()
+    end_snap = TOKENS.snapshot()
+    # Per-province delta (TOKENS is additive across batch runs).
+    province_tokens = TOKENS.delta(t0_tokens, end_snap)
+    total_calls = sum(v["calls"] for v in province_tokens.values())
+    total_in = sum(v["input"] for v in province_tokens.values())
+    total_out = sum(v["output"] for v in province_tokens.values())
+
     print("\n" + "=" * 60)
     print(f"  Pipeline 完成 — {province_full}")
     print(f"  总耗时: {elapsed:.1f}s")
@@ -467,17 +522,68 @@ def run_province_pipeline(
     print(f"  总行数: {len(rows)}")
     print(f"  {gov_title}: {len(parsed['governors'])}人")
     print(f"  {sec_title}: {len(parsed['secretaries'])}人")
+
+    # ── 本次 API 用量（一行）──
+    print(
+        f"\n  ── API 用量 ── 共 {total_calls:,} 次调用 | "
+        f"in={total_in:,} out={total_out:,} total={total_in + total_out:,} tokens"
+    )
+
     print("\n  ── 各阶段用时与Token ──")
     for ph in phase_log:
         tok_str = TOKENS.summary_str(ph["tokens"]) if ph["tokens"] else "0 calls"
         print(f"  {ph['phase']:<40} {ph['elapsed']:6.1f}s | {tok_str}")
-    print("\n  ── Token总计 ──")
-    for model, v in total_snap.items():
+    print("\n  ── Token明细（按模型）──")
+    for model, v in province_tokens.items():
         short = model.split("/")[-1][:40]
         print(f"  {short:<40} in={v['input']:>8,} out={v['output']:>8,} calls={v['calls']:>4}")
+
+    # ── 写 API stats 文件 ──
+    stats_path = dirs["logs"] / "api_stats.json"
+    stats_payload = {
+        "province": province_full,
+        "elapsed_sec": round(elapsed, 1),
+        "total_calls": total_calls,
+        "total_input_tokens": total_in,
+        "total_output_tokens": total_out,
+        "total_tokens": total_in + total_out,
+        "by_model": {
+            model: {
+                "calls": v["calls"],
+                "input": v["input"],
+                "output": v["output"],
+                "total": v["input"] + v["output"],
+            }
+            for model, v in province_tokens.items()
+        },
+        "by_phase": [
+            {
+                "phase": ph["phase"],
+                "elapsed_sec": round(ph["elapsed"], 1),
+                "tokens": ph.get("tokens", {}),
+            }
+            for ph in phase_log
+        ],
+    }
+    stats_path.parent.mkdir(parents=True, exist_ok=True)
+    import json as _json
+    stats_path.write_text(
+        _json.dumps(stats_payload, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(f"  详情已写入: {stats_path}")
+
     print("\n  输出文件:")
     for label, path in (export_result or {}).items():
         print(f"    [{label}] {Path(str(path)).name}")
+
+    # ── Failure summary (P2: separate failures.py module) ──
+    print("\n  ── 失败汇总 ──")
+    FAILURES.print_summary()
+    fail_path = dirs["logs"] / "api_failures.json"
+    written = FAILURES.write_report(fail_path)
+    if written:
+        print(f"  详情已写入: {written}")
     print("=" * 60)
 
     return export_result

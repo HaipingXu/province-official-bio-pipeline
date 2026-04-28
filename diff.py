@@ -332,7 +332,7 @@ def diff_step3(logs_dir: Path) -> Path:
 
     llm1_cache = load_json_cache(logs_dir / "llm1_step3_rank.json")
     llm2_cache = load_json_cache(logs_dir / "llm2_step3_rank.json")
-    merged_episodes = load_json_cache(logs_dir / "merged_episodes.json")
+    merged_episodes = load_json_cache(logs_dir / "merged_episodes_step1.json")
 
     all_diffs: list[dict] = []
 

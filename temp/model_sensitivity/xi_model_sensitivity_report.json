@@ -1,0 +1,203 @@
+{
+  "official": "习近平",
+  "source_logs": "logs/浙江",
+  "focused_source_lines": [
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "results": [
+    {
+      "model": "deepseek-v4-flash",
+      "model_name": "deepseek-v4-flash",
+      "step": "step1",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 1948,
+      "preview": "```json\n{\n  \"episodes\": [\n    {\"source_line\": 13, \"起始时间\": \"2000.00\", \"终止时间\": \"2002.00\", \"供职单位\": \"中共福建省委\", \"职务\": \"副书记\"},\n    {\"source_line\": 13, \"起始时间\": \"2000.00"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "model_name": "deepseek-v4-flash",
+      "step": "step2",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 2930,
+      "preview": "```json\n{\n  \"classifications\": [\n    {\n      \"episode_idx\": 1,\n      \"组织标签\": \"地方党委\",\n      \"标志位\": \"省委副书记（非省长）\",\n      \"任职地（省）\": \"福建省\",\n      \"任职地（市）\": \"\",\n     "
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "model_name": "deepseek-v4-flash",
+      "step": "step3",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 2521,
+      "preview": "```json\n{\n  \"ranks\": [\n    {\n      \"episode_idx\": 1,\n      \"final_rank\": \"副部级\",\n      \"reasoning_chain\": \"中共福建省委（省级）→ 副书记 → 副部级\"\n    },\n    {\n      \"episode_idx"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "model_name": "deepseek-v4-flash",
+      "step": "step4",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 385,
+      "preview": "```json\n{\n  \"raw_bio\": {\n    \"姓名\": \"习近平\",\n    \"出生年份\": 1953,\n    \"籍贯\": \"陕西省\",\n    \"籍贯（市）\": \"富平县\",\n    \"少数民族\": 0,\n    \"女性\": 0,\n    \"全日制本科\": 0\n  },\n  \"升迁_省长\": 1,\n "
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "model_name": "deepseek-v4-pro",
+      "step": "step1",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 2654,
+      "preview": "{\n  \"episodes\": [\n    {\n      \"source_line\": 13,\n      \"起始时间\": \"2000.00\",\n      \"终止时间\": \"2002.00\",\n      \"供职单位\": \"中共福建省委\",\n      \"职务\": \"副书记\"\n    },\n    {\n      "
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "model_name": "deepseek-v4-pro",
+      "step": "step2",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 2930,
+      "preview": "```json\n{\n  \"classifications\": [\n    {\n      \"episode_idx\": 1,\n      \"组织标签\": \"地方党委\",\n      \"标志位\": \"省委副书记（非省长）\",\n      \"任职地（省）\": \"福建省\",\n      \"任职地（市）\": \"\",\n     "
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "model_name": "deepseek-v4-pro",
+      "step": "step3",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 2633,
+      "preview": "```json\n{\n  \"ranks\": [\n    {\n      \"episode_idx\": 1,\n      \"final_rank\": \"副部级\",\n      \"reasoning_chain\": \"中共福建省委（正部级单位）→ 副书记 → 副部级\"\n    },\n    {\n      \"episode_"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "model_name": "deepseek-v4-pro",
+      "step": "step4",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 396,
+      "preview": "```json\n{\n  \"raw_bio\": {\n    \"姓名\": \"习近平\",\n    \"出生年份\": 1953,\n    \"籍贯\": \"陕西省\",\n    \"籍贯（市）\": \"富平县\",\n    \"少数民族\": 0,\n    \"女性\": 0,\n    \"全日制本科\": 1\n  },\n  \"升迁_省长\": 1,\n "
+    },
+    {
+      "model": "doubao",
+      "model_name": "doubao-seed-2-0-pro-260215",
+      "step": "step1",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 1645,
+      "preview": "{\"episodes\": [{\"source_line\":13,\"起始时间\":\"2000.00\",\"终止时间\":\"2002.00\",\"供职单位\":\"中共福建省委\",\"职务\":\"副书记\"},{\"source_line\":13,\"起始时间\":\"2000.00\",\"终止时间\":\"2002.00\",\"供职单位\":\"福建省政府\""
+    },
+    {
+      "model": "doubao",
+      "model_name": "doubao-seed-2-0-pro-260215",
+      "step": "step2",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 3828,
+      "preview": "{\n    \"classifications\": [\n        {\n            \"episode_idx\": 1,\n            \"组织标签\": \"地方党委\",\n            \"标志位\": \"省委副书记（非省长）\",\n            \"任职地（省）\": \"福建省\",\n   "
+    },
+    {
+      "model": "doubao",
+      "model_name": "doubao-seed-2-0-pro-260215",
+      "step": "step3",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 2525,
+      "preview": "```json\n{\n  \"ranks\": [\n    {\n      \"episode_idx\": 1,\n      \"final_rank\": \"副部级\",\n      \"reasoning_chain\": \"中共福建省委为正部级单位，省委副书记属于省部级副职，对应副部级\"\n    },\n    {\n      \"e"
+    },
+    {
+      "model": "doubao",
+      "model_name": "doubao-seed-2-0-pro-260215",
+      "step": "step4",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 375,
+      "preview": "```json\n{\n  \"raw_bio\": {\n    \"姓名\": \"习近平\",\n    \"出生年份\": 1953,\n    \"籍贯\": \"陕西省\",\n    \"籍贯（市）\": \"富平县\",\n    \"少数民族\": 0,\n    \"女性\": 0,\n    \"全日制本科\": 0\n  },\n  \"升迁_省长\": 1,\n "
+    },
+    {
+      "model": "qwen",
+      "model_name": "qwen3.6-plus",
+      "step": "step1",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 2130,
+      "preview": "{\n  \"episodes\": [\n    {\"source_line\": 13, \"起始时间\": \"2000.00\", \"终止时间\": \"2002.00\", \"供职单位\": \"中共福建省委\", \"职务\": \"副书记\"},\n    {\"source_line\": 13, \"起始时间\": \"2000.00\", \"终止时间"
+    },
+    {
+      "model": "qwen",
+      "model_name": "qwen3.6-plus",
+      "step": "step2",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 2924,
+      "preview": "{\n  \"classifications\": [\n    {\n      \"episode_idx\": 1,\n      \"组织标签\": \"地方党委\",\n      \"标志位\": \"省委副书记（非省长）\",\n      \"任职地（省）\": \"福建省\",\n      \"任职地（市）\": \"\",\n      \"中央/地方\""
+    },
+    {
+      "model": "qwen",
+      "model_name": "qwen3.6-plus",
+      "step": "step3",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 2419,
+      "preview": "{\n  \"ranks\": [\n    {\n      \"episode_idx\": 1,\n      \"final_rank\": \"副部级\",\n      \"reasoning_chain\": \"中共福建省委（省级机构）→ 副书记 → 副部级\"\n    },\n    {\n      \"episode_idx\": 2,\n"
+    },
+    {
+      "model": "qwen",
+      "model_name": "qwen3.6-plus",
+      "step": "step4",
+      "status": "success",
+      "content_sensitive": false,
+      "response_chars": 392,
+      "preview": "```json\n{\n  \"raw_bio\": {\n    \"姓名\": \"习近平\",\n    \"出生年份\": 1953,\n    \"籍贯\": \"陕西省\",\n    \"籍贯（市）\": \"富平县\",\n    \"少数民族\": 0,\n    \"女性\": 0,\n    \"全日制本科\": 0\n  },\n  \"升迁_省长\": 1,\n "
+    }
+  ],
+  "summary": {
+    "deepseek-v4-flash": {
+      "success": 4,
+      "blocked": 0,
+      "other_failures": 0,
+      "steps": {
+        "step1": "success",
+        "step2": "success",
+        "step3": "success",
+        "step4": "success"
+      }
+    },
+    "deepseek-v4-pro": {
+      "success": 4,
+      "blocked": 0,
+      "other_failures": 0,
+      "steps": {
+        "step1": "success",
+        "step2": "success",
+        "step3": "success",
+        "step4": "success"
+      }
+    },
+    "doubao": {
+      "success": 4,
+      "blocked": 0,
+      "other_failures": 0,
+      "steps": {
+        "step1": "success",
+        "step2": "success",
+        "step3": "success",
+        "step4": "success"
+      }
+    },
+    "qwen": {
+      "success": 4,
+      "blocked": 0,
+      "other_failures": 0,
+      "steps": {
+        "step1": "success",
+        "step2": "success",
+        "step3": "success",
+        "step4": "success"
+      }
+    }
+  }
+}

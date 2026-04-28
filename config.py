@@ -323,6 +323,30 @@ JUDGE_MAX_WORKERS = 200    # Judge (DeepSeek Reasoner) — highest: judge calls 
 SCRAPE_WORKERS = 2         # Scraping parallelism (low to avoid anti-bot detection)
 
 
+# --- Retry / Backoff (used by utils.llm_chat) ---
+# All `max_retries=3` after consolidation; LLM1/LLM2/judge share defaults.
+LLM1_MAX_RETRIES = 3
+LLM2_MAX_RETRIES = 3
+JUDGE_MAX_RETRIES = 3
+
+# 429 backoff: wait = BASE * (FACTOR ** attempt) + jitter   →  10s, 30s, 90s, ...
+LLM_429_BACKOFF_BASE = 10.0
+LLM_429_BACKOFF_FACTOR = 3.0
+LLM_429_BACKOFF_CAP = 180.0   # absolute ceiling per attempt
+
+# Generic (5xx / network) backoff: wait = BASE * (attempt+1) + jitter
+LLM_GENERIC_BACKOFF_BASE = 3.0
+
+
+# --- Provider-wide concurrency caps (semaphores in RoundRobinClientPool) ---
+# Hard ceiling on simultaneous in-flight requests per provider, regardless of
+# how many phases run in parallel. Phase A runs Step1 ∥ Step4 (both hit LLM1),
+# so total concurrency would otherwise be 2 × LLM1_MAX_WORKERS = 200.
+LLM1_PROVIDER_CONCURRENCY = 200
+LLM2_PROVIDER_CONCURRENCY = 200
+JUDGE_PROVIDER_CONCURRENCY = 300
+
+
 # --- Logging ---
 def setup_logging(log_dir: Optional[Path] = None) -> None:
     """Configure logging: console + file output."""

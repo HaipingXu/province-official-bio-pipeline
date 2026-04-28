@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Callable
 
 from config import DEFAULT_WORKERS
+from failures import FAILURES
 from text_preprocessor import format_career_lines_for_llm, preprocess_all
 from utils import (
     extract_json,
@@ -92,7 +93,7 @@ def step1_extract(
 
     try:
         raw = llm_chat(
-            cfg.pool.next_client(), cfg.model, system_prompt, user_prompt,
+            cfg.pool, cfg.model, system_prompt, user_prompt,
             max_retries=cfg.max_retries, extra_body=cfg.extra_body,
             max_tokens=cfg.max_tokens,
         )
@@ -115,6 +116,10 @@ def step1_extract(
         return result
     except Exception as e:
         logger.error(f"[FAIL step1] {name}: {e}")
+        FAILURES.record(
+            scope="extract", source=cfg.source_tag, step="step1",
+            name=name, error=e,
+        )
         return None
 
 
@@ -154,7 +159,7 @@ def step2_classify(
 
     try:
         raw = llm_chat(
-            cfg.pool.next_client(), cfg.model, effective_sys, user_prompt,
+            cfg.pool, cfg.model, effective_sys, user_prompt,
             max_retries=cfg.max_retries, extra_body=cfg.extra_body,
             max_tokens=cfg.max_tokens,
         )
@@ -166,6 +171,10 @@ def step2_classify(
         return result
     except Exception as e:
         logger.error(f"[FAIL step2] {name}: {e}")
+        FAILURES.record(
+            scope="extract", source=cfg.source_tag, step="step2",
+            name=name, error=e,
+        )
         return None
 
 
@@ -201,7 +210,7 @@ def step3_rank(
 
     try:
         raw = llm_chat(
-            cfg.pool.next_client(), cfg.model, effective_sys, user_prompt,
+            cfg.pool, cfg.model, effective_sys, user_prompt,
             max_retries=cfg.max_retries, extra_body=cfg.extra_body,
             max_tokens=cfg.max_tokens,
         )
@@ -213,6 +222,10 @@ def step3_rank(
         return result
     except Exception as e:
         logger.error(f"[FAIL step3] {name}: {e}")
+        FAILURES.record(
+            scope="extract", source=cfg.source_tag, step="step3",
+            name=name, error=e,
+        )
         return None
 
 
@@ -226,20 +239,22 @@ def step4_label(
     city: str,
     province: str,
     official_role: str,
-    episodes: list[dict],
+    career_text: str,
+    n_career_lines: int,
     bio_summary: str = "",
     corruption_text: str = "",
 ) -> dict | None:
-    """Extract raw_bio + labels + corruption from episodes and bio context."""
-    episodes_json = json.dumps(episodes, ensure_ascii=False, indent=2)
+    """Extract raw_bio + labels + corruption from raw career text and bio context.
 
+    Independent of step1 episodes — runs in parallel with step1.
+    """
     user_prompt = (
         f"官员：{name}\n"
         f"目标城市：{city}\n"
         f"目标省份：{province}\n"
         f"职务：{official_role}\n\n"
         f"=== 人物简介 ===\n{bio_summary}\n\n"
-        f"=== 完整履历（共{len(episodes)}条）===\n{episodes_json}\n\n"
+        f"=== 完整履历（共{n_career_lines}条）===\n{career_text}\n\n"
     )
     if corruption_text:
         user_prompt += f"=== 落马相关信息 ===\n{corruption_text}\n\n"
@@ -248,7 +263,7 @@ def step4_label(
 
     try:
         raw = llm_chat(
-            cfg.pool.next_client(), cfg.model, system_prompt, user_prompt,
+            cfg.pool, cfg.model, system_prompt, user_prompt,
             max_retries=cfg.max_retries, extra_body=cfg.extra_body,
             max_tokens=cfg.max_tokens,
         )
@@ -270,6 +285,10 @@ def step4_label(
         return result
     except Exception as e:
         logger.error(f"[FAIL step4] {name}: {e}")
+        FAILURES.record(
+            scope="extract", source=cfg.source_tag, step="step4",
+            name=name, error=e,
+        )
         return None
 
 
@@ -313,12 +332,20 @@ def _run_step(
             _safe_process(official)
     else:
         with ThreadPoolExecutor(max_workers=DEFAULT_WORKERS) as pool:
-            futures = [pool.submit(_safe_process, o) for o in officials_meta]
+            futures = {pool.submit(_safe_process, o): o for o in officials_meta}
             for f in as_completed(futures):
                 try:
                     f.result()
                 except Exception as e:
-                    logger.error(f"[{cfg.source_tag} {step_name} error] {e}")
+                    off = futures[f]
+                    logger.error(
+                        f"[{cfg.source_tag} {step_name} error] "
+                        f"{off.get('name','?')}: {e}"
+                    )
+                    FAILURES.record(
+                        scope="extract", source=cfg.source_tag, step=step_name,
+                        name=off.get("name", "?"), error=e,
+                    )
 
     for k in [k for k, v in existing.items() if v is None]:
         del existing[k]
@@ -462,7 +489,6 @@ def run_step3(
 
 def run_step4(
     officials_meta: list[dict],
-    merged_episodes_path: Path,
     city: str,
     province: str,
     output_path: Path,
@@ -470,14 +496,15 @@ def run_step4(
     force: bool = False,
     officials_dir: Path | None = None,
 ) -> dict:
-    """Run step4 (labels) on full merged episodes."""
+    """Run step4 (labels) on raw preprocessed career lines.
+
+    Does NOT depend on step1/step2 outputs — can run in parallel with step1.
+    """
+    from text_preprocessor import format_career_lines_for_llm
+
     sys_step4 = load_prompt("step4_labeling")
-    merged_episodes = load_json_cache(merged_episodes_path)
     existing = load_json_cache(output_path, force)
-    logger.info(
-        f"[{cfg.source_tag}] merged episodes: {len(merged_episodes)}, "
-        f"cached step4: {len(existing)}"
-    )
+    logger.info(f"[{cfg.source_tag}] cached step4: {len(existing)}")
 
     names = [o["name"] for o in officials_meta]
     preprocessed = preprocess_all(
@@ -487,19 +514,20 @@ def run_step4(
     def _process(official: dict, existing: dict, lock: threading.Lock) -> None:
         name = official["name"]
         official_role = official.get("role", "省长/省委书记")
-        ep_data = merged_episodes.get(name, {})
-        episodes = ep_data.get("episodes", [])
-        if not episodes:
-            logger.info(f"[{cfg.source_tag}] SKIP step4 {name} -- no merged episodes")
+        pp = preprocessed.get(name, {})
+        career_lines = pp.get("career_lines", [])
+        if not career_lines:
+            logger.info(f"[{cfg.source_tag}] SKIP step4 {name} -- no career lines")
             with lock:
                 if existing.get(name) is None:
                     del existing[name]
             return
 
-        pp = preprocessed.get(name, {})
-        logger.info(f"[{cfg.source_tag}] Step4: {name} ({len(episodes)} episodes)")
+        career_text = format_career_lines_for_llm(career_lines)
+        logger.info(f"[{cfg.source_tag}] Step4: {name} ({len(career_lines)} lines)")
         result = step4_label(
-            cfg, sys_step4, name, city, province, official_role, episodes,
+            cfg, sys_step4, name, city, province, official_role,
+            career_text, len(career_lines),
             bio_summary=pp.get("bio_summary", ""),
             corruption_text=pp.get("corruption_text", ""),
         )

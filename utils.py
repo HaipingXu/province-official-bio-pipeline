@@ -18,7 +18,11 @@ from pathlib import Path
 import httpx
 from openai import OpenAI, AuthenticationError, BadRequestError
 
-from config import SKILLS_DIR, PROJECT_ROOT, LOGS_DIR, RANK_LEVELS
+from config import (
+    SKILLS_DIR, PROJECT_ROOT, LOGS_DIR, RANK_LEVELS,
+    LLM_429_BACKOFF_BASE, LLM_429_BACKOFF_FACTOR, LLM_429_BACKOFF_CAP,
+    LLM_GENERIC_BACKOFF_BASE,
+)
 
 # Longer timeouts for LLM APIs that generate long responses
 _LLM_TIMEOUT = httpx.Timeout(
@@ -107,6 +111,11 @@ def extract_json(text: str) -> dict:
         from json_repair import repair_json
         repaired = repair_json(candidate, return_objects=True)
         if isinstance(repaired, dict):
+            # P8: surface the fact that json_repair masked a parse error so we
+            # can spot prompts that consistently produce malformed JSON.
+            logger.warning(
+                f"[JSON repair] fallback used; head={text[:120]!r}"
+            )
             return repaired
     except Exception:
         pass
@@ -175,92 +184,170 @@ def _log_cache_stats(usage, model: str) -> None:
 
 # ── Generic LLM chat call with retry + 429 backoff ──────────────────────────
 
+
+def _parse_retry_after(exc: Exception) -> float | None:
+    """Extract Retry-After header from an OpenAI/httpx exception, if present.
+
+    Most providers (DashScope, DeepSeek, Volcengine, Kimi) return a numeric
+    Retry-After header on 429. We honour it instead of guessing.
+    Returns None if header missing or unparseable.
+    """
+    resp = getattr(exc, "response", None)
+    if resp is None:
+        return None
+    headers = getattr(resp, "headers", None)
+    if headers is None:
+        return None
+    try:
+        ra = headers.get("retry-after") or headers.get("Retry-After")
+    except Exception:
+        return None
+    if not ra:
+        return None
+    try:
+        return float(ra)
+    except (TypeError, ValueError):
+        # HTTP-date format is rare for these APIs — give up
+        return None
+
+
+def _is_rate_limited(exc: Exception) -> bool:
+    s = str(exc).lower()
+    if "429" in s or "rate" in s or "throttl" in s or "too many requests" in s:
+        return True
+    status = getattr(getattr(exc, "response", None), "status_code", None)
+    return status == 429
+
+
+def _compute_backoff(exc: Exception, attempt: int) -> tuple[float, str]:
+    """Return (wait_seconds, label) for given exception + zero-based attempt."""
+    if _is_rate_limited(exc):
+        ra = _parse_retry_after(exc)
+        if ra is not None and ra > 0:
+            wait = min(ra + random.uniform(0, 2.0), LLM_429_BACKOFF_CAP)
+            return wait, f"rate(Retry-After={ra:.1f}s)"
+        # Exponential: 10s, 30s, 90s, ... capped at LLM_429_BACKOFF_CAP
+        base = LLM_429_BACKOFF_BASE * (LLM_429_BACKOFF_FACTOR ** attempt)
+        base = min(base, LLM_429_BACKOFF_CAP)
+        wait = base + random.uniform(0, base * 0.3)
+        return wait, "rate(exp)"
+    # Generic 5xx / network: linear with jitter
+    base = LLM_GENERIC_BACKOFF_BASE * (attempt + 1)
+    return base + random.uniform(0, base * 0.5), "generic"
+
+
 def llm_chat(
-    client,
+    client_or_pool,
     model: str,
     system: str,
     user: str,
     temperature: float = 0.1,
     max_tokens: int | None = None,
-    max_retries: int = 2,
+    max_retries: int = 3,
     extra_body: dict | None = None,
     seed: int | None = 42,
     stream: bool = True,
 ) -> str:
-    """
-    Call an OpenAI-compatible chat API with automatic retry and 429 backoff.
+    """Call an OpenAI-compatible chat API with retry, 429 backoff, and an
+    optional provider-wide concurrency cap.
 
     Args:
+        client_or_pool: Either a single OpenAI client OR a RoundRobinClientPool.
+            When a pool is passed, each attempt:
+              - acquires the pool's semaphore for the duration of the API call
+                (provider-wide concurrency cap, see RoundRobinClientPool),
+              - picks the next client round-robin (so a retry rotates keys).
         seed: Fixed seed for reproducibility. Set to None to disable.
-              Note: Kimi K2.5 (reasoning model) may ignore seed.
-        stream: Use streaming mode (keeps connection alive, prevents server-side
-                timeouts during long generation). Default True.
+              On retry the seed is offset by `attempt` to escape sticky bad
+              outputs (Kimi K2.5 / reasoning models may ignore seed entirely).
+        stream: Streaming mode keeps the HTTP connection alive during long
+                generation (avoids server-side idle timeouts).
+        max_retries: Number of *additional* attempts after the first failure.
+                     Default 3 → up to 4 total attempts.
 
     Returns the raw text content of the assistant's response.
     Raises on final failure after all retries.
     """
-    for attempt in range(max_retries + 1):
-        try:
-            kwargs = {
-                "model": model,
-                "messages": [
-                    {"role": "system", "content": system},
-                    {"role": "user", "content": user},
-                ],
-                "temperature": temperature,
-                "stream": stream,
-            }
-            if max_tokens is not None:
-                kwargs["max_tokens"] = max_tokens
-            if seed is not None:
-                kwargs["seed"] = seed
-            if extra_body:
-                kwargs["extra_body"] = extra_body
+    is_pool = isinstance(client_or_pool, RoundRobinClientPool)
 
-            if stream:
-                # Streaming: collect chunks to avoid server-side connection timeout
-                # stream_options=include_usage ensures final chunk contains token counts
-                kwargs["stream_options"] = {"include_usage": True}
-                chunks = []
-                stream_resp = client.chat.completions.create(**kwargs)
-                for chunk in stream_resp:
-                    if chunk.choices and chunk.choices[0].delta.content:
-                        chunks.append(chunk.choices[0].delta.content)
-                    # Log prefix cache hit stats from final chunk (DeepSeek feature)
-                    if chunk.usage:
-                        _log_cache_stats(chunk.usage, model)
-                result = "".join(chunks)
-                if not result:
-                    raise ValueError(f"LLM returned empty response (streaming, model={model})")
-                return result
-            else:
-                resp = client.chat.completions.create(**kwargs)
-                usage = resp.usage
-                if usage:
-                    _log_cache_stats(usage, model)
-                result = resp.choices[0].message.content
-                if not result:
-                    raise ValueError(f"LLM returned empty response (non-streaming, model={model})")
-                return result
+    for attempt in range(max_retries + 1):
+        # Pick client per-attempt so retries rotate to a different API key.
+        client = (
+            client_or_pool.next_client() if is_pool else client_or_pool
+        )
+        # On retry, perturb seed to escape deterministic bad outputs.
+        attempt_seed = (
+            seed + attempt if (seed is not None and attempt > 0) else seed
+        )
+        kwargs = {
+            "model": model,
+            "messages": [
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ],
+            "temperature": temperature,
+            "stream": stream,
+        }
+        if max_tokens is not None:
+            kwargs["max_tokens"] = max_tokens
+        if attempt_seed is not None:
+            kwargs["seed"] = attempt_seed
+        if extra_body:
+            kwargs["extra_body"] = extra_body
+        if stream:
+            kwargs["stream_options"] = {"include_usage": True}
+
+        # Provider-wide concurrency cap: only held during the actual API call,
+        # released during sleep/backoff so other workers can take the slot.
+        sem = getattr(client_or_pool, "_sem", None) if is_pool else None
+        try:
+            if sem is not None:
+                sem.acquire()
+            try:
+                if stream:
+                    chunks = []
+                    stream_resp = client.chat.completions.create(**kwargs)
+                    for chunk in stream_resp:
+                        if chunk.choices and chunk.choices[0].delta.content:
+                            chunks.append(chunk.choices[0].delta.content)
+                        if chunk.usage:
+                            _log_cache_stats(chunk.usage, model)
+                    result = "".join(chunks)
+                    if not result:
+                        raise ValueError(
+                            f"LLM returned empty response (streaming, model={model})"
+                        )
+                    return result
+                else:
+                    resp = client.chat.completions.create(**kwargs)
+                    usage = resp.usage
+                    if usage:
+                        _log_cache_stats(usage, model)
+                    result = resp.choices[0].message.content
+                    if not result:
+                        raise ValueError(
+                            f"LLM returned empty response (non-streaming, model={model})"
+                        )
+                    return result
+            finally:
+                if sem is not None:
+                    sem.release()
         except (AuthenticationError, BadRequestError):
             # Non-retryable: bad credentials or malformed request
             raise
         except Exception as e:
-            err_str = str(e).lower()
             if attempt < max_retries:
-                # Exponential backoff with jitter to prevent thundering herd
-                if "429" in err_str or "rate" in err_str:
-                    base_wait = 10 * (attempt + 1)
-                    jitter = random.uniform(0, base_wait * 0.5)
-                    wait = base_wait + jitter
-                    logger.warning(f"[Rate limit] attempt {attempt+1}, wait {wait:.1f}s: {e}")
-                else:
-                    base_wait = 3 * (attempt + 1)
-                    jitter = random.uniform(0, base_wait * 0.5)
-                    wait = base_wait + jitter
-                    logger.warning(f"[Retry {attempt+1}] {e} — wait {wait:.1f}s")
+                wait, label = _compute_backoff(e, attempt)
+                logger.warning(
+                    f"[Retry {attempt+1}/{max_retries}] {label} | "
+                    f"wait {wait:.1f}s | model={model} | err={str(e)[:160]}"
+                )
                 time.sleep(wait)
             else:
+                logger.error(
+                    f"[GiveUp after {max_retries+1} attempts] model={model} "
+                    f"err={str(e)[:200]}"
+                )
                 raise
 
 
@@ -270,9 +357,18 @@ class RoundRobinClientPool:
     """
     Thread-safe pool of OpenAI clients, one per API key.
     Each call to `next_client()` returns the next client in round-robin order.
+
+    Optional `max_concurrency` installs a provider-wide BoundedSemaphore so
+    `llm_chat(pool=...)` can cap simultaneous in-flight requests regardless of
+    how many phases run in parallel (see Phase A: Step1 ∥ Step4 both → LLM1).
     """
 
-    def __init__(self, api_keys: list[str], base_url: str):
+    def __init__(
+        self,
+        api_keys: list[str],
+        base_url: str,
+        max_concurrency: int | None = None,
+    ):
         if not api_keys:
             raise ValueError("RoundRobinClientPool requires at least 1 API key")
         self._clients = [
@@ -281,7 +377,16 @@ class RoundRobinClientPool:
         ]
         self._index = 0
         self._lock = threading.Lock()
-        logger.info(f"RoundRobinClientPool: {len(self._clients)} clients for {base_url}")
+        # `_sem` is read by llm_chat via `getattr(..., "_sem", None)`; None ⇒ no cap.
+        self._sem: threading.BoundedSemaphore | None = (
+            threading.BoundedSemaphore(max_concurrency)
+            if max_concurrency and max_concurrency > 0
+            else None
+        )
+        cap_str = f", concurrency≤{max_concurrency}" if self._sem else ""
+        logger.info(
+            f"RoundRobinClientPool: {len(self._clients)} clients for {base_url}{cap_str}"
+        )
 
     def next_client(self) -> OpenAI:
         """Return the next client in round-robin order (thread-safe)."""
