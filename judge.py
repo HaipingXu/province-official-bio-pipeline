@@ -26,6 +26,8 @@ from config import (
     LOGS_DIR, OUTPUT_DIR,
     DEFAULT_WORKERS, JUDGE_MAX_RETRIES,
     STEP1_EPISODE_FIELDS, STEP2_EPISODE_FIELDS,
+    JUDGE_FALLBACK_MODELS,
+    GEMINI_FALLBACK_BASE_URL, GEMINI_FALLBACK_API_KEYS, GEMINI_FALLBACK_API_KEY,
 )
 from failures import FAILURES
 from utils import (
@@ -36,7 +38,6 @@ from utils import (
 
 logger = logging.getLogger(__name__)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
 
 # ── Judge reference prompts ─────────────────────────────────────────────────
 
@@ -113,9 +114,42 @@ _JUDGE_SYSTEM_CLASSIFY_BASE = (
     "只输出JSON，无任何其他文字。"
 )
 
+# ── ep_batch 专用：含「需拆分」verdict + 字段级分隔符规则 ────────────────────
+
+_JUDGE_SYSTEM_EP_BATCH_BASE = (
+    "你是一名中国政治数据核查专家，根据原文对两个LLM提取结果做字段级裁判。\n\n"
+    "核心规则：\n"
+    "1. 学习经历（本科、研究生、博士、进修、培训等）也是条目。\n"
+    "2. 如果两方都不完全正确，你可以给出自己根据原文判断的正确值（verdict=自行修正）。\n"
+    "3. 党委系统供职单位必须使用全称带「中共」前缀（如「中共深圳市委」而非「深圳市委」）。\n"
+    "4. 除党委命名规则外，其他字段忠实于百度百科原文用词。\n\n"
+    "⚠️ 供职单位字段的特殊规则（最重要）：\n"
+    "如果原文一行实际包含多个不同机构（如'任X省委副书记、Y市委书记'），\n"
+    "不要把多个机构名称塞进 correct_value——直接输出 {\"verdict\": \"需拆分\"} 即可，\n"
+    "无需给出 correct_value 或具体episodes。后续有专门一轮让裁判看完整上下文再拆。\n\n"
+    "⚠️ correct_value 字段级约束：\n"
+    "| 字段 | 允许「、」| 允许「；」/「;」/「和」| 说明 |\n"
+    "|---|---|---|---|\n"
+    "| 供职单位 | ❌ 禁止 | ❌ 禁止 | 含任何分隔符 ⇒ 必须走 verdict=\"需拆分\" |\n"
+    "| 职务 | ✅ 允许 | ❌ 禁止 | 仅当同一供职单位内多个职务（如\"副书记、政法委书记\"）|\n"
+    "| 起始时间 | ❌ 禁止 | ❌ 禁止 | 单值 |\n"
+    "| 终止时间 | ❌ 禁止 | ❌ 禁止 | 单值 |\n\n"
+    "verdict 枚举值（全部合法值）：\n"
+    "  采纳LLM1 | 采纳LLM2 | 自行修正 | 两者均存疑 | 需拆分\n"
+    "  「需拆分」只在供职单位字段需要分成多个机构时使用，其他字段不可用此值。\n\n"
+    "如果一次裁判多个字段，输出JSON对象，key为字段名，value为：\n"
+    "{\"verdict\": \"...\", \"correct_value\": \"仅当verdict=自行修正时填写\", "
+    "\"confidence\": 0-100, \"reason\": \"<50字理由>\"}\n\n"
+    "只输出JSON，无任何其他文字。"
+)
+
 
 def _judge_system() -> str:
     return _JUDGE_SYSTEM_BASE + _get_judge_reference()
+
+
+def _judge_system_episode_batch() -> str:
+    return _JUDGE_SYSTEM_EP_BATCH_BASE + _get_judge_reference()
 
 
 def _judge_system_classify() -> str:
@@ -158,6 +192,20 @@ def _rank_cache_key(name: str, episode_idx: int) -> str:
     return f"{name}||rank||{episode_idx}"
 
 
+# ── Judge fallback pool (shared, lazy-init) ──────────────────────────────────
+
+_judge_fallback_pool_inst: RoundRobinClientPool | None = None
+
+
+def _get_judge_fallback_pool() -> RoundRobinClientPool:
+    """Shared BLTCY pool for judge safety-fallback (same endpoint as judge)."""
+    global _judge_fallback_pool_inst
+    if _judge_fallback_pool_inst is None:
+        keys = GEMINI_FALLBACK_API_KEYS or ([GEMINI_FALLBACK_API_KEY] if GEMINI_FALLBACK_API_KEY else [])
+        _judge_fallback_pool_inst = RoundRobinClientPool(keys, GEMINI_FALLBACK_BASE_URL)
+    return _judge_fallback_pool_inst
+
+
 # ── Core judge call ─────────────────────────────────────────────────────────
 
 def _call_judge(system: str, prompt: str, pool: RoundRobinClientPool | None = None, model: str = "") -> dict:
@@ -168,6 +216,11 @@ def _call_judge(system: str, prompt: str, pool: RoundRobinClientPool | None = No
             pool, model,
             system=system, user=prompt,
             temperature=0.0, max_retries=JUDGE_MAX_RETRIES, seed=None,
+            max_tokens=16384,
+            response_format={"type": "json_object"},
+            # Judge fallback cascade for content-moderation blocks
+            safety_fallback_pool=_get_judge_fallback_pool(),
+            safety_fallback_models=list(JUDGE_FALLBACK_MODELS),
         )
         result = extract_json(raw)
         result["judge_model"] = model
@@ -185,6 +238,62 @@ def _call_judge(system: str, prompt: str, pool: RoundRobinClientPool | None = No
             name="(call-failed)", error=e,
         )
         return {"verdict": "两者均存疑", "reason": f"裁判调用失败: {e}", "judge_model": "error"}
+
+
+# ── ep_batch schema validation ──────────────────────────────────────────────
+
+_INVALID_SEP_BY_FIELD: dict[str, tuple[str, ...]] = {
+    "供职单位": ("；", ";", "、", "和"),
+    "职务":    ("；", ";", "和"),
+    "起始时间": ("；", ";", "、"),
+    "终止时间": ("；", ";", "、"),
+}
+
+
+def _validate_field_decision(decision: dict, field: str, meta_key: str = "") -> dict:
+    """Normalize ep_batch field decision; auto-upgrade or downgrade schema violations.
+
+    Records a FAILURES entry for any downgraded decision so prompt compliance
+    can be monitored (target: downgrade rate < 5%).
+    """
+    verdict = decision.get("verdict", "")
+    cv = decision.get("correct_value", "")
+    invalid_seps = _INVALID_SEP_BY_FIELD.get(field, ())
+
+    if verdict in ("自行修正", "两者均存疑") and cv:
+        if "需拆分" in cv or "拆分提取" in cv:
+            logger.warning(f"[judge schema] field={field} correct_value含需拆分文字: {cv!r} → 转needsplit")
+            decision = dict(decision)
+            decision["verdict"] = "需拆分"
+            decision["correct_value"] = ""
+            decision["_downgraded"] = True
+            decision["_downgrade_reason"] = "natural_language_recovered_to_needsplit"
+            if meta_key:
+                decision["_meta_key"] = meta_key
+        elif any(sep in cv for sep in invalid_seps):
+            decision = dict(decision)
+            if field == "供职单位":
+                logger.warning(f"[judge schema] 供职单位含分隔符: {cv!r} → 转needsplit")
+                decision["verdict"] = "需拆分"
+                decision["correct_value"] = ""
+                decision["_downgraded"] = True
+                decision["_downgrade_reason"] = "multivalue_unit_recovered_to_needsplit"
+            else:
+                logger.warning(f"[judge schema] field={field} 含非法分隔符: {cv!r} → 降级")
+                decision["verdict"] = "两者均存疑"
+                decision["correct_value"] = ""
+                decision["_downgraded"] = True
+                decision["_downgrade_reason"] = f"invalid_separator_in_{field}"
+            if meta_key:
+                decision["_meta_key"] = meta_key
+
+    if decision.get("_downgraded"):
+        FAILURES.record(
+            scope="judge_schema", source="judge", step="step1_validate",
+            name=meta_key or decision.get("_meta_key", "?"),
+            error=decision.get("_downgrade_reason", "unknown"),
+        )
+    return decision
 
 
 # ── Step1 judge helpers ─────────────────────────────────────────────────────
@@ -253,7 +362,7 @@ def judge_episode_batch(
         "输出JSON对象，key为字段名，value含verdict/reason/correct_value/confidence。"
     )
 
-    result = _call_judge(_judge_system(), prompt, pool=pool, model=model)
+    result = _call_judge(_judge_system_episode_batch(), prompt, pool=pool, model=model)
 
     parsed: dict[str, dict] = {}
     if len(disputed_fields) == 1:
@@ -276,6 +385,7 @@ def judge_episode_batch(
     model_tag = result.get("judge_model", model)
     for f in parsed:
         parsed[f]["judge_model"] = model_tag
+        parsed[f] = _validate_field_decision(parsed[f], f)
 
     return parsed
 
@@ -285,10 +395,13 @@ def get_judge_decision(
     llm1_value: str, llm1_reason: str,
     llm2_value: str, llm2_reason: str,
     original_text_snippet: str,
+    province: str = "",
     pool: RoundRobinClientPool | None = None, model: str = "",
 ) -> dict:
+    province_line = f"目标省份：{province}\n" if province else ""
     prompt = (
-        f"官员：{name}  字段：{field}（{scope}）\n\n"
+        f"官员：{name}  字段：{field}（{scope}）\n"
+        f"{province_line}\n"
         f"原文依据：{original_text_snippet or '（无）'}\n\n"
         f"LLM1提取：{llm1_value}\n"
         f"LLM1依据：{llm1_reason or '（无）'}\n\n"
@@ -344,6 +457,26 @@ def _run_judge_tasks(
                         cache[ck] = {"verdict": "两者均存疑", "reason": f"异常: {e}", "judge_model": model}
 
 
+# ── Phase C helper ──────────────────────────────────────────────────────────
+
+def _collect_need_split_from_epbatch(judge_cache: dict) -> set[tuple[str, int]]:
+    """Scan judge_cache for ep_batch entries with verdict='需拆分'; return (name, sl) set."""
+    need_split: set[tuple[str, int]] = set()
+    for key, decision in judge_cache.items():
+        parts = key.split("||")
+        # key format: name||ep_batch||slN||unit||pos||time||field
+        if len(parts) >= 3 and parts[1] == "ep_batch":
+            if decision.get("verdict") == "需拆分":
+                name = parts[0]
+                sl_str = parts[2]
+                if sl_str.startswith("sl"):
+                    try:
+                        need_split.add((name, int(sl_str[2:])))
+                    except ValueError:
+                        pass
+    return need_split
+
+
 # ── Judge Step 1 (basic episode fields + sl_group) ──────────────────────────
 
 def judge_step1(
@@ -386,6 +519,10 @@ def judge_step1(
     pending_episode_calls: list[tuple[str, dict]] = []
     pending_group_calls: list[tuple[str, dict]] = []
 
+    # Build lookup tables for Phase C reuse (same parse, different access pattern)
+    ds_groups_by_name: dict[str, dict[int, list[dict]]] = {}
+    vf_groups_by_name: dict[str, dict[int, list[dict]]] = {}
+
     for person in diff_report:
         name = person["official_name"]
         ds_s1 = person.get("llm1_step1", {})
@@ -396,6 +533,8 @@ def judge_step1(
 
         ds_groups = group_by_source_line(eps_ds)
         vf_groups = group_by_source_line(eps_vf)
+        ds_groups_by_name[name] = ds_groups
+        vf_groups_by_name[name] = vf_groups
         all_lines = sorted(set(ds_groups) | set(vf_groups))
 
         for line_num in all_lines:
@@ -475,15 +614,40 @@ def judge_step1(
             decision = judge_source_line_group(**kwargs, pool=pool, model=model)
             return cache_key, decision
 
+        # Phase A: sl 数量不一致的整段裁判
         _run_judge_tasks(
             pending_group_calls, _judge_grp, judge_cache,
             max_workers, step_label="judge step1 group", model=model,
         )
+        # Phase B: 字段级 ep_batch 裁判
         _ep_dummy: dict = {}
         _run_judge_tasks(
             pending_episode_calls, _judge_ep, _ep_dummy,
             max_workers, step_label="judge step1 ep", model=model,
         )
+
+        # Phase C: ep_batch 判出「需拆分」的 sl 升级到 sl_group
+        need_split_sls = _collect_need_split_from_epbatch(judge_cache)
+        secondary_group_calls: list[tuple[str, dict]] = []
+        for (name, sl) in sorted(need_split_sls):
+            cache_key = _sl_group_cache_key(name, sl)
+            # 已被 Phase A 处理且未降级，跳过
+            if cache_key in judge_cache and not judge_cache[cache_key].get("_downgraded"):
+                continue
+            cl_map = career_lines_by_name.get(name, {})
+            secondary_group_calls.append((cache_key, {
+                "name": name,
+                "line_num": sl,
+                "raw_text": cl_map.get(sl, ""),
+                "ds_episodes": ds_groups_by_name.get(name, {}).get(sl, []),
+                "vf_episodes": vf_groups_by_name.get(name, {}).get(sl, []),
+            }))
+        if secondary_group_calls:
+            logger.info(f"  Phase C: ep_batch 升级到 sl_group 共 {len(secondary_group_calls)} 个 sl")
+            _run_judge_tasks(
+                secondary_group_calls, _judge_grp, judge_cache,
+                max_workers, step_label="judge step1 phase-c", model=model,
+            )
 
     judge_cache_path.write_text(
         json.dumps(judge_cache, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -759,6 +923,11 @@ def judge_step4(
 
     for person in diff_report:
         name = person["official_name"]
+        # Extract target province from either LLM's _meta (available in label diffs)
+        province = (
+            person.get("llm1_step4", {}).get("_meta", {}).get("province", "")
+            or person.get("llm2_step4", {}).get("_meta", {}).get("province", "")
+        )
         for diff in person.get("diffs", []):
             scope = diff.get("scope", "")
             field = diff.get("field", "")
@@ -772,6 +941,7 @@ def judge_step4(
                         "llm2_value": str(diff.get("llm2_value", "")),
                         "llm2_reason": diff.get("qw_reason", ""),
                         "original_text_snippet": "",
+                        "province": province,
                     }))
                 elif scope in ("bio", "corruption"):
                     pending_calls.append((cache_key, {
@@ -781,6 +951,7 @@ def judge_step4(
                         "llm2_value": str(diff.get("llm2_value", "")),
                         "llm2_reason": "",
                         "original_text_snippet": "",
+                        "province": province,
                     }))
 
     if pending_calls:

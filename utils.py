@@ -219,6 +219,37 @@ def _is_rate_limited(exc: Exception) -> bool:
     return status == 429
 
 
+# Vendor-specific 400 errors that are deterministic (re-issuing the same prompt
+# produces the same rejection). Retrying just wastes minutes per occurrence.
+# Examples:
+#   - Qwen / DashScope: "<400> InternalError.Algo.DataInspectionFailed"
+#                       "Output data may contain inappropriate content"
+#   - DeepSeek / Volcengine / Doubao: "Content Exists Risk", "content_filter"
+#   - OpenAI-style:     "content_policy_violation"
+_NON_RETRYABLE_PATTERNS = (
+    "datainspectionfailed",
+    "data_inspection_failed",
+    "internalerror.algo",
+    "inappropriate content",
+    "content exists risk",
+    "content_filter",
+    "content_policy_violation",
+    "sensitive_words",
+    "risk_content",
+)
+
+
+def _is_non_retryable_vendor_error(exc: Exception) -> bool:
+    """Detect deterministic vendor 400s (content moderation / data inspection).
+
+    These responses are not transient — retrying the identical request will
+    always produce the same rejection, so we should fail fast and let the
+    failure tracker record it.
+    """
+    s = str(exc).lower()
+    return any(p in s for p in _NON_RETRYABLE_PATTERNS)
+
+
 def _compute_backoff(exc: Exception, attempt: int) -> tuple[float, str]:
     """Return (wait_seconds, label) for given exception + zero-based attempt."""
     if _is_rate_limited(exc):
@@ -246,7 +277,11 @@ def llm_chat(
     max_retries: int = 3,
     extra_body: dict | None = None,
     seed: int | None = 42,
-    stream: bool = True,
+    stream: bool = False,
+    response_format: dict | None = None,
+    safety_fallback_pool=None,
+    safety_fallback_model: str = "",            # kept for backward compat (single model)
+    safety_fallback_models: list[str] | None = None,  # cascade (takes priority)
 ) -> str:
     """Call an OpenAI-compatible chat API with retry, 429 backoff, and an
     optional provider-wide concurrency cap.
@@ -294,6 +329,8 @@ def llm_chat(
             kwargs["seed"] = attempt_seed
         if extra_body:
             kwargs["extra_body"] = extra_body
+        if response_format is not None:
+            kwargs["response_format"] = response_format
         if stream:
             kwargs["stream_options"] = {"include_usage": True}
 
@@ -336,6 +373,36 @@ def llm_chat(
             # Non-retryable: bad credentials or malformed request
             raise
         except Exception as e:
+            # Vendor-specific deterministic 400 (content moderation, data
+            # inspection) — fail fast, don't waste retries.
+            if _is_non_retryable_vendor_error(e):
+                # Build ordered fallback list: cascade list takes priority over single model.
+                _fallback_list: list[str] = list(
+                    safety_fallback_models
+                    if safety_fallback_models is not None
+                    else ([safety_fallback_model] if safety_fallback_model else [])
+                )
+                if safety_fallback_pool and _fallback_list:
+                    first_fb = _fallback_list[0]
+                    rest_fb  = _fallback_list[1:]
+                    tail_str = f" → {' → '.join(rest_fb)}" if rest_fb else ""
+                    logger.warning(
+                        f"[SafetyFallback] {model} → {first_fb}{tail_str} "
+                        f"| err={str(e)[:120]}"
+                    )
+                    return llm_chat(
+                        safety_fallback_pool, first_fb,
+                        system, user,
+                        temperature=temperature, max_tokens=max_tokens,
+                        max_retries=max_retries, seed=seed, stream=stream,
+                        # no extra_body/response_format: avoid provider-specific params
+                        safety_fallback_pool=safety_fallback_pool if rest_fb else None,
+                        safety_fallback_models=rest_fb if rest_fb else None,
+                    )
+                logger.error(
+                    f"[NonRetryable vendor] model={model} err={str(e)[:200]}"
+                )
+                raise
             if attempt < max_retries:
                 wait, label = _compute_backoff(e, attempt)
                 logger.warning(
@@ -414,6 +481,10 @@ class LLMConfig:
     extra_body: dict | None = None
     max_tokens: int | None = None
     source_tag: str = ""  # e.g. "llm1", "doubao"
+    response_format: dict | None = None  # e.g. {"type": "json_object"}
+    safety_fallback_pool: RoundRobinClientPool | None = None  # fallback when content moderation triggers
+    safety_fallback_model: str = ""                          # compat: single fallback model
+    safety_fallback_models: tuple[str, ...] = ()             # cascade: tried in order
 
 
 # ── Shared data helpers ─────────────────────────────────────────────────────

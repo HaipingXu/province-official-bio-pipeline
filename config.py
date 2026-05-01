@@ -28,47 +28,68 @@ def _load_keys(env_var: str) -> tuple[list[str], str]:
 # Single key (backward-compatible) — first key from comma-separated list
 DEEPSEEK_API_KEYS, DEEPSEEK_API_KEY = _load_keys("DEEPSEEK_API_KEY")
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
-DEEPSEEK_MODEL = "deepseek-v4-flash"  # DeepSeek V4 Flash (kept for reference)
+DEEPSEEK_MODEL = "deepseek-v4-flash"  # kept for reference
 
 QWEN_API_KEYS, QWEN_API_KEY = _load_keys("QWEN_API_KEY")
 QWEN_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-QWEN_MODEL = "qwen3.5-plus"  # Qwen3.5-plus (verifier fallback)
-
-# --- LLM1: Extractor (Qwen3.6-plus via DashScope) ---
-LLM1_API_KEY = QWEN_API_KEY
-LLM1_API_KEYS = QWEN_API_KEYS
-LLM1_BASE_URL = QWEN_BASE_URL
-LLM1_MODEL = "qwen3.6-plus"
+QWEN_MODEL = "qwen3.5-plus"  # kept for reference
 
 KIMI_API_KEYS, KIMI_API_KEY = _load_keys("KIMI_API_KEY")
 KIMI_BASE_URL = "https://api.moonshot.cn/v1"
-KIMI_MODEL = "kimi-k2.5"  # Kimi K2.5 judge
+KIMI_MODEL = "kimi-k2.5"  # kept for reference
 
-# --- Doubao (verification LLM — preferred over GLM/Qwen) ---
 DOUBAO_API_KEYS, DOUBAO_API_KEY = _load_keys("DOUBAO_API_KEY")
 DOUBAO_BASE_URL = "https://ark.cn-beijing.volces.com/api/v3"
-DOUBAO_MODEL = "doubao-seed-2-0-pro-260215"
+DOUBAO_MODEL = "doubao-seed-2-0-pro-260215"  # kept for reference
 
-# --- LLM2: Verifier (Doubao-seed-2.0-pro — primary; GLM/Qwen as fallback) ---
-LLM2_API_KEY = DOUBAO_API_KEY
-LLM2_API_KEYS = DOUBAO_API_KEYS
-LLM2_BASE_URL = DOUBAO_BASE_URL
-LLM2_MODEL = DOUBAO_MODEL
-
-# --- Judge: DeepSeek-V4-Pro (current default judge model) ---
-JUDGE_API_KEY = DEEPSEEK_API_KEY
-JUDGE_API_KEYS = DEEPSEEK_API_KEYS
-JUDGE_BASE_URL = DEEPSEEK_BASE_URL
-JUDGE_MODEL = "deepseek-v4-pro"
-
-# --- GLM-5 (verification LLM — fallback after Doubao) ---
 GLM_API_KEYS, GLM_API_KEY = _load_keys("GLM_API_KEY")
 GLM_BASE_URL = "https://api.siliconflow.cn/v1"
-GLM_MODEL = "Pro/zai-org/GLM-5"
+GLM_MODEL = "Pro/zai-org/GLM-5"  # kept for reference
 
-# Optional: kept for reference, no longer primary judge
+# --- BLTCY unified proxy (GPT / Claude / Gemini / DeepSeek via one endpoint) ---
+BLTCY_API_KEYS, BLTCY_API_KEY = _load_keys("BLTCY_API_KEYS")
+BLTCY_BASE_URL = "https://api.bltcy.ai/v1"
+
+# --- LLM1: Extractor (DeepSeek-V4-Pro — original DeepSeek API) ---
+LLM1_API_KEY = DEEPSEEK_API_KEY
+LLM1_API_KEYS = DEEPSEEK_API_KEYS
+LLM1_BASE_URL = DEEPSEEK_BASE_URL
+LLM1_MODEL = "deepseek-v4-pro"
+
+# --- LLM2: Verifier (GPT-5 via BLTCY) ---
+LLM2_API_KEY = BLTCY_API_KEY
+LLM2_API_KEYS = BLTCY_API_KEYS
+LLM2_BASE_URL = BLTCY_BASE_URL
+LLM2_MODEL = "gpt-5"
+
+# --- Judge: GPT-5.4 (via BLTCY) ---
+JUDGE_API_KEY = BLTCY_API_KEY
+JUDGE_API_KEYS = BLTCY_API_KEYS
+JUDGE_BASE_URL = BLTCY_BASE_URL
+JUDGE_MODEL = "gpt-5.4"
+
+# --- Content-safety fallback cascade: triggered when LLM1/LLM2 hit content moderation ---
+# Tried in order until one succeeds.
+SAFETY_FALLBACK_MODELS: tuple[str, ...] = (
+    "claude-sonnet-4-6",
+    "gpt-5.4-mini",
+    "claude-3-7-sonnet-20250219",
+)
+# Legacy alias (= first in cascade); kept for backward compat.
+GEMINI_FALLBACK_MODEL = SAFETY_FALLBACK_MODELS[0]
+GEMINI_FALLBACK_BASE_URL = BLTCY_BASE_URL
+GEMINI_FALLBACK_API_KEYS = BLTCY_API_KEYS
+GEMINI_FALLBACK_API_KEY = BLTCY_API_KEY
+
+# --- Judge fallback cascade: triggered when judge model hits content moderation ---
+JUDGE_FALLBACK_MODELS: tuple[str, ...] = (
+    "claude-opus-4-6",
+    "claude-opus-4-6-thinking",
+    "gpt-5.5",
+)
+
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
-ANTHROPIC_MODEL = "claude-sonnet-4-5"
+ANTHROPIC_MODEL = "claude-sonnet-4-6"
 
 # --- Paths ---
 PROJECT_ROOT = Path(__file__).parent
@@ -318,8 +339,8 @@ EPISODE_COUNT_DIFF = 2       # flag if episode count differs by more than this
 # Higher values improve throughput but risk rate-limiting (429 errors).
 DEFAULT_WORKERS = 100      # Default API call parallelism
 LLM1_MAX_WORKERS = 100     # Extractor (LLM1/Qwen) — high: DashScope is generous
-LLM2_MAX_WORKERS = 100     # Verifier (LLM2/Doubao) — matches LLM1 for parallel extraction
-JUDGE_MAX_WORKERS = 200    # Judge (DeepSeek Reasoner) — highest: judge calls are per-diff, many small requests
+LLM2_MAX_WORKERS = 5       # Verifier (GPT-5.4 via bltcy) — bltcy overloads at high concurrency
+JUDGE_MAX_WORKERS = 80     # Judge (DeepSeek) — DeepSeek account-level concurrency cap is 100, leave headroom
 SCRAPE_WORKERS = 2         # Scraping parallelism (low to avoid anti-bot detection)
 
 
@@ -343,8 +364,8 @@ LLM_GENERIC_BACKOFF_BASE = 3.0
 # how many phases run in parallel. Phase A runs Step1 ∥ Step4 (both hit LLM1),
 # so total concurrency would otherwise be 2 × LLM1_MAX_WORKERS = 200.
 LLM1_PROVIDER_CONCURRENCY = 200
-LLM2_PROVIDER_CONCURRENCY = 200
-JUDGE_PROVIDER_CONCURRENCY = 300
+LLM2_PROVIDER_CONCURRENCY = 10
+JUDGE_PROVIDER_CONCURRENCY = 80   # DeepSeek caps account-level concurrency at 100
 
 
 # --- Logging ---
@@ -370,12 +391,11 @@ def validate_api_keys(require_judge: bool = True) -> None:
     """Check that essential API keys are set. Exit if missing."""
     missing = []
     if not LLM1_API_KEY:
-        missing.append("QWEN_API_KEY (LLM1 extractor)")
-    # Verification LLM2: Doubao > GLM-5 > Qwen
-    if not LLM2_API_KEY and not GLM_API_KEY and not QWEN_API_KEY:
-        missing.append("DOUBAO_API_KEY or GLM_API_KEY or QWEN_API_KEY (LLM2 verifier)")
+        missing.append("DEEPSEEK_API_KEY (LLM1 extractor — DeepSeek direct API)")
+    if not BLTCY_API_KEY:
+        missing.append("BLTCY_API_KEYS (LLM2/Judge/Gemini-fallback via BLTCY proxy)")
     if require_judge and not JUDGE_API_KEY:
-        missing.append("DEEPSEEK_API_KEY (judge)")
+        missing.append("BLTCY_API_KEYS (judge)")
 
     _log = logging.getLogger(__name__)
     if missing:
@@ -383,12 +403,7 @@ def validate_api_keys(require_judge: bool = True) -> None:
         _log.error("  请在 .env 文件中配置（参考 .env.example）")
         raise RuntimeError(f"缺少 API 密钥: {', '.join(missing)}")
 
-    _log.info(f"  提取模型 LLM1: {LLM1_MODEL} via DashScope, {len(LLM1_API_KEYS)} keys")
-    # Report which verification model is active
-    if LLM2_API_KEY:
-        _log.info(f"  验证模型 LLM2: {LLM2_MODEL} via Volcengine, {len(LLM2_API_KEYS)} keys")
-    elif GLM_API_KEY:
-        _log.info(f"  验证模型 LLM2: GLM-5 ({GLM_MODEL}) via SiliconFlow, {len(GLM_API_KEYS)} keys")
-    else:
-        _log.info(f"  验证模型 LLM2: Qwen ({QWEN_MODEL}) via DashScope, {len(QWEN_API_KEYS)} keys")
-    _log.info(f"  裁判模型: {JUDGE_MODEL} via DeepSeek, {len(JUDGE_API_KEYS)} keys")
+    _log.info(f"  提取模型 LLM1: {LLM1_MODEL} via DeepSeek, {len(LLM1_API_KEYS)} keys")
+    _log.info(f"  验证模型 LLM2: {LLM2_MODEL} via BLTCY, {len(LLM2_API_KEYS)} keys")
+    _log.info(f"  裁判模型: {JUDGE_MODEL} via BLTCY, {len(JUDGE_API_KEYS)} keys")
+    _log.info(f"  安全审查兜底: {GEMINI_FALLBACK_MODEL} via BLTCY")

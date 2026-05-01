@@ -111,8 +111,13 @@ def _apply_step1_field_overrides(
     vf_step1_data: dict,
     judge_cache: dict,
     name: str,
+    skip_sls: set[int] | None = None,
 ) -> list[dict]:
-    """Apply step1 ep_batch field-level verdicts to merged step1 episodes."""
+    """Apply step1 ep_batch field-level verdicts to merged step1 episodes.
+
+    Episodes whose source_line is in skip_sls have already been handled by
+    sl_group overrides and should not be modified here.
+    """
     vf_episodes = vf_step1_data.get("episodes", [])
     vf_by_key: dict[tuple, dict] = {}
     for ep in vf_episodes:
@@ -123,6 +128,12 @@ def _apply_step1_field_overrides(
     for ep in episodes:
         ep = dict(ep)
         sl = ep.get("source_line", 0)
+
+        # sl already handled by sl_group; skip field-level patch
+        if skip_sls and sl in skip_sls:
+            result.append(ep)
+            continue
+
         ep_key_prefix = (
             f"{name}||ep_batch"
             f"||sl{sl}"
@@ -171,10 +182,11 @@ def build_merged_episodes_step1(
         for i, ep in enumerate(episodes):
             ep["经历序号"] = i + 1
 
-    # Apply step1 field-level overrides (ep_batch)
+    # Apply step1 field-level overrides (ep_batch), skipping sl_group-handled lines
     vf_data = vf_episodes_full if isinstance(vf_episodes_full, dict) else {"episodes": vf_episodes}
     episodes = _apply_step1_field_overrides(
-        episodes, vf_data, step1_judge_cache, official_name
+        episodes, vf_data, step1_judge_cache, official_name,
+        skip_sls=set(overrides.keys()) if overrides else None,
     )
 
     # Strip non-step1 fields to keep merged_step1 clean

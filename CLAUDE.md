@@ -26,6 +26,7 @@
 2. **按省分存** — `preprocessed_texts.json` 写 `logs/{省}/`，不写顶层 `logs/`
 3. **prompts 只读** — 修改提取行为只改 `prompts/*.md`，不改代码字符串
 4. **数据只读** — `officials/` 文本、`data/{省}_officials.txt` 不可覆写
+5. **无指令不改代码** — 没有用户明确指令，不得主动修改任何代码文件；诊断结论只报告，等待用户决策后再动手
 
 ---
 

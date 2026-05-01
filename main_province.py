@@ -35,6 +35,9 @@ from config import (
     LLM1_API_KEY, LLM1_API_KEYS, LLM1_BASE_URL, LLM1_MODEL,
     LLM2_API_KEY, LLM2_API_KEYS, LLM2_BASE_URL, LLM2_MODEL,
     JUDGE_API_KEY, JUDGE_API_KEYS, JUDGE_BASE_URL, JUDGE_MODEL,
+    GEMINI_FALLBACK_API_KEYS, GEMINI_FALLBACK_API_KEY,
+    GEMINI_FALLBACK_BASE_URL, GEMINI_FALLBACK_MODEL,
+    SAFETY_FALLBACK_MODELS, JUDGE_FALLBACK_MODELS,
     LLM1_MAX_RETRIES, LLM2_MAX_RETRIES,
     LLM1_PROVIDER_CONCURRENCY, LLM2_PROVIDER_CONCURRENCY,
     JUDGE_PROVIDER_CONCURRENCY,
@@ -165,6 +168,17 @@ def run_scraping(officials: list[dict], province: str, force: bool = False,
 _llm1_pool: RoundRobinClientPool | None = None
 _llm2_pool: RoundRobinClientPool | None = None
 _judge_pool_inst: RoundRobinClientPool | None = None
+_gemini_pool_inst: RoundRobinClientPool | None = None
+
+
+def _build_gemini_pool() -> RoundRobinClientPool:
+    global _gemini_pool_inst
+    if _gemini_pool_inst is None:
+        _gemini_pool_inst = RoundRobinClientPool(
+            GEMINI_FALLBACK_API_KEYS or [GEMINI_FALLBACK_API_KEY],
+            GEMINI_FALLBACK_BASE_URL,
+        )
+    return _gemini_pool_inst
 
 
 def _build_llm1_config() -> LLMConfig:
@@ -177,6 +191,10 @@ def _build_llm1_config() -> LLMConfig:
     return LLMConfig(
         pool=_llm1_pool, model=LLM1_MODEL,
         max_retries=LLM1_MAX_RETRIES, source_tag="llm1",
+        max_tokens=16384,
+        response_format={"type": "json_object"},
+        safety_fallback_pool=_build_gemini_pool(),
+        safety_fallback_models=SAFETY_FALLBACK_MODELS,
     )
 
 
@@ -190,6 +208,10 @@ def _build_llm2_config() -> LLMConfig:
     return LLMConfig(
         pool=_llm2_pool, model=LLM2_MODEL,
         max_retries=LLM2_MAX_RETRIES, source_tag="llm2",
+        max_tokens=16384,
+        response_format={"type": "json_object"},
+        safety_fallback_pool=_build_gemini_pool(),
+        safety_fallback_models=SAFETY_FALLBACK_MODELS,
     )
 
 

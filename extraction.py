@@ -95,7 +95,10 @@ def step1_extract(
         raw = llm_chat(
             cfg.pool, cfg.model, system_prompt, user_prompt,
             max_retries=cfg.max_retries, extra_body=cfg.extra_body,
-            max_tokens=cfg.max_tokens,
+            max_tokens=cfg.max_tokens, response_format=cfg.response_format,
+            safety_fallback_pool=cfg.safety_fallback_pool,
+            safety_fallback_model=cfg.safety_fallback_model,
+            safety_fallback_models=list(cfg.safety_fallback_models) if cfg.safety_fallback_models else None,
         )
         result = extract_json(raw)
         if "episodes" not in result:
@@ -161,7 +164,10 @@ def step2_classify(
         raw = llm_chat(
             cfg.pool, cfg.model, effective_sys, user_prompt,
             max_retries=cfg.max_retries, extra_body=cfg.extra_body,
-            max_tokens=cfg.max_tokens,
+            max_tokens=cfg.max_tokens, response_format=cfg.response_format,
+            safety_fallback_pool=cfg.safety_fallback_pool,
+            safety_fallback_model=cfg.safety_fallback_model,
+            safety_fallback_models=list(cfg.safety_fallback_models) if cfg.safety_fallback_models else None,
         )
         result = extract_json(raw)
         cls = result.get("classifications", [])
@@ -212,7 +218,10 @@ def step3_rank(
         raw = llm_chat(
             cfg.pool, cfg.model, effective_sys, user_prompt,
             max_retries=cfg.max_retries, extra_body=cfg.extra_body,
-            max_tokens=cfg.max_tokens,
+            max_tokens=cfg.max_tokens, response_format=cfg.response_format,
+            safety_fallback_pool=cfg.safety_fallback_pool,
+            safety_fallback_model=cfg.safety_fallback_model,
+            safety_fallback_models=list(cfg.safety_fallback_models) if cfg.safety_fallback_models else None,
         )
         result = extract_json(raw)
         ranks = result.get("ranks", [])
@@ -265,7 +274,10 @@ def step4_label(
         raw = llm_chat(
             cfg.pool, cfg.model, system_prompt, user_prompt,
             max_retries=cfg.max_retries, extra_body=cfg.extra_body,
-            max_tokens=cfg.max_tokens,
+            max_tokens=cfg.max_tokens, response_format=cfg.response_format,
+            safety_fallback_pool=cfg.safety_fallback_pool,
+            safety_fallback_model=cfg.safety_fallback_model,
+            safety_fallback_models=list(cfg.safety_fallback_models) if cfg.safety_fallback_models else None,
         )
         result = extract_json(raw)
         if "raw_bio" not in result:
