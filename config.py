@@ -121,7 +121,6 @@ COLUMNS = [
     "本省提拔",
     "本省学习",
     "judge4con",      # confidence + reason for step4 label/bio judges
-    "最终行政级别",
     # --- Per-row ---
     "经历序号",
     # --- Step1 fields + judge1con ---
@@ -139,6 +138,7 @@ COLUMNS = [
     "judge2con",
     # --- Step3 field + judge3con ---
     "该条行政级别",
+    "最终行政级别",   # running cummax: highest rank up to and including this episode
     "judge3con",
     # --- 引用 ---
     "原文引用",
@@ -152,7 +152,7 @@ COLUMNS = [
 ORG_TAGS = [
     "党中央机关",
     "地方党委",
-    "国务院组成部门",
+    "国务院及其组成部门",
     "地方政府",
     "直属机构/部委管理的国家局",
     "全国人大机关",

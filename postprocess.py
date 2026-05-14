@@ -394,6 +394,8 @@ def flatten_person(
 
     if rank_map is None:
         rank_map = {}
+
+    # Per source_line: highest concurrent rank (handles split episodes from same line)
     sl_rank_groups: dict[int, list[str]] = {}
     for idx_tmp, ep_tmp in enumerate(episodes):
         sl = ep_tmp.get("source_line", idx_tmp + 1)
@@ -402,6 +404,29 @@ def flatten_person(
     sl_highest_rank: dict[int, str] = {
         sl: get_highest_rank(ranks) for sl, ranks in sl_rank_groups.items()
     }
+
+    # Ordered source lines by start time for running cummax computation
+    # (最终行政级别 = running maximum — only increases, never decreases)
+    _sl_order: list[tuple[int, int, str]] = []  # (sort_key, sl, rank)
+    for idx_tmp, ep_tmp in enumerate(episodes):
+        sl = ep_tmp.get("source_line", idx_tmp + 1)
+        start = ep_tmp.get("起始时间", "") or ""
+        _year = int(start[:4]) if len(start) >= 4 and start[:4].isdigit() else 9999
+        _month = int(start[5:7]) if len(start) >= 7 and start[5:7].isdigit() else 0
+        _sl_order.append((_year * 100 + _month, sl, sl_highest_rank.get(sl, "")))
+    # Deduplicate by sl, keep first occurrence order
+    seen_sl: set[int] = set()
+    _ordered_sl: list[tuple[int, str]] = []
+    for _, sl, rank in sorted(_sl_order):
+        if sl not in seen_sl:
+            seen_sl.add(sl)
+            _ordered_sl.append((sl, rank))
+    # Build per-sl running cummax
+    sl_cummax: dict[int, str] = {}
+    _best_so_far: str = ""
+    for sl, rank in _ordered_sl:
+        _best_so_far = get_highest_rank([_best_so_far, rank]) if _best_so_far else rank
+        sl_cummax[sl] = _best_so_far
 
     # judge4 confidence goes to first row only
     judge4_first_row = judge_buckets.get("judge4_person", "")
@@ -438,10 +463,11 @@ def flatten_person(
         if pos_tag and pos_tag not in POSITION_TAGS:
             pos_tag = f"[无效标志位]{pos_tag}"
 
-        highest_rank = sl_highest_rank.get(ep_sl, "")
         per_rank = ep.get("行政级别") or rank_map.get(idx + 1, "")
         if not per_rank:
             per_rank = "无"
+        # running cummax: highest rank achieved up to and including this episode
+        highest_rank = sl_cummax.get(ep_sl, sl_highest_rank.get(ep_sl, ""))
 
         # Per-row judgeNcon strings (all confidences, threshold-independent)
         j1 = judge_buckets.get("judge1_per_row", {}).get(ep_idx, "")
@@ -464,7 +490,6 @@ def flatten_person(
             "本省提拔":       prov_promoted,
             "本省学习":       prov_study,
             "judge4con":      j4,
-            "最终行政级别":   highest_rank if highest_rank else "无",
             "经历序号":       ep_idx,
             "起始时间":       ep.get("起始时间", ""),
             "终止时间":       ep.get("终止时间", ""),
@@ -478,6 +503,7 @@ def flatten_person(
             "中央/地方":      ep.get("中央/地方", ""),
             "judge2con":      j2,
             "该条行政级别":   per_rank,
+            "最终行政级别":   highest_rank if highest_rank else per_rank,
             "judge3con":      j3,
             "原文引用":       _build_source_ref(ep, idx, career_lines_map),
             "是否落马":       is_fell,

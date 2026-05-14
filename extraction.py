@@ -208,8 +208,7 @@ def step3_rank(
     effective_sys = system_prompt + ref_extra if ref_extra else system_prompt
 
     user_prompt = (
-        f"官员：{name}\n\n"
-        f"以下是该官员的全部 {len(episodes)} 段职务经历：\n{ep_text}\n\n"
+        f"以下是某官员的全部 {len(episodes)} 段职务经历（仅凭职务/单位名称判断级别）：\n{ep_text}\n\n"
         "请对每段经历判断行政级别，输出纯JSON。"
         "无法定级的早期/秘书/干部条目请填 \"难以判断\"。"
     )
