@@ -50,11 +50,11 @@ GLM_MODEL = "Pro/zai-org/GLM-5"  # kept for reference
 BLTCY_API_KEYS, BLTCY_API_KEY = _load_keys("BLTCY_API_KEYS")
 BLTCY_BASE_URL = "https://api.bltcy.ai/v1"
 
-# --- LLM1: Extractor (DeepSeek-V4-Pro — original DeepSeek API) ---
+# --- LLM1: Extractor (DeepSeek-V4-Flash — eval shows Flash > Pro on both Mode1 F1 and Mode2 All%) ---
 LLM1_API_KEY = DEEPSEEK_API_KEY
 LLM1_API_KEYS = DEEPSEEK_API_KEYS
 LLM1_BASE_URL = DEEPSEEK_BASE_URL
-LLM1_MODEL = "deepseek-v4-pro"
+LLM1_MODEL = "deepseek-v4-flash"
 
 # --- LLM2: Verifier (GPT-5 via BLTCY) ---
 LLM2_API_KEY = BLTCY_API_KEY
