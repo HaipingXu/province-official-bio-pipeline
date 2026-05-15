@@ -75,13 +75,15 @@ JUDGE_MODEL = "gpt-5.4"
 # --- Content-safety fallback cascade: triggered when LLM1/LLM2 hit content moderation ---
 # Tried in order until one succeeds.
 SAFETY_FALLBACK_MODELS: tuple[str, ...] = (
-    "claude-haiku-4-5-20251001",
+    "claude-sonnet-4-6",
+    "gpt-5.4-mini",
+    "claude-3-7-sonnet-20250219",
 )
 # Legacy alias (= first in cascade); kept for backward compat.
 GEMINI_FALLBACK_MODEL = SAFETY_FALLBACK_MODELS[0]
-GEMINI_FALLBACK_BASE_URL = CLARIONTECH_BASE_URL
-GEMINI_FALLBACK_API_KEYS = CLARIONTECH_API_KEYS
-GEMINI_FALLBACK_API_KEY = CLARIONTECH_API_KEY
+GEMINI_FALLBACK_BASE_URL = BLTCY_BASE_URL
+GEMINI_FALLBACK_API_KEYS = BLTCY_API_KEYS
+GEMINI_FALLBACK_API_KEY = BLTCY_API_KEY
 
 # --- Judge fallback cascade: triggered when judge model hits content moderation ---
 JUDGE_FALLBACK_MODELS: tuple[str, ...] = ()
@@ -337,8 +339,8 @@ EPISODE_COUNT_DIFF = 2       # flag if episode count differs by more than this
 # Higher values improve throughput but risk rate-limiting (429 errors).
 DEFAULT_WORKERS = 100      # Default API call parallelism
 LLM1_MAX_WORKERS = 100     # Extractor (LLM1/Qwen) — high: DashScope is generous
-LLM2_MAX_WORKERS = 5       # Verifier (GPT-5.4 via bltcy) — bltcy overloads at high concurrency
-JUDGE_MAX_WORKERS = 80     # Judge (DeepSeek) — DeepSeek account-level concurrency cap is 100, leave headroom
+LLM2_MAX_WORKERS = 100     # Verifier (Clariontech)
+JUDGE_MAX_WORKERS = 100    # Judge (Clariontech)
 SCRAPE_WORKERS = 2         # Scraping parallelism (low to avoid anti-bot detection)
 
 
@@ -362,8 +364,8 @@ LLM_GENERIC_BACKOFF_BASE = 3.0
 # how many phases run in parallel. Phase A runs Step1 ∥ Step4 (both hit LLM1),
 # so total concurrency would otherwise be 2 × LLM1_MAX_WORKERS = 200.
 LLM1_PROVIDER_CONCURRENCY = 200
-LLM2_PROVIDER_CONCURRENCY = 10
-JUDGE_PROVIDER_CONCURRENCY = 80   # DeepSeek caps account-level concurrency at 100
+LLM2_PROVIDER_CONCURRENCY = 200
+JUDGE_PROVIDER_CONCURRENCY = 200
 
 
 # --- Logging ---
