@@ -50,43 +50,41 @@ GLM_MODEL = "Pro/zai-org/GLM-5"  # kept for reference
 BLTCY_API_KEYS, BLTCY_API_KEY = _load_keys("BLTCY_API_KEYS")
 BLTCY_BASE_URL = "https://api.bltcy.ai/v1"
 
+# --- Clariontech NewAPI proxy ---
+CLARIONTECH_API_KEYS, CLARIONTECH_API_KEY = _load_keys("CLARIONTECH_API_KEYS")
+CLARIONTECH_BASE_URL = "http://token.clariontech.top/v1"
+
 # --- LLM1: Extractor (DeepSeek-V4-Flash — eval shows Flash > Pro on both Mode1 F1 and Mode2 All%) ---
 LLM1_API_KEY = DEEPSEEK_API_KEY
 LLM1_API_KEYS = DEEPSEEK_API_KEYS
 LLM1_BASE_URL = DEEPSEEK_BASE_URL
 LLM1_MODEL = "deepseek-v4-flash"
 
-# --- LLM2: Verifier (GPT-5 via BLTCY) ---
-LLM2_API_KEY = BLTCY_API_KEY
-LLM2_API_KEYS = BLTCY_API_KEYS
-LLM2_BASE_URL = BLTCY_BASE_URL
-LLM2_MODEL = "gpt-5"
+# --- LLM2: Verifier (GPT-5 via Clariontech NewAPI) ---
+LLM2_API_KEY = CLARIONTECH_API_KEY
+LLM2_API_KEYS = CLARIONTECH_API_KEYS
+LLM2_BASE_URL = CLARIONTECH_BASE_URL
+LLM2_MODEL = "gpt-5.2"
 
-# --- Judge: GPT-5.4 (via BLTCY) ---
-JUDGE_API_KEY = BLTCY_API_KEY
-JUDGE_API_KEYS = BLTCY_API_KEYS
-JUDGE_BASE_URL = BLTCY_BASE_URL
+# --- Judge: GPT-5.4 (via Clariontech) ---
+JUDGE_API_KEY = CLARIONTECH_API_KEY
+JUDGE_API_KEYS = CLARIONTECH_API_KEYS
+JUDGE_BASE_URL = CLARIONTECH_BASE_URL
 JUDGE_MODEL = "gpt-5.4"
 
 # --- Content-safety fallback cascade: triggered when LLM1/LLM2 hit content moderation ---
 # Tried in order until one succeeds.
 SAFETY_FALLBACK_MODELS: tuple[str, ...] = (
-    "claude-sonnet-4-6",
-    "gpt-5.4-mini",
-    "claude-3-7-sonnet-20250219",
+    "claude-haiku-4-5-20251001",
 )
 # Legacy alias (= first in cascade); kept for backward compat.
 GEMINI_FALLBACK_MODEL = SAFETY_FALLBACK_MODELS[0]
-GEMINI_FALLBACK_BASE_URL = BLTCY_BASE_URL
-GEMINI_FALLBACK_API_KEYS = BLTCY_API_KEYS
-GEMINI_FALLBACK_API_KEY = BLTCY_API_KEY
+GEMINI_FALLBACK_BASE_URL = CLARIONTECH_BASE_URL
+GEMINI_FALLBACK_API_KEYS = CLARIONTECH_API_KEYS
+GEMINI_FALLBACK_API_KEY = CLARIONTECH_API_KEY
 
 # --- Judge fallback cascade: triggered when judge model hits content moderation ---
-JUDGE_FALLBACK_MODELS: tuple[str, ...] = (
-    "claude-opus-4-6",
-    "claude-opus-4-6-thinking",
-    "gpt-5.5",
-)
+JUDGE_FALLBACK_MODELS: tuple[str, ...] = ()
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 ANTHROPIC_MODEL = "claude-sonnet-4-6"
