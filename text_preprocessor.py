@@ -197,7 +197,7 @@ def preprocess_biography(bio_text: str, name: str = "") -> dict:
     career_lines = []
     extra_lines = []
 
-    raw_career = sections.get("履历段落", "")
+    raw_career = sections.get("履历段落") or sections.get("人物履历", "")
     if raw_career:
         for line in raw_career.split("\n"):
             line = line.strip()
