@@ -1,0 +1,1800 @@
+{
+  "model": "DS-V4-Flash",
+  "model_id": "deepseek-v4-flash",
+  "mode": 2,
+  "elapsed_s": 919.3,
+  "per_official_step2": {
+    "王兆国": {
+      "n_episodes": 42,
+      "fields": {
+        "组织标签": {
+          "correct": 38,
+          "total": 42,
+          "accuracy": 0.9048
+        },
+        "标志位": {
+          "correct": 41,
+          "total": 42,
+          "accuracy": 0.9762
+        },
+        "任职地（省）": {
+          "correct": 42,
+          "total": 42,
+          "accuracy": 1.0
+        },
+        "任职地（市）": {
+          "correct": 42,
+          "total": 42,
+          "accuracy": 1.0
+        },
+        "中央/地方": {
+          "correct": 42,
+          "total": 42,
+          "accuracy": 1.0
+        }
+      },
+      "all_fields_correct": {
+        "correct": 37,
+        "total": 42,
+        "accuracy": 0.881
+      },
+      "errors": [
+        {
+          "official": "王兆国",
+          "episode_idx": 8,
+          "field": "标志位",
+          "gold": "无",
+          "pred": "市常委（其他）"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 9,
+          "field": "组织标签",
+          "gold": "其他",
+          "pred": "国资委央企"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 11,
+          "field": "组织标签",
+          "gold": "共青团中央",
+          "pred": "其他"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 22,
+          "field": "组织标签",
+          "gold": "党中央机关",
+          "pred": "直属机构/部委管理的国家局"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 29,
+          "field": "组织标签",
+          "gold": "其他",
+          "pred": "直属机构/部委管理的国家局"
+        }
+      ]
+    },
+    "习近平": {
+      "n_episodes": 68,
+      "fields": {
+        "组织标签": {
+          "correct": 66,
+          "total": 68,
+          "accuracy": 0.9706
+        },
+        "标志位": {
+          "correct": 61,
+          "total": 68,
+          "accuracy": 0.8971
+        },
+        "任职地（省）": {
+          "correct": 68,
+          "total": 68,
+          "accuracy": 1.0
+        },
+        "任职地（市）": {
+          "correct": 55,
+          "total": 68,
+          "accuracy": 0.8088
+        },
+        "中央/地方": {
+          "correct": 64,
+          "total": 68,
+          "accuracy": 0.9412
+        }
+      },
+      "all_fields_correct": {
+        "correct": 44,
+        "total": 68,
+        "accuracy": 0.6471
+      },
+      "errors": [
+        {
+          "official": "习近平",
+          "episode_idx": 2,
+          "field": "组织标签",
+          "gold": "其他",
+          "pred": "国务院及其组成部门"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 4,
+          "field": "任职地（市）",
+          "gold": "",
+          "pred": "石家庄市"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 9,
+          "field": "任职地（市）",
+          "gold": "宁德地区",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 10,
+          "field": "任职地（市）",
+          "gold": "宁德市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 13,
+          "field": "任职地（市）",
+          "gold": "福州市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 17,
+          "field": "任职地（市）",
+          "gold": "福州市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 21,
+          "field": "任职地（市）",
+          "gold": "福州市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 24,
+          "field": "标志位",
+          "gold": "省委副书记（省长）",
+          "pred": "省委副书记（非省长）"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 26,
+          "field": "中央/地方",
+          "gold": "地方",
+          "pred": "中央"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 27,
+          "field": "任职地（市）",
+          "gold": "南京市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 29,
+          "field": "标志位",
+          "gold": "省委副书记（省长）",
+          "pred": "省委副书记（非省长）"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 31,
+          "field": "中央/地方",
+          "gold": "地方",
+          "pred": "中央"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 32,
+          "field": "任职地（市）",
+          "gold": "南京市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 34,
+          "field": "标志位",
+          "gold": "省委副书记（省长）",
+          "pred": "省委副书记（非省长）"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 36,
+          "field": "中央/地方",
+          "gold": "地方",
+          "pred": "中央"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 37,
+          "field": "任职地（市）",
+          "gold": "南京市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 41,
+          "field": "任职地（市）",
+          "gold": "杭州市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 41,
+          "field": "中央/地方",
+          "gold": "地方",
+          "pred": "中央"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 42,
+          "field": "任职地（市）",
+          "gold": "南京市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 46,
+          "field": "标志位",
+          "gold": "市委书记",
+          "pred": "省委书记"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 46,
+          "field": "任职地（市）",
+          "gold": "上海市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 47,
+          "field": "任职地（市）",
+          "gold": "上海市",
+          "pred": ""
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 49,
+          "field": "标志位",
+          "gold": "政治局委员",
+          "pred": "无"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 54,
+          "field": "组织标签",
+          "gold": "其他",
+          "pred": "党中央机关"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 61,
+          "field": "标志位",
+          "gold": "无",
+          "pred": "政治局常委"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 65,
+          "field": "标志位",
+          "gold": "无",
+          "pred": "政治局常委"
+        }
+      ]
+    },
+    "孙春兰": {
+      "n_episodes": 36,
+      "fields": {
+        "组织标签": {
+          "correct": 31,
+          "total": 36,
+          "accuracy": 0.8611
+        },
+        "标志位": {
+          "correct": 35,
+          "total": 36,
+          "accuracy": 0.9722
+        },
+        "任职地（省）": {
+          "correct": 35,
+          "total": 36,
+          "accuracy": 0.9722
+        },
+        "任职地（市）": {
+          "correct": 32,
+          "total": 36,
+          "accuracy": 0.8889
+        },
+        "中央/地方": {
+          "correct": 35,
+          "total": 36,
+          "accuracy": 0.9722
+        }
+      },
+      "all_fields_correct": {
+        "correct": 26,
+        "total": 36,
+        "accuracy": 0.7222
+      },
+      "errors": [
+        {
+          "official": "孙春兰",
+          "episode_idx": 2,
+          "field": "组织标签",
+          "gold": "其他",
+          "pred": "地方党委"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 5,
+          "field": "组织标签",
+          "gold": "国资委央企",
+          "pred": "市属/县属国企"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 11,
+          "field": "任职地（市）",
+          "gold": "鞍山市",
+          "pred": ""
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 12,
+          "field": "任职地（市）",
+          "gold": "鞍山市",
+          "pred": ""
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 14,
+          "field": "任职地（市）",
+          "gold": "沈阳市",
+          "pred": ""
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 15,
+          "field": "任职地（市）",
+          "gold": "北京市",
+          "pred": ""
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 20,
+          "field": "组织标签",
+          "gold": "地方党委",
+          "pred": "其他"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 34,
+          "field": "组织标签",
+          "gold": "其他",
+          "pred": "国务院及其组成部门"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 34,
+          "field": "标志位",
+          "gold": "政治局委员",
+          "pred": "无"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 35,
+          "field": "组织标签",
+          "gold": "其他",
+          "pred": "国务院及其组成部门"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 36,
+          "field": "任职地（省）",
+          "gold": "北京市",
+          "pred": "国外"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 36,
+          "field": "中央/地方",
+          "gold": "中央",
+          "pred": "地方"
+        }
+      ]
+    },
+    "赵龙": {
+      "n_episodes": 27,
+      "fields": {
+        "组织标签": {
+          "correct": 25,
+          "total": 27,
+          "accuracy": 0.9259
+        },
+        "标志位": {
+          "correct": 22,
+          "total": 27,
+          "accuracy": 0.8148
+        },
+        "任职地（省）": {
+          "correct": 27,
+          "total": 27,
+          "accuracy": 1.0
+        },
+        "任职地（市）": {
+          "correct": 26,
+          "total": 27,
+          "accuracy": 0.963
+        },
+        "中央/地方": {
+          "correct": 25,
+          "total": 27,
+          "accuracy": 0.9259
+        }
+      },
+      "all_fields_correct": {
+        "correct": 19,
+        "total": 27,
+        "accuracy": 0.7037
+      },
+      "errors": [
+        {
+          "official": "赵龙",
+          "episode_idx": 9,
+          "field": "标志位",
+          "gold": "副市长（常委）",
+          "pred": "市常委（其他）"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 10,
+          "field": "标志位",
+          "gold": "副市长（常委）",
+          "pred": "副市长（非常委）"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 11,
+          "field": "中央/地方",
+          "gold": "中央",
+          "pred": "地方"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 18,
+          "field": "组织标签",
+          "gold": "其他",
+          "pred": "党中央机关"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 23,
+          "field": "标志位",
+          "gold": "省委副书记（省长）",
+          "pred": "省委副书记（非省长）"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 24,
+          "field": "标志位",
+          "gold": "省委副书记（省长）",
+          "pred": "省长"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 25,
+          "field": "标志位",
+          "gold": "省委副书记（省长）",
+          "pred": "省委副书记（非省长）"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 27,
+          "field": "组织标签",
+          "gold": "其他",
+          "pred": "部属高校（非教育部）"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 27,
+          "field": "任职地（市）",
+          "gold": "",
+          "pred": "泉州市"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 27,
+          "field": "中央/地方",
+          "gold": "地方",
+          "pred": "中央"
+        }
+      ]
+    },
+    "周祖翼": {
+      "n_episodes": 22,
+      "fields": {
+        "组织标签": {
+          "correct": 22,
+          "total": 22,
+          "accuracy": 1.0
+        },
+        "标志位": {
+          "correct": 20,
+          "total": 22,
+          "accuracy": 0.9091
+        },
+        "任职地（省）": {
+          "correct": 22,
+          "total": 22,
+          "accuracy": 1.0
+        },
+        "任职地（市）": {
+          "correct": 21,
+          "total": 22,
+          "accuracy": 0.9545
+        },
+        "中央/地方": {
+          "correct": 21,
+          "total": 22,
+          "accuracy": 0.9545
+        }
+      },
+      "all_fields_correct": {
+        "correct": 20,
+        "total": 22,
+        "accuracy": 0.9091
+      },
+      "errors": [
+        {
+          "official": "周祖翼",
+          "episode_idx": 4,
+          "field": "标志位",
+          "gold": "高校/党校任职",
+          "pred": "学习进修"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 4,
+          "field": "中央/地方",
+          "gold": "地方",
+          "pred": "中央"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 11,
+          "field": "标志位",
+          "gold": "省组织部副部长",
+          "pred": "无"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 11,
+          "field": "任职地（市）",
+          "gold": "",
+          "pred": "上海市"
+        }
+      ]
+    }
+  },
+  "per_official_step3": {
+    "王兆国": {
+      "n_episodes": 42,
+      "fields": {
+        "该条行政级别": {
+          "correct": 32,
+          "total": 42,
+          "accuracy": 0.7619
+        }
+      },
+      "all_fields_correct": {
+        "correct": 32,
+        "total": 42,
+        "accuracy": 0.7619
+      },
+      "errors": [
+        {
+          "official": "王兆国",
+          "episode_idx": 4,
+          "field": "该条行政级别",
+          "gold": "难以判断",
+          "pred": "副科级"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 5,
+          "field": "该条行政级别",
+          "gold": "难以判断",
+          "pred": "正处级"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 7,
+          "field": "该条行政级别",
+          "gold": "难以判断",
+          "pred": "副厅级"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 15,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正部级"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 16,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正部级"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 17,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正部级"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 27,
+          "field": "该条行政级别",
+          "gold": "正部级",
+          "pred": "副国级"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 28,
+          "field": "该条行政级别",
+          "gold": "正部级",
+          "pred": "副国级"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 29,
+          "field": "该条行政级别",
+          "gold": "正部级",
+          "pred": "副国级"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 31,
+          "field": "该条行政级别",
+          "gold": "正部级",
+          "pred": "副国级"
+        }
+      ]
+    },
+    "习近平": {
+      "n_episodes": 68,
+      "fields": {
+        "该条行政级别": {
+          "correct": 43,
+          "total": 68,
+          "accuracy": 0.6324
+        }
+      },
+      "all_fields_correct": {
+        "correct": 43,
+        "total": 68,
+        "accuracy": 0.6324
+      },
+      "errors": [
+        {
+          "official": "习近平",
+          "episode_idx": 8,
+          "field": "该条行政级别",
+          "gold": "副厅级",
+          "pred": "正厅级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 15,
+          "field": "该条行政级别",
+          "gold": "正厅级",
+          "pred": "副部级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 16,
+          "field": "该条行政级别",
+          "gold": "正厅级",
+          "pred": "副部级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 17,
+          "field": "该条行政级别",
+          "gold": "正厅级",
+          "pred": "副部级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 19,
+          "field": "该条行政级别",
+          "gold": "正厅级",
+          "pred": "副部级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 20,
+          "field": "该条行政级别",
+          "gold": "正厅级",
+          "pred": "副部级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 21,
+          "field": "该条行政级别",
+          "gold": "正厅级",
+          "pred": "副部级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 25,
+          "field": "该条行政级别",
+          "gold": "副部级",
+          "pred": "正部级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 26,
+          "field": "该条行政级别",
+          "gold": "副部级",
+          "pred": "正部级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 29,
+          "field": "该条行政级别",
+          "gold": "副部级",
+          "pred": "正部级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 34,
+          "field": "该条行政级别",
+          "gold": "副部级",
+          "pred": "正部级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 46,
+          "field": "该条行政级别",
+          "gold": "正部级",
+          "pred": "副国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 47,
+          "field": "该条行政级别",
+          "gold": "正部级",
+          "pred": "副国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 49,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 50,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 52,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 53,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 54,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 56,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 57,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 58,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 59,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 60,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 63,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        },
+        {
+          "official": "习近平",
+          "episode_idx": 64,
+          "field": "该条行政级别",
+          "gold": "副国级",
+          "pred": "正国级"
+        }
+      ]
+    },
+    "孙春兰": {
+      "n_episodes": 36,
+      "fields": {
+        "该条行政级别": {
+          "correct": 29,
+          "total": 36,
+          "accuracy": 0.8056
+        }
+      },
+      "all_fields_correct": {
+        "correct": 29,
+        "total": 36,
+        "accuracy": 0.8056
+      },
+      "errors": [
+        {
+          "official": "孙春兰",
+          "episode_idx": 2,
+          "field": "该条行政级别",
+          "gold": "副处级",
+          "pred": "难以判断"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 3,
+          "field": "该条行政级别",
+          "gold": "副处级",
+          "pred": "难以判断"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 15,
+          "field": "该条行政级别",
+          "gold": "正厅级",
+          "pred": "副部级"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 18,
+          "field": "该条行政级别",
+          "gold": "正厅级",
+          "pred": "副部级"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 29,
+          "field": "该条行政级别",
+          "gold": "正部级",
+          "pred": "副国级"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 31,
+          "field": "该条行政级别",
+          "gold": "正部级",
+          "pred": "副国级"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 36,
+          "field": "该条行政级别",
+          "gold": "难以判断",
+          "pred": "无"
+        }
+      ]
+    },
+    "赵龙": {
+      "n_episodes": 27,
+      "fields": {
+        "该条行政级别": {
+          "correct": 22,
+          "total": 27,
+          "accuracy": 0.8148
+        }
+      },
+      "all_fields_correct": {
+        "correct": 22,
+        "total": 27,
+        "accuracy": 0.8148
+      },
+      "errors": [
+        {
+          "official": "赵龙",
+          "episode_idx": 1,
+          "field": "该条行政级别",
+          "gold": "难以判断",
+          "pred": "副科级"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 3,
+          "field": "该条行政级别",
+          "gold": "难以判断",
+          "pred": "正科级"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 15,
+          "field": "该条行政级别",
+          "gold": "正厅级",
+          "pred": "副部级"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 25,
+          "field": "该条行政级别",
+          "gold": "副部级",
+          "pred": "正部级"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 27,
+          "field": "该条行政级别",
+          "gold": "副部级",
+          "pred": "无"
+        }
+      ]
+    },
+    "周祖翼": {
+      "n_episodes": 22,
+      "fields": {
+        "该条行政级别": {
+          "correct": 20,
+          "total": 22,
+          "accuracy": 0.9091
+        }
+      },
+      "all_fields_correct": {
+        "correct": 20,
+        "total": 22,
+        "accuracy": 0.9091
+      },
+      "errors": [
+        {
+          "official": "周祖翼",
+          "episode_idx": 1,
+          "field": "该条行政级别",
+          "gold": "正科级",
+          "pred": "无"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 11,
+          "field": "该条行政级别",
+          "gold": "副厅级",
+          "pred": "正厅级"
+        }
+      ]
+    }
+  },
+  "agg_step2": {
+    "组织标签": {
+      "correct": 182,
+      "total": 195,
+      "accuracy": 0.9333
+    },
+    "标志位": {
+      "correct": 179,
+      "total": 195,
+      "accuracy": 0.9179
+    },
+    "任职地（省）": {
+      "correct": 194,
+      "total": 195,
+      "accuracy": 0.9949
+    },
+    "任职地（市）": {
+      "correct": 176,
+      "total": 195,
+      "accuracy": 0.9026
+    },
+    "中央/地方": {
+      "correct": 187,
+      "total": 195,
+      "accuracy": 0.959
+    }
+  },
+  "agg_step3": {
+    "该条行政级别": {
+      "correct": 146,
+      "total": 195,
+      "accuracy": 0.7487
+    }
+  },
+  "errors": [
+    {
+      "official": "王兆国",
+      "episode_idx": 8,
+      "field": "标志位",
+      "gold": "无",
+      "pred": "市常委（其他）"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 9,
+      "field": "组织标签",
+      "gold": "其他",
+      "pred": "国资委央企"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 11,
+      "field": "组织标签",
+      "gold": "共青团中央",
+      "pred": "其他"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 22,
+      "field": "组织标签",
+      "gold": "党中央机关",
+      "pred": "直属机构/部委管理的国家局"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 29,
+      "field": "组织标签",
+      "gold": "其他",
+      "pred": "直属机构/部委管理的国家局"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 4,
+      "field": "该条行政级别",
+      "gold": "难以判断",
+      "pred": "副科级"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 5,
+      "field": "该条行政级别",
+      "gold": "难以判断",
+      "pred": "正处级"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 7,
+      "field": "该条行政级别",
+      "gold": "难以判断",
+      "pred": "副厅级"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 15,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正部级"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 16,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正部级"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 17,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正部级"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 27,
+      "field": "该条行政级别",
+      "gold": "正部级",
+      "pred": "副国级"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 28,
+      "field": "该条行政级别",
+      "gold": "正部级",
+      "pred": "副国级"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 29,
+      "field": "该条行政级别",
+      "gold": "正部级",
+      "pred": "副国级"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 31,
+      "field": "该条行政级别",
+      "gold": "正部级",
+      "pred": "副国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 2,
+      "field": "组织标签",
+      "gold": "其他",
+      "pred": "国务院及其组成部门"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 4,
+      "field": "任职地（市）",
+      "gold": "",
+      "pred": "石家庄市"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 9,
+      "field": "任职地（市）",
+      "gold": "宁德地区",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 10,
+      "field": "任职地（市）",
+      "gold": "宁德市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 13,
+      "field": "任职地（市）",
+      "gold": "福州市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 17,
+      "field": "任职地（市）",
+      "gold": "福州市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 21,
+      "field": "任职地（市）",
+      "gold": "福州市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 24,
+      "field": "标志位",
+      "gold": "省委副书记（省长）",
+      "pred": "省委副书记（非省长）"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 26,
+      "field": "中央/地方",
+      "gold": "地方",
+      "pred": "中央"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 27,
+      "field": "任职地（市）",
+      "gold": "南京市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 29,
+      "field": "标志位",
+      "gold": "省委副书记（省长）",
+      "pred": "省委副书记（非省长）"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 31,
+      "field": "中央/地方",
+      "gold": "地方",
+      "pred": "中央"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 32,
+      "field": "任职地（市）",
+      "gold": "南京市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 34,
+      "field": "标志位",
+      "gold": "省委副书记（省长）",
+      "pred": "省委副书记（非省长）"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 36,
+      "field": "中央/地方",
+      "gold": "地方",
+      "pred": "中央"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 37,
+      "field": "任职地（市）",
+      "gold": "南京市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 41,
+      "field": "任职地（市）",
+      "gold": "杭州市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 41,
+      "field": "中央/地方",
+      "gold": "地方",
+      "pred": "中央"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 42,
+      "field": "任职地（市）",
+      "gold": "南京市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 46,
+      "field": "标志位",
+      "gold": "市委书记",
+      "pred": "省委书记"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 46,
+      "field": "任职地（市）",
+      "gold": "上海市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 47,
+      "field": "任职地（市）",
+      "gold": "上海市",
+      "pred": ""
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 49,
+      "field": "标志位",
+      "gold": "政治局委员",
+      "pred": "无"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 54,
+      "field": "组织标签",
+      "gold": "其他",
+      "pred": "党中央机关"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 61,
+      "field": "标志位",
+      "gold": "无",
+      "pred": "政治局常委"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 65,
+      "field": "标志位",
+      "gold": "无",
+      "pred": "政治局常委"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 8,
+      "field": "该条行政级别",
+      "gold": "副厅级",
+      "pred": "正厅级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 15,
+      "field": "该条行政级别",
+      "gold": "正厅级",
+      "pred": "副部级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 16,
+      "field": "该条行政级别",
+      "gold": "正厅级",
+      "pred": "副部级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 17,
+      "field": "该条行政级别",
+      "gold": "正厅级",
+      "pred": "副部级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 19,
+      "field": "该条行政级别",
+      "gold": "正厅级",
+      "pred": "副部级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 20,
+      "field": "该条行政级别",
+      "gold": "正厅级",
+      "pred": "副部级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 21,
+      "field": "该条行政级别",
+      "gold": "正厅级",
+      "pred": "副部级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 25,
+      "field": "该条行政级别",
+      "gold": "副部级",
+      "pred": "正部级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 26,
+      "field": "该条行政级别",
+      "gold": "副部级",
+      "pred": "正部级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 29,
+      "field": "该条行政级别",
+      "gold": "副部级",
+      "pred": "正部级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 34,
+      "field": "该条行政级别",
+      "gold": "副部级",
+      "pred": "正部级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 46,
+      "field": "该条行政级别",
+      "gold": "正部级",
+      "pred": "副国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 47,
+      "field": "该条行政级别",
+      "gold": "正部级",
+      "pred": "副国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 49,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 50,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 52,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 53,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 54,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 56,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 57,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 58,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 59,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 60,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 63,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "习近平",
+      "episode_idx": 64,
+      "field": "该条行政级别",
+      "gold": "副国级",
+      "pred": "正国级"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 2,
+      "field": "组织标签",
+      "gold": "其他",
+      "pred": "地方党委"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 5,
+      "field": "组织标签",
+      "gold": "国资委央企",
+      "pred": "市属/县属国企"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 11,
+      "field": "任职地（市）",
+      "gold": "鞍山市",
+      "pred": ""
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 12,
+      "field": "任职地（市）",
+      "gold": "鞍山市",
+      "pred": ""
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 14,
+      "field": "任职地（市）",
+      "gold": "沈阳市",
+      "pred": ""
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 15,
+      "field": "任职地（市）",
+      "gold": "北京市",
+      "pred": ""
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 20,
+      "field": "组织标签",
+      "gold": "地方党委",
+      "pred": "其他"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 34,
+      "field": "组织标签",
+      "gold": "其他",
+      "pred": "国务院及其组成部门"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 34,
+      "field": "标志位",
+      "gold": "政治局委员",
+      "pred": "无"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 35,
+      "field": "组织标签",
+      "gold": "其他",
+      "pred": "国务院及其组成部门"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 36,
+      "field": "任职地（省）",
+      "gold": "北京市",
+      "pred": "国外"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 36,
+      "field": "中央/地方",
+      "gold": "中央",
+      "pred": "地方"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 2,
+      "field": "该条行政级别",
+      "gold": "副处级",
+      "pred": "难以判断"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 3,
+      "field": "该条行政级别",
+      "gold": "副处级",
+      "pred": "难以判断"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 15,
+      "field": "该条行政级别",
+      "gold": "正厅级",
+      "pred": "副部级"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 18,
+      "field": "该条行政级别",
+      "gold": "正厅级",
+      "pred": "副部级"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 29,
+      "field": "该条行政级别",
+      "gold": "正部级",
+      "pred": "副国级"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 31,
+      "field": "该条行政级别",
+      "gold": "正部级",
+      "pred": "副国级"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 36,
+      "field": "该条行政级别",
+      "gold": "难以判断",
+      "pred": "无"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 9,
+      "field": "标志位",
+      "gold": "副市长（常委）",
+      "pred": "市常委（其他）"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 10,
+      "field": "标志位",
+      "gold": "副市长（常委）",
+      "pred": "副市长（非常委）"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 11,
+      "field": "中央/地方",
+      "gold": "中央",
+      "pred": "地方"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 18,
+      "field": "组织标签",
+      "gold": "其他",
+      "pred": "党中央机关"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 23,
+      "field": "标志位",
+      "gold": "省委副书记（省长）",
+      "pred": "省委副书记（非省长）"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 24,
+      "field": "标志位",
+      "gold": "省委副书记（省长）",
+      "pred": "省长"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 25,
+      "field": "标志位",
+      "gold": "省委副书记（省长）",
+      "pred": "省委副书记（非省长）"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 27,
+      "field": "组织标签",
+      "gold": "其他",
+      "pred": "部属高校（非教育部）"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 27,
+      "field": "任职地（市）",
+      "gold": "",
+      "pred": "泉州市"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 27,
+      "field": "中央/地方",
+      "gold": "地方",
+      "pred": "中央"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 1,
+      "field": "该条行政级别",
+      "gold": "难以判断",
+      "pred": "副科级"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 3,
+      "field": "该条行政级别",
+      "gold": "难以判断",
+      "pred": "正科级"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 15,
+      "field": "该条行政级别",
+      "gold": "正厅级",
+      "pred": "副部级"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 25,
+      "field": "该条行政级别",
+      "gold": "副部级",
+      "pred": "正部级"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 27,
+      "field": "该条行政级别",
+      "gold": "副部级",
+      "pred": "无"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 4,
+      "field": "标志位",
+      "gold": "高校/党校任职",
+      "pred": "学习进修"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 4,
+      "field": "中央/地方",
+      "gold": "地方",
+      "pred": "中央"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 11,
+      "field": "标志位",
+      "gold": "省组织部副部长",
+      "pred": "无"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 11,
+      "field": "任职地（市）",
+      "gold": "",
+      "pred": "上海市"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 1,
+      "field": "该条行政级别",
+      "gold": "正科级",
+      "pred": "无"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 11,
+      "field": "该条行政级别",
+      "gold": "副厅级",
+      "pred": "正厅级"
+    }
+  ]
+}

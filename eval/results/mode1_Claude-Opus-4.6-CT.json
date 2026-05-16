@@ -1,0 +1,919 @@
+{
+  "model": "Claude-Opus-4.6-CT",
+  "model_id": "claude-opus-4-6",
+  "mode": 1,
+  "elapsed_s": 170.3,
+  "per_official_step1": {
+    "王兆国": {
+      "n_gold_episodes": 42,
+      "n_pred_episodes": 45,
+      "matched_episodes": 42,
+      "episode_recall": 1.0,
+      "episode_precision": 0.9333,
+      "episode_f1": 0.9655,
+      "fields": {
+        "供职单位": {
+          "correct": 33,
+          "total": 42,
+          "accuracy": 0.7857
+        },
+        "职务": {
+          "correct": 38,
+          "total": 42,
+          "accuracy": 0.9048
+        },
+        "起始时间": {
+          "correct": 42,
+          "total": 42,
+          "accuracy": 1.0
+        },
+        "终止时间": {
+          "correct": 42,
+          "total": 42,
+          "accuracy": 1.0
+        }
+      },
+      "errors": [
+        {
+          "official": "王兆国",
+          "episode_idx": 2,
+          "field": "职务",
+          "gold": "办公室技术员",
+          "pred": "技术员"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 6,
+          "field": "供职单位",
+          "gold": "中共第二汽车制造厂委",
+          "pred": "中共第二汽车制造厂委员会"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 6,
+          "field": "职务",
+          "gold": "党委常委、厂政治部副主任兼车箱厂党委第一书记",
+          "pred": "常委"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 7,
+          "field": "供职单位",
+          "gold": "中共车箱厂委",
+          "pred": "中共第二汽车制造厂车箱厂委员会"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 9,
+          "field": "职务",
+          "gold": "副厂长、党委书记",
+          "pred": "副厂长"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 10,
+          "field": "供职单位",
+          "gold": "共青团中央",
+          "pred": "共青团中央书记处"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 10,
+          "field": "职务",
+          "gold": "书记处第一书记",
+          "pred": "第一书记"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 15,
+          "field": "供职单位",
+          "gold": "中共中央直属机关党委",
+          "pred": "中央直属机关党委"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 16,
+          "field": "供职单位",
+          "gold": "中共中央书记处",
+          "pred": "中央书记处"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 17,
+          "field": "供职单位",
+          "gold": "中共中央直属机关党委",
+          "pred": "中央直属机关党委"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 32,
+          "field": "供职单位",
+          "gold": "中共中央政治局",
+          "pred": "中央政治局"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 35,
+          "field": "供职单位",
+          "gold": "中共中央政治局",
+          "pred": "中央政治局"
+        },
+        {
+          "official": "王兆国",
+          "episode_idx": 38,
+          "field": "供职单位",
+          "gold": "中共中央政治局",
+          "pred": "中央政治局"
+        }
+      ]
+    },
+    "习近平": {
+      "error": "Empty response from LLM"
+    },
+    "孙春兰": {
+      "n_gold_episodes": 36,
+      "n_pred_episodes": 41,
+      "matched_episodes": 35,
+      "episode_recall": 0.9722,
+      "episode_precision": 0.8537,
+      "episode_f1": 0.9091,
+      "fields": {
+        "供职单位": {
+          "correct": 29,
+          "total": 36,
+          "accuracy": 0.8056
+        },
+        "职务": {
+          "correct": 31,
+          "total": 36,
+          "accuracy": 0.8611
+        },
+        "起始时间": {
+          "correct": 33,
+          "total": 36,
+          "accuracy": 0.9167
+        },
+        "终止时间": {
+          "correct": 34,
+          "total": 36,
+          "accuracy": 0.9444
+        }
+      },
+      "errors": [
+        {
+          "official": "孙春兰",
+          "episode_idx": 2,
+          "field": "供职单位",
+          "gold": "中共鞍山市一轻局党委",
+          "pred": "中共鞍山市一轻局委"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 3,
+          "field": "职务",
+          "gold": "常委",
+          "pred": "常委、团委书记"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 4,
+          "field": "供职单位",
+          "gold": "鞍山市轻纺工业局团委",
+          "pred": ""
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 4,
+          "field": "职务",
+          "gold": "书记",
+          "pred": ""
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 4,
+          "field": "起始时间",
+          "gold": "1975.00",
+          "pred": ""
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 4,
+          "field": "终止时间",
+          "gold": "1977.00",
+          "pred": ""
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 5,
+          "field": "供职单位",
+          "gold": "中共辽宁省鞍山化纤毛纺织总厂委",
+          "pred": "中共鞍山化纤毛纺织总厂委"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 6,
+          "field": "供职单位",
+          "gold": "中共辽宁省鞍山化纤毛纺织总厂委",
+          "pred": "中共鞍山化纤毛纺织总厂委"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 6,
+          "field": "职务",
+          "gold": "常委、政治处副主任（主持工作）",
+          "pred": "常委、政治处副主任"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 8,
+          "field": "供职单位",
+          "gold": "辽宁省鞍山化纤毛纺织总厂",
+          "pred": "中共鞍山化纤毛纺织总厂委"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 8,
+          "field": "职务",
+          "gold": "党委副书记、副厂长（1986.02-1986.11主持党委工作）",
+          "pred": "副书记、副厂长"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 9,
+          "field": "供职单位",
+          "gold": "中共辽宁省鞍山化纤毛纺织总厂委",
+          "pred": "中共鞍山化纤毛纺织总厂委"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 10,
+          "field": "供职单位",
+          "gold": "辽宁省鞍山市妇联",
+          "pred": "鞍山市妇联"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 18,
+          "field": "职务",
+          "gold": "校长",
+          "pred": "本科生"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 18,
+          "field": "起始时间",
+          "gold": "1998.00",
+          "pred": "1989.00"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 18,
+          "field": "终止时间",
+          "gold": "2001.00",
+          "pred": "1991.00"
+        },
+        {
+          "official": "孙春兰",
+          "episode_idx": 20,
+          "field": "起始时间",
+          "gold": "2001.00",
+          "pred": "1998.00"
+        }
+      ]
+    },
+    "赵龙": {
+      "n_gold_episodes": 27,
+      "n_pred_episodes": 31,
+      "matched_episodes": 27,
+      "episode_recall": 1.0,
+      "episode_precision": 0.871,
+      "episode_f1": 0.931,
+      "fields": {
+        "供职单位": {
+          "correct": 25,
+          "total": 27,
+          "accuracy": 0.9259
+        },
+        "职务": {
+          "correct": 23,
+          "total": 27,
+          "accuracy": 0.8519
+        },
+        "起始时间": {
+          "correct": 26,
+          "total": 27,
+          "accuracy": 0.963
+        },
+        "终止时间": {
+          "correct": 27,
+          "total": 27,
+          "accuracy": 1.0
+        }
+      },
+      "errors": [
+        {
+          "official": "赵龙",
+          "episode_idx": 3,
+          "field": "供职单位",
+          "gold": "辽宁省大连市土地管理局",
+          "pred": "大连市土地管理局"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 6,
+          "field": "职务",
+          "gold": "副处长（主持工作）",
+          "pred": "副处长"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 12,
+          "field": "职务",
+          "gold": "局长、党组书记",
+          "pred": "党组书记、局长"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 14,
+          "field": "职务",
+          "gold": "副部长、党组成员",
+          "pred": "党组成员、副部长"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 16,
+          "field": "职务",
+          "gold": "副部长、党组成员",
+          "pred": "党组成员、副部长"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 18,
+          "field": "起始时间",
+          "gold": "2018.03",
+          "pred": "2020.02"
+        },
+        {
+          "official": "赵龙",
+          "episode_idx": 27,
+          "field": "供职单位",
+          "gold": "华侨大学第九届董事会",
+          "pred": "华侨大学董事会"
+        }
+      ]
+    },
+    "周祖翼": {
+      "n_gold_episodes": 22,
+      "n_pred_episodes": 28,
+      "matched_episodes": 22,
+      "episode_recall": 1.0,
+      "episode_precision": 0.7857,
+      "episode_f1": 0.88,
+      "fields": {
+        "供职单位": {
+          "correct": 18,
+          "total": 22,
+          "accuracy": 0.8182
+        },
+        "职务": {
+          "correct": 16,
+          "total": 22,
+          "accuracy": 0.7273
+        },
+        "起始时间": {
+          "correct": 20,
+          "total": 22,
+          "accuracy": 0.9091
+        },
+        "终止时间": {
+          "correct": 19,
+          "total": 22,
+          "accuracy": 0.8636
+        }
+      },
+      "errors": [
+        {
+          "official": "周祖翼",
+          "episode_idx": 1,
+          "field": "终止时间",
+          "gold": "1994.03",
+          "pred": "1994.04"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 4,
+          "field": "供职单位",
+          "gold": "瑞士联邦高等理工学院（ETH）地球科学系",
+          "pred": "瑞士联邦高等理工学院地球科学系"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 6,
+          "field": "职务",
+          "gold": "海洋地质与地球物理系主任",
+          "pred": "系主任"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 8,
+          "field": "职务",
+          "gold": "党委副书记",
+          "pred": "博士生导师"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 8,
+          "field": "起始时间",
+          "gold": "2002.07",
+          "pred": "1996.01"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 8,
+          "field": "终止时间",
+          "gold": "2004.12",
+          "pred": "1998.08"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 9,
+          "field": "职务",
+          "gold": "党委副书记、副校长",
+          "pred": "副校长"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 10,
+          "field": "职务",
+          "gold": "党委常务副书记、副校长",
+          "pred": "副校长"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 12,
+          "field": "供职单位",
+          "gold": "同济大学",
+          "pred": "中共同济大学委员会"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 12,
+          "field": "职务",
+          "gold": "党委书记",
+          "pred": "副书记"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 12,
+          "field": "起始时间",
+          "gold": "2011.11",
+          "pred": "2002.07"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 12,
+          "field": "终止时间",
+          "gold": "2014.08",
+          "pred": "2004.12"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 13,
+          "field": "供职单位",
+          "gold": "中共中央组织部",
+          "pred": "中央组织部"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 13,
+          "field": "职务",
+          "gold": "部务委员、干部二局局长",
+          "pred": "部务委员"
+        },
+        {
+          "official": "周祖翼",
+          "episode_idx": 15,
+          "field": "供职单位",
+          "gold": "中共中央组织部",
+          "pred": "中央组织部"
+        }
+      ]
+    }
+  },
+  "per_official_step4": {
+    "王兆国": {
+      "n_fields": 3,
+      "correct": 3,
+      "accuracy": 1.0,
+      "errors": []
+    },
+    "习近平": {
+      "n_fields": 3,
+      "correct": 3,
+      "accuracy": 1.0,
+      "errors": []
+    },
+    "孙春兰": {
+      "n_fields": 3,
+      "correct": 3,
+      "accuracy": 1.0,
+      "errors": []
+    },
+    "赵龙": {
+      "n_fields": 3,
+      "correct": 2,
+      "accuracy": 0.6667,
+      "errors": [
+        {
+          "official": "赵龙",
+          "field": "本省提拔",
+          "gold": 1,
+          "pred": 0
+        }
+      ]
+    },
+    "周祖翼": {
+      "n_fields": 3,
+      "correct": 3,
+      "accuracy": 1.0,
+      "errors": []
+    }
+  },
+  "agg_step4": {
+    "correct": 14,
+    "total": 15,
+    "accuracy": 0.9333
+  },
+  "errors": [
+    {
+      "official": "王兆国",
+      "episode_idx": 2,
+      "field": "职务",
+      "gold": "办公室技术员",
+      "pred": "技术员"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 6,
+      "field": "供职单位",
+      "gold": "中共第二汽车制造厂委",
+      "pred": "中共第二汽车制造厂委员会"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 6,
+      "field": "职务",
+      "gold": "党委常委、厂政治部副主任兼车箱厂党委第一书记",
+      "pred": "常委"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 7,
+      "field": "供职单位",
+      "gold": "中共车箱厂委",
+      "pred": "中共第二汽车制造厂车箱厂委员会"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 9,
+      "field": "职务",
+      "gold": "副厂长、党委书记",
+      "pred": "副厂长"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 10,
+      "field": "供职单位",
+      "gold": "共青团中央",
+      "pred": "共青团中央书记处"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 10,
+      "field": "职务",
+      "gold": "书记处第一书记",
+      "pred": "第一书记"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 15,
+      "field": "供职单位",
+      "gold": "中共中央直属机关党委",
+      "pred": "中央直属机关党委"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 16,
+      "field": "供职单位",
+      "gold": "中共中央书记处",
+      "pred": "中央书记处"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 17,
+      "field": "供职单位",
+      "gold": "中共中央直属机关党委",
+      "pred": "中央直属机关党委"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 32,
+      "field": "供职单位",
+      "gold": "中共中央政治局",
+      "pred": "中央政治局"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 35,
+      "field": "供职单位",
+      "gold": "中共中央政治局",
+      "pred": "中央政治局"
+    },
+    {
+      "official": "王兆国",
+      "episode_idx": 38,
+      "field": "供职单位",
+      "gold": "中共中央政治局",
+      "pred": "中央政治局"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 2,
+      "field": "供职单位",
+      "gold": "中共鞍山市一轻局党委",
+      "pred": "中共鞍山市一轻局委"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 3,
+      "field": "职务",
+      "gold": "常委",
+      "pred": "常委、团委书记"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 4,
+      "field": "供职单位",
+      "gold": "鞍山市轻纺工业局团委",
+      "pred": ""
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 4,
+      "field": "职务",
+      "gold": "书记",
+      "pred": ""
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 4,
+      "field": "起始时间",
+      "gold": "1975.00",
+      "pred": ""
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 4,
+      "field": "终止时间",
+      "gold": "1977.00",
+      "pred": ""
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 5,
+      "field": "供职单位",
+      "gold": "中共辽宁省鞍山化纤毛纺织总厂委",
+      "pred": "中共鞍山化纤毛纺织总厂委"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 6,
+      "field": "供职单位",
+      "gold": "中共辽宁省鞍山化纤毛纺织总厂委",
+      "pred": "中共鞍山化纤毛纺织总厂委"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 6,
+      "field": "职务",
+      "gold": "常委、政治处副主任（主持工作）",
+      "pred": "常委、政治处副主任"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 8,
+      "field": "供职单位",
+      "gold": "辽宁省鞍山化纤毛纺织总厂",
+      "pred": "中共鞍山化纤毛纺织总厂委"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 8,
+      "field": "职务",
+      "gold": "党委副书记、副厂长（1986.02-1986.11主持党委工作）",
+      "pred": "副书记、副厂长"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 9,
+      "field": "供职单位",
+      "gold": "中共辽宁省鞍山化纤毛纺织总厂委",
+      "pred": "中共鞍山化纤毛纺织总厂委"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 10,
+      "field": "供职单位",
+      "gold": "辽宁省鞍山市妇联",
+      "pred": "鞍山市妇联"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 18,
+      "field": "职务",
+      "gold": "校长",
+      "pred": "本科生"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 18,
+      "field": "起始时间",
+      "gold": "1998.00",
+      "pred": "1989.00"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 18,
+      "field": "终止时间",
+      "gold": "2001.00",
+      "pred": "1991.00"
+    },
+    {
+      "official": "孙春兰",
+      "episode_idx": 20,
+      "field": "起始时间",
+      "gold": "2001.00",
+      "pred": "1998.00"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 3,
+      "field": "供职单位",
+      "gold": "辽宁省大连市土地管理局",
+      "pred": "大连市土地管理局"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 6,
+      "field": "职务",
+      "gold": "副处长（主持工作）",
+      "pred": "副处长"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 12,
+      "field": "职务",
+      "gold": "局长、党组书记",
+      "pred": "党组书记、局长"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 14,
+      "field": "职务",
+      "gold": "副部长、党组成员",
+      "pred": "党组成员、副部长"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 16,
+      "field": "职务",
+      "gold": "副部长、党组成员",
+      "pred": "党组成员、副部长"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 18,
+      "field": "起始时间",
+      "gold": "2018.03",
+      "pred": "2020.02"
+    },
+    {
+      "official": "赵龙",
+      "episode_idx": 27,
+      "field": "供职单位",
+      "gold": "华侨大学第九届董事会",
+      "pred": "华侨大学董事会"
+    },
+    {
+      "official": "赵龙",
+      "field": "本省提拔",
+      "gold": 1,
+      "pred": 0
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 1,
+      "field": "终止时间",
+      "gold": "1994.03",
+      "pred": "1994.04"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 4,
+      "field": "供职单位",
+      "gold": "瑞士联邦高等理工学院（ETH）地球科学系",
+      "pred": "瑞士联邦高等理工学院地球科学系"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 6,
+      "field": "职务",
+      "gold": "海洋地质与地球物理系主任",
+      "pred": "系主任"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 8,
+      "field": "职务",
+      "gold": "党委副书记",
+      "pred": "博士生导师"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 8,
+      "field": "起始时间",
+      "gold": "2002.07",
+      "pred": "1996.01"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 8,
+      "field": "终止时间",
+      "gold": "2004.12",
+      "pred": "1998.08"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 9,
+      "field": "职务",
+      "gold": "党委副书记、副校长",
+      "pred": "副校长"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 10,
+      "field": "职务",
+      "gold": "党委常务副书记、副校长",
+      "pred": "副校长"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 12,
+      "field": "供职单位",
+      "gold": "同济大学",
+      "pred": "中共同济大学委员会"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 12,
+      "field": "职务",
+      "gold": "党委书记",
+      "pred": "副书记"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 12,
+      "field": "起始时间",
+      "gold": "2011.11",
+      "pred": "2002.07"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 12,
+      "field": "终止时间",
+      "gold": "2014.08",
+      "pred": "2004.12"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 13,
+      "field": "供职单位",
+      "gold": "中共中央组织部",
+      "pred": "中央组织部"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 13,
+      "field": "职务",
+      "gold": "部务委员、干部二局局长",
+      "pred": "部务委员"
+    },
+    {
+      "official": "周祖翼",
+      "episode_idx": 15,
+      "field": "供职单位",
+      "gold": "中共中央组织部",
+      "pred": "中央组织部"
+    }
+  ]
+}

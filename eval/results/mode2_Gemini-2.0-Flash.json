@@ -1,0 +1,75 @@
+{
+  "model": "Gemini-2.0-Flash",
+  "model_id": "gemini-2.0-flash",
+  "mode": 2,
+  "elapsed_s": 496.5,
+  "per_official_step2": {
+    "王兆国": {
+      "error": "Error code: 503 - {'error': {'message': '当前分组 [default] 下对于模型 [gemini-2.0-flash] 无可用渠道，请联系管理员', 'type': 'new_api_error', 'param': '', 'code': ''}}"
+    },
+    "习近平": {
+      "error": "Error code: 503 - {'error': {'message': '当前分组 [default] 下对于模型 [gemini-2.0-flash] 无可用渠道，请联系管理员', 'type': 'new_api_error', 'param': '', 'code': ''}}"
+    },
+    "孙春兰": {
+      "error": "Error code: 503 - {'error': {'message': '当前分组 [default] 下对于模型 [gemini-2.0-flash] 无可用渠道，请联系管理员', 'type': 'new_api_error', 'param': '', 'code': ''}}"
+    },
+    "赵龙": {
+      "error": "Error code: 503 - {'error': {'message': '当前分组 [default] 下对于模型 [gemini-2.0-flash] 无可用渠道，请联系管理员', 'type': 'new_api_error', 'param': '', 'code': ''}}"
+    },
+    "周祖翼": {
+      "error": "Error code: 503 - {'error': {'message': '当前分组 [default] 下对于模型 [gemini-2.0-flash] 无可用渠道，请联系管理员', 'type': 'new_api_error', 'param': '', 'code': ''}}"
+    }
+  },
+  "per_official_step3": {
+    "王兆国": {
+      "error": "Error code: 503 - {'error': {'message': '当前分组 [default] 下对于模型 [gemini-2.0-flash] 无可用渠道，请联系管理员', 'type': 'new_api_error', 'param': '', 'code': ''}}"
+    },
+    "习近平": {
+      "error": "Error code: 503 - {'error': {'message': '当前分组 [default] 下对于模型 [gemini-2.0-flash] 无可用渠道，请联系管理员', 'type': 'new_api_error', 'param': '', 'code': ''}}"
+    },
+    "孙春兰": {
+      "error": "Error code: 503 - {'error': {'message': '当前分组 [default] 下对于模型 [gemini-2.0-flash] 无可用渠道，请联系管理员', 'type': 'new_api_error', 'param': '', 'code': ''}}"
+    },
+    "赵龙": {
+      "error": "Error code: 503 - {'error': {'message': '当前分组 [default] 下对于模型 [gemini-2.0-flash] 无可用渠道，请联系管理员', 'type': 'new_api_error', 'param': '', 'code': ''}}"
+    },
+    "周祖翼": {
+      "error": "Error code: 503 - {'error': {'message': '当前分组 [default] 下对于模型 [gemini-2.0-flash] 无可用渠道，请联系管理员', 'type': 'new_api_error', 'param': '', 'code': ''}}"
+    }
+  },
+  "agg_step2": {
+    "组织标签": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    },
+    "标志位": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    },
+    "任职地（省）": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    },
+    "任职地（市）": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    },
+    "中央/地方": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    }
+  },
+  "agg_step3": {
+    "该条行政级别": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    }
+  },
+  "errors": []
+}

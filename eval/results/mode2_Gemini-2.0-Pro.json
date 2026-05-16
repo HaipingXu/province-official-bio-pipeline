@@ -1,0 +1,75 @@
+{
+  "model": "Gemini-2.0-Pro",
+  "model_id": "gemini-2.0-pro",
+  "mode": 2,
+  "elapsed_s": 496.7,
+  "per_official_step2": {
+    "王兆国": {
+      "error": "Error code: 503 - {'error': {'code': 'invalid_request', 'message': '所有分组对于模型 gemini-2.0-pro 无可用渠道，请检查模型是否存在或联系管理员，请尝试更改模型为以下其一[gemini-2.5-pro],[gemini-pro] (request id: B202605130450487388903688268d9d6HBIFBcj9Master)', 'type': 'new_api_error'}}"
+    },
+    "习近平": {
+      "error": "Error code: 503 - {'error': {'code': 'invalid_request', 'message': '所有分组对于模型 gemini-2.0-pro 无可用渠道，请检查模型是否存在或联系管理员，请尝试更改模型为以下其一[gemini-2.5-pro],[gemini-pro] (request id: B202605130452293174205028268d9d6dhsPDstoMaster)', 'type': 'new_api_error'}}"
+    },
+    "孙春兰": {
+      "error": "Error code: 503 - {'error': {'code': 'invalid_request', 'message': '所有分组对于模型 gemini-2.0-pro 无可用渠道，请检查模型是否存在或联系管理员，请尝试更改模型为以下其一[gemini-2.5-pro],[gemini-pro] (request id: B202605130454123865978078268d9d6e3OcqywGSlave1)', 'type': 'new_api_error'}}"
+    },
+    "赵龙": {
+      "error": "Error code: 503 - {'error': {'code': 'invalid_request', 'message': '所有分组对于模型 gemini-2.0-pro 无可用渠道，请检查模型是否存在或联系管理员，请尝试更改模型为以下其一[gemini-pro],[gemini-2.5-pro] (request id: B202605130455484057095628268d9d65uLKK1W9Master)', 'type': 'new_api_error'}}"
+    },
+    "周祖翼": {
+      "error": "Error code: 503 - {'error': {'code': 'invalid_request', 'message': '所有分组对于模型 gemini-2.0-pro 无可用渠道，请检查模型是否存在或联系管理员，请尝试更改模型为以下其一[gemini-2.5-pro],[gemini-pro] (request id: B202605130457277412963888268d9d6zvahoGZNSlave1)', 'type': 'new_api_error'}}"
+    }
+  },
+  "per_official_step3": {
+    "王兆国": {
+      "error": "Error code: 503 - {'error': {'code': 'invalid_request', 'message': '所有分组对于模型 gemini-2.0-pro 无可用渠道，请检查模型是否存在或联系管理员，请尝试更改模型为以下其一[gemini-pro],[gemini-2.5-pro] (request id: B202605130451359788324768268d9d63fIFDguBSlave1)', 'type': 'new_api_error'}}"
+    },
+    "习近平": {
+      "error": "Error code: 503 - {'error': {'code': 'invalid_request', 'message': '所有分组对于模型 gemini-2.0-pro 无可用渠道，请检查模型是否存在或联系管理员，请尝试更改模型为以下其一[gemini-2.5-pro],[gemini-pro] (request id: B20260513045319463225568268d9d6ASX3lm5SSlave1)', 'type': 'new_api_error'}}"
+    },
+    "孙春兰": {
+      "error": "Error code: 503 - {'error': {'code': 'invalid_request', 'message': '所有分组对于模型 gemini-2.0-pro 无可用渠道，请检查模型是否存在或联系管理员，请尝试更改模型为以下其一[gemini-2.5-pro],[gemini-pro] (request id: B202605130455003570927278268d9d6DBqYHLHDSlave1)', 'type': 'new_api_error'}}"
+    },
+    "赵龙": {
+      "error": "Error code: 503 - {'error': {'code': 'invalid_request', 'message': '所有分组对于模型 gemini-2.0-pro 无可用渠道，请检查模型是否存在或联系管理员，请尝试更改模型为以下其一[gemini-2.5-pro],[gemini-pro] (request id: B202605130456361439968858268d9d6xk6O8gkvMaster)', 'type': 'new_api_error'}}"
+    },
+    "周祖翼": {
+      "error": "Error code: 503 - {'error': {'code': 'invalid_request', 'message': '所有分组对于模型 gemini-2.0-pro 无可用渠道，请检查模型是否存在或联系管理员，请尝试更改模型为以下其一[gemini-pro],[gemini-2.5-pro] (request id: B20260513045814375671248268d9d6sSOxvD0UMaster)', 'type': 'new_api_error'}}"
+    }
+  },
+  "agg_step2": {
+    "组织标签": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    },
+    "标志位": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    },
+    "任职地（省）": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    },
+    "任职地（市）": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    },
+    "中央/地方": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    }
+  },
+  "agg_step3": {
+    "该条行政级别": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0.0
+    }
+  },
+  "errors": []
+}

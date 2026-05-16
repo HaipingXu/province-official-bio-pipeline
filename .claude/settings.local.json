@@ -103,7 +103,20 @@
       "Bash(kill 69620)",
       "Bash(tee /tmp/run_zhejiang.log)",
       "Bash(python -c \"import ast; ast.parse\\(open\\('main_province.py'\\).read\\(\\)\\); ast.parse\\(open\\('extraction.py'\\).read\\(\\)\\); ast.parse\\(open\\('diff.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(kill 77432)",
+      "WebFetch(domain:gpt-best.apifox.cn)",
+      "Bash(pkill -f \"main_province.py\")",
+      "Read(//private/tmp/**)",
+      "Bash(fc-list)",
+      "Bash(kpsewhich lato.sty)",
+      "Read(//usr/local/texlive/2024/texmf-dist/fonts/type1/**)",
+      "Bash(xelatex -interaction=nonstopmode main.tex)",
+      "Bash(open /Users/xuhaiping/Desktop/Workflow省级官员/Slides/main.pdf)",
+      "Bash(pdflatex -interaction=nonstopmode main.tex)",
+      "Bash(open /Users/xuhaiping/Desktop/DasguptaAPSR2020/main.pdf)",
+      "Bash(xelatex -interaction=nonstopmode slides_progress.tex)"
     ]
   }
 }

@@ -58,17 +58,19 @@ def _k(env_var: str) -> str:
 
 # ── Provider base URLs ────────────────────────────────────────────────────────
 
-BLTCY_URL      = "https://api.bltcy.ai/v1"
-DEEPSEEK_URL   = "https://api.deepseek.com"
-DASHSCOPE_URL  = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-KIMI_URL       = "https://api.moonshot.cn/v1"
-VOLCENGINE_URL = "https://ark.cn-beijing.volces.com/api/v3"
+BLTCY_URL         = "https://api.bltcy.ai/v1"
+CLARIONTECH_URL   = "http://token.clariontech.top/v1"
+DEEPSEEK_URL      = "https://api.deepseek.com"
+DASHSCOPE_URL     = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+KIMI_URL          = "https://api.moonshot.cn/v1"
+VOLCENGINE_URL    = "https://ark.cn-beijing.volces.com/api/v3"
 
 # ── Model registry ────────────────────────────────────────────────────────────
 
 def get_all_models() -> list[EvalModel]:
     """Return list of all models to test."""
     bltcy_key   = _k("BLTCY_API_KEYS")
+    ct_key      = _k("CLARIONTECH_API_KEYS")
     ds_key      = _k("DEEPSEEK_API_KEY")
     qs_key      = _k("QWEN_API_KEY")
     kimi_key    = _k("KIMI_API_KEY")
@@ -114,6 +116,14 @@ def get_all_models() -> list[EvalModel]:
         models += [
             EvalModel("qwen3.5-plus", "Qwen3.5-Plus", DASHSCOPE_URL, qs_key, "dashscope",
                       extra_body={"enable_thinking": False}),
+        ]
+
+    # ── Clariontech (GPT-5.2, Claude Haiku/Opus) ─────────────────────────────
+    if ct_key:
+        models += [
+            EvalModel("gpt-5.2",                    "GPT-5.2",         CLARIONTECH_URL, ct_key, "clariontech"),
+            EvalModel("claude-haiku-4-5-20251001",  "Claude-Haiku-4.5", CLARIONTECH_URL, ct_key, "clariontech"),
+            EvalModel("claude-opus-4-6",            "Claude-Opus-4.6-CT", CLARIONTECH_URL, ct_key, "clariontech"),
         ]
 
     # ── Kimi (optional extra) ─────────────────────────────────────────────────
